@@ -23,4 +23,7 @@ return [
     "ConfirmActivateUser"   => "Are you sure you want to activate this user?",
     "Filters"               => "Filters",
     "NoDataAvailable"       => "No Data Available",
+    "CreateUser"            => "Create User",
+    "DeleteUser"            => "Delete User",
+    "EditUser"              => "Edit User",
 ];

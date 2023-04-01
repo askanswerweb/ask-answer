@@ -23,4 +23,7 @@ return [
     "ConfirmActivateUser"   => "هل انت متاكد من تفعيل حساب المستخدم؟",
     "Filters"               => "فلتر",
     "NoDataAvailable"       => "لا توجد معلومات متاحة",
+    "CreateUser"            => "انشاء مستخدم",
+    "DeleteUser"            => "حذف مستخدم",
+    "EditUser"              => "تعديل مستخدم",
 ];

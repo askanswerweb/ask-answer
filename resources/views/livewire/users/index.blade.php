@@ -9,7 +9,17 @@
         <x-breadcrumb.muted>{{ __('titles.Users') }}</x-breadcrumb.muted>
     </x-breadcrumb.container>
 
+
     <x-table :list="$list" :title="__('titles.Users')" :with-export="false" class="text-center">
+        <x-slot name="actions">
+            <x-tooltip text="{{ __('actions.Create') }}">
+                <a href="{{ route('users.create') }}"
+                   class="btn btn-sm btn-icon btn-success me-1">
+                    <x-svg icon="square-plus" />
+                </a>
+            </x-tooltip>
+        </x-slot>
+
         <x-slot name="thead">
             <th>#</th>
             <th>{{ __('titles.Name') }}</th>
