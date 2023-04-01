@@ -18,7 +18,7 @@
             <x-dropdown.item data-bs-toggle="modal" data-bs-target="#user_status_{{ $user->id }}">
                 @if($user->isActive())
                     <x-dropdown.link>
-                        <x-svg icon="double-switch" class="svg-icon-danger svg-icon-2x" />
+                        <x-svg icon="double-switch" class="svg-icon-danger" />
                         <span class="ms-2 fw-bolder">{{ __('actions.Deactivate') }}</span>
                     </x-dropdown.link>
                 @else
@@ -31,7 +31,7 @@
 
             <x-dropdown.item>
                 <x-dropdown.link :href="route('users.edit', ['user' => $user])">
-                    <x-svg icon="pencil" class="svg-icon-muted svg-icon-2x" />
+                    <x-svg icon="pencil" class="svg-icon-muted" />
                     <span class="ms-2 fw-bolder">{{ __('actions.Edit') }}</span>
                 </x-dropdown.link>
             </x-dropdown.item>
