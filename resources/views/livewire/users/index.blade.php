@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <x-breadcrumb.container :header="__('titles.Users')">
         <x-breadcrumb.link :href="route('home')">
             {{ __('titles.Dashboard') }}
