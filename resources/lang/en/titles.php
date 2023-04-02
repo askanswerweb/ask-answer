@@ -26,4 +26,6 @@ return [
     "CreateUser"            => "Create User",
     "DeleteUser"            => "Delete User",
     "EditUser"              => "Edit User",
+    "Question"              => "Question",
+    "Questions"             => "Questions",
 ];

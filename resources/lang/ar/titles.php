@@ -26,4 +26,6 @@ return [
     "CreateUser"            => "انشاء مستخدم",
     "DeleteUser"            => "حذف مستخدم",
     "EditUser"              => "تعديل مستخدم",
+    "Question"              => "السؤال",
+    "Questions"             => "الأسئلة",
 ];
