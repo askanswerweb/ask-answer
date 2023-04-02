@@ -15,7 +15,8 @@ return new class extends Migration {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->text('close_reason')->nullable();
             $table->enum('status', array_keys(QuestionState::all()->toArray()))->default(Open::$name);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

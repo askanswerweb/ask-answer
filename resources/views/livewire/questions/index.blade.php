@@ -22,10 +22,11 @@
 
         <x-slot name="thead">
             <th>#</th>
-            <th>{{ __('titles.Title') }}</th>
+            <th class="mw-150px">{{ __('titles.Title') }}</th>
+            <th>{{ __('titles.User') }}</th>
             <th>{{ __('titles.Status') }}</th>
             <th>{{ __('titles.CreateDate') }}</th>
-            <th class="min-w-50px">{{ __('actions.Manage') }}</th>
+            <th>{{ __('actions.Manage') }}</th>
         </x-slot>
 
         @foreach($list as $question)

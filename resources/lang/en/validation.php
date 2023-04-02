@@ -180,5 +180,6 @@ return [
         'url'           => 'url',
         'title'         => 'title',
         'content'       => 'content',
+        'reason'        => 'reason',
     ]
 ];

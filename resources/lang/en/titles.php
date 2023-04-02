@@ -29,4 +29,7 @@ return [
     "Question"              => "Question",
     "Questions"             => "Questions",
     "Title"                 => "Title",
+    "CantRevert"            => "You wont be able to revert this!",
+    "Reason"                => "Reason",
+    "QuestionDetails"       => "Question Details",
 ];

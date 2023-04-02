@@ -29,4 +29,7 @@ return [
     "Question"              => "السؤال",
     "Questions"             => "الأسئلة",
     "Title"                 => "العنوان",
+    "CantRevert"            => "لن تتمكن من التراجع عن هذا!",
+    "Reason"                => "السبب",
+    "QuestionDetails"       => "تفاصيل السؤال",
 ];

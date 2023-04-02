@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Questions;
 
 use App\Business\Livewire\WithEvents;
+use App\Business\Models\Questions;
 use App\Business\States\Question\Closed;
 use App\Models\Question;
 use Livewire\Component;
@@ -34,9 +35,12 @@ class IndexItem extends Component
     {
         $this->validate(['reason' => 'required']);
 
-        $this->question->close_reasn = $this->reason;
+        $old_status = $this->question->status;
+        $this->question->close_reason = $this->reason;
         $this->question->status->transitionTo(Closed::class);
         $this->question->save();
+
+        Questions::logStatus($this->question, $old_status, reason: $this->reason);
 
         $this->saved('Question');
         $this->reset('reason');

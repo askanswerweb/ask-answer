@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $title
  * @property string $description
+ * @property string $close_reason
  * @property string $status
  * @property int $user_id
  * @property Carbon|null $created_at
@@ -34,6 +35,7 @@ class Question extends Model
     const ID = 'id';
     const TITLE = 'title';
     const DESCRIPTION = 'description';
+    const CLOSE_REASON = 'close_reason';
     const STATUS = 'status';
     const USER_ID = 'user_id';
     const CREATED_AT = 'created_at';
@@ -51,6 +53,7 @@ class Question extends Model
     protected $fillable = [
         self::TITLE,
         self::DESCRIPTION,
+        self::CLOSE_REASON,
         self::STATUS,
         self::USER_ID
     ];

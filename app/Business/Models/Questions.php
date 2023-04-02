@@ -2,8 +2,11 @@
 
 namespace App\Business\Models;
 
+use App\Business\States\Question\QuestionState;
 use App\Business\Utilities\Dates;
 use App\Business\Utilities\Queries;
+use App\Models\Question;
+use App\Models\User;
 use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -32,5 +35,14 @@ class Questions
         ]);
 
         return $query;
+    }
+
+    public static function logStatus(Question $question, QuestionState|string $old_status, ?User $user = null, ?string $reason = null): void
+    {
+        activity('question_status')
+            ->performedOn($question)
+            ->causedBy($user ?: auth()->user())
+            ->withProperties(['old_status' => $old_status, 'new_status' => $question->status])
+            ->log($reason ?: 'Question status updated');
     }
 }

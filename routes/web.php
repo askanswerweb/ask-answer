@@ -2,6 +2,7 @@
 
 use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Livewire\Questions\Index as IndexQuestion;
 use App\Http\Livewire\Questions\Create as CreateQuestion;
 use App\Http\Livewire\Questions\Edit as EditQuestion;
@@ -42,6 +43,13 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/', IndexQuestion::class)->name('index');
             Route::get('/create', CreateQuestion::class)->name('create');
             Route::get('/{question}/edit', EditQuestion::class)->name('edit');
+        });
+
+        Route::prefix('dropzone')->group(function () {
+            Route::prefix('questions')->name('questions')->group(function () {
+                Route::post('save-image', [QuestionController::class, 'saveImage'])->name('images.post');
+                Route::post('delete-image', [QuestionController::class, 'deleteImage'])->name('images.delete');
+            });
         });
     });
 });

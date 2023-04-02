@@ -21,7 +21,7 @@ class Index extends Tables
 
     protected function query()
     {
-        return Questions::filter(Question::query(), [
+        return Questions::filter(Question::with('user')->latest('id'), [
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
             'status' => $this->status,
