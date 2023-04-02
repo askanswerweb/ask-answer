@@ -32,4 +32,6 @@ return [
     "CantRevert"            => "لن تتمكن من التراجع عن هذا!",
     "Reason"                => "السبب",
     "QuestionDetails"       => "تفاصيل السؤال",
+    "Files"                 => "الملفات",
+    "File"                  => "الملف",
 ];

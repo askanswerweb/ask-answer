@@ -12016,7 +12016,7 @@
       },
       {
         type: choiceItem,
-        text: 'Medium Gray',
+        text: 'Media Gray',
         value: '#CED4D9'
       },
       {

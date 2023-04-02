@@ -19,12 +19,12 @@
         @if($wireClick)
             wire:target="{{ $wireClick }}"
         @endif
-        class="indicator-progress"
+        class="indicator-progress pm-0"
         wire:loading
     >
         @if($withText)
             {{ __('actions.PleaseWait') }}
         @endif
-        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+        <span class="spinner-border spinner-border-sm align-middle {{ $withText ? 'ms-2' : '' }}"></span>
     </span>
 </button>

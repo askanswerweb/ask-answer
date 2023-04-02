@@ -32,4 +32,6 @@ return [
     "CantRevert"            => "You wont be able to revert this!",
     "Reason"                => "Reason",
     "QuestionDetails"       => "Question Details",
+    "Files"                 => "Files",
+    "File"                  => "File",
 ];

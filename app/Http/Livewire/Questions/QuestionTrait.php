@@ -4,20 +4,22 @@ namespace App\Http\Livewire\Questions;
 
 use App\Business\Livewire\WithEvents;
 use App\Models\Question;
+use Livewire\WithFileUploads;
 
 trait QuestionTrait
 {
-    use WithEvents;
+    use WithEvents, WithFileUploads;
 
     public Question $question;
-    public array $images = [];
+    public $uploaded_files;
+    public $files;
 
     protected function rules(): array
     {
         return [
             'question.title' => 'required',
             'question.description' => '',
-            'images' => ''
+            'files.*' => 'file|max:2048'
         ];
     }
 
@@ -30,11 +32,13 @@ trait QuestionTrait
         $this->question->user_id = auth()->id();
         $this->question->save();
 
-        if (!$exists) {
-            if (count($this->images)) {
-                // Save media
+        if (!empty($this->files)) {
+            foreach ($this->files as $file) {
+                $media = $this->question->addMedia($file)->toMediaCollection();
             }
+        }
 
+        if (!$exists) {
             $this->created('Question');
             $this->redirect(route('questions.edit', ['question' => $this->question->id]));
             return;
