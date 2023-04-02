@@ -28,4 +28,5 @@ return [
     "EditUser"              => "Edit User",
     "Question"              => "Question",
     "Questions"             => "Questions",
+    "Title"                 => "Title",
 ];

@@ -18,27 +18,15 @@
             {{ __('titles.Users') }}
         </x-sidebar.item>
     @endif
-    <!-- Start::Categories -->
-{{--    @if(auth()->user()->is_admin || auth()->user()->can('categories'))--}}
-{{--        <x-sidebar.heading>{{ __('titles.Categories') }}</x-sidebar.heading>--}}
 
-{{--        <x-sidebar.item--}}
-{{--            :class="request()->route()->getName() == 'categories.index' ? 'here show' : ''"--}}
-{{--            :href="route('categories.index')">--}}
-{{--            <x-slot name="icon">--}}
-{{--                <x-svg icon="layout-4-blocks" />--}}
-{{--            </x-slot>--}}
-{{--            {{ __('titles.Categories') }}--}}
-{{--        </x-sidebar.item>--}}
+    <x-sidebar.heading>{{ __('titles.Questions') }}</x-sidebar.heading>
 
-{{--        <x-sidebar.item--}}
-{{--            :class="request()->route()->getName() == 'subcategories.index' ? 'here show' : ''"--}}
-{{--            :href="route('subcategories.index')">--}}
-{{--            <x-slot name="icon">--}}
-{{--                <x-svg icon="git" :reverse="is_arabic()" />--}}
-{{--            </x-slot>--}}
-{{--            {{ __('titles.Subcategories') }}--}}
-{{--        </x-sidebar.item>--}}
-{{--    @endcan--}}
-    <!-- End::Categories -->
+    <x-sidebar.item
+        :class="request()->route()->getName() == 'questions.index' ? 'here show' : ''"
+        :href="route('questions.index')">
+        <x-slot name="icon">
+            <x-svg icon="question-circle" />
+        </x-slot>
+        {{ __('titles.Questions') }}
+    </x-sidebar.item>
 </x-sidebar.container>

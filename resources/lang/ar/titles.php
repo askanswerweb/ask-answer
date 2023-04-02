@@ -28,4 +28,5 @@ return [
     "EditUser"              => "تعديل مستخدم",
     "Question"              => "السؤال",
     "Questions"             => "الأسئلة",
+    "Title"                 => "العنوان",
 ];

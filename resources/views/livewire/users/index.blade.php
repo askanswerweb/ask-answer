@@ -29,13 +29,9 @@
             <th class="min-w-50px">{{ __('actions.Manage') }}</th>
         </x-slot>
 
-        @if($list->total() == 0)
-            <th colspan="4">{{ __('titles.NoRecordsFound') }}</th>
-        @else
-            @foreach($list as $user)
-                @livewire('users.index-item', ['user' => $user], key(microtime()))
-            @endforeach
-        @endif
+        @foreach($list as $user)
+            @livewire('users.index-item', ['user' => $user], key(microtime()))
+        @endforeach
 
         <x-slot name="extra">
             <x-filters.container>

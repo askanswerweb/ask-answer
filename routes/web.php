@@ -2,6 +2,9 @@
 
 use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
+use App\Http\Livewire\Questions\Index as IndexQuestion;
+use App\Http\Livewire\Questions\Create as CreateQuestion;
+use App\Http\Livewire\Questions\Edit as EditQuestion;
 use App\Http\Livewire\Users\Index as IndexUser;
 use App\Http\Livewire\Users\Create as CreateUser;
 use App\Http\Livewire\Users\Edit as EditUser;
@@ -32,6 +35,13 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/', IndexUser::class)->name('index');
             Route::get('/create', CreateUser::class)->name('create');
             Route::get('/{user}/edit', EditUser::class)->name('edit');
+        });
+
+        // Questions
+        Route::prefix('questions')->name('questions.')->group(function () {
+            Route::get('/', IndexQuestion::class)->name('index');
+            Route::get('/create', CreateQuestion::class)->name('create');
+            Route::get('/{question}/edit', EditQuestion::class)->name('edit');
         });
     });
 });

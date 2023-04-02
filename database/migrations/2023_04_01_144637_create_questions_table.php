@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Enums\QuestionStatus;
+use App\Business\States\Question\Open;
+use App\Business\States\Question\QuestionState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->enum('status', QuestionStatus::values())->default(QuestionStatus::OPEN->value);
+            $table->enum('status', array_keys(QuestionState::all()->toArray()))->default(Open::$name);
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('resolver_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

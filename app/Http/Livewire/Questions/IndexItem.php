@@ -2,12 +2,43 @@
 
 namespace App\Http\Livewire\Questions;
 
+use App\Business\Livewire\WithEvents;
+use App\Business\States\Question\Closed;
+use App\Models\Question;
 use Livewire\Component;
 
 class IndexItem extends Component
 {
+    use WithEvents;
+
+    public Question $question;
+    public $reason;
+
+    public function mount(Question $question)
+    {
+        $this->question = $question;
+    }
+
     public function render()
     {
         return view('livewire.questions.index-item');
+    }
+
+    public function delete()
+    {
+        $this->question->delete();
+        $this->emitTo('questions.index', 'refreshQuestions');
+    }
+
+    public function close()
+    {
+        $this->validate(['reason' => 'required']);
+
+        $this->question->close_reasn = $this->reason;
+        $this->question->status->transitionTo(Closed::class);
+        $this->question->save();
+
+        $this->saved('Question');
+        $this->reset('reason');
     }
 }

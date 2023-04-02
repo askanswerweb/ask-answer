@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $status
  * @property int $user_id
- * @property int|null $resolver_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
@@ -37,7 +36,6 @@ class Question extends Model
     const DESCRIPTION = 'description';
     const STATUS = 'status';
     const USER_ID = 'user_id';
-    const RESOLVER_ID = 'resolver_id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
@@ -46,7 +44,6 @@ class Question extends Model
     protected $casts = [
         self::ID => 'int',
         self::USER_ID => 'int',
-        self::RESOLVER_ID => 'int',
         self::CREATED_AT => 'date',
         self::UPDATED_AT => 'date'
     ];
@@ -55,8 +52,7 @@ class Question extends Model
         self::TITLE,
         self::DESCRIPTION,
         self::STATUS,
-        self::USER_ID,
-        self::RESOLVER_ID
+        self::USER_ID
     ];
 
     public function user()

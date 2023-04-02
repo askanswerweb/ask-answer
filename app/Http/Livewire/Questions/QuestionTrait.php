@@ -24,7 +24,6 @@ trait QuestionTrait
     public function save(): void
     {
         $this->validate();
-
         $exists = $this->question->exists;
 
         // Save Question
