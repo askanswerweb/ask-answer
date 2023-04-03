@@ -41,6 +41,7 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/create', CreateQuestion::class)->name('create');
             Route::get('/{question}/edit', EditQuestion::class)->name('edit');
             Route::get('/{question}/answers', IndexAnswer::class)->name('answers');
+            Route::get('/{question}/answers/create', CreateAnswer::class)->name('answers.create');
         });
 
         // Answers

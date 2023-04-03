@@ -11,7 +11,7 @@
                     @endif
                 </div>
 
-                <div class="fs-5 fw-bold mb-2">{{ $media->name }}</div>
+                <div class="fs-5 fw-bold mb-2">{{ $media->file_name }}</div>
             </div>
 
             <div class="fs-7 fw-semibold text-gray-400">

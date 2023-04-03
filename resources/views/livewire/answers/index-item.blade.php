@@ -63,15 +63,15 @@
                 </div>
 
                 <div class="d-flex-end">
-                    <button
-                            class="btn btn-sm btn-icon btn-light me-2">
-                        <x-svg icon="attached" />
-                    </button>
+                    {{--                    <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"--}}
+                    {{--                            class="btn btn-sm btn-icon btn-light me-2">--}}
+                    {{--                        <x-svg icon="attached" />--}}
+                    {{--                    </button>--}}
 
-                    <button data-bs-toggle="modal" data-bs-target="#edit_{{ $answer->id }}"
-                            class="btn btn-sm btn-icon btn-primary">
+                    <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
+                       class="btn btn-sm btn-icon btn-primary">
                         <x-svg icon="pencil" />
-                    </button>
+                    </a>
 
                     <x-widgets.modal id="edit_{{ $answer->id }}" :title="__('actions.Edit')"
                                      subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
@@ -105,6 +105,25 @@
                             </button>
                         </x-slot>
                     </x-widgets.modal>
+
+                    {{--                    <x-widgets.modal--}}
+                    {{--                        class="modal-lg"--}}
+                    {{--                        id="media_{{ $answer->id }}" :title="__('actions.Edit')"--}}
+                    {{--                        subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">--}}
+                    {{--                        <div class="d-flex-start-wrap">--}}
+                    {{--                            <div class="mw-300px me-2">--}}
+                    {{--                                <input type="file" class="form-control form-control-solid" wire:model="files"--}}
+                    {{--                                       multiple />--}}
+                    {{--                            </div>--}}
+                    {{--                            <x-livewire.action wire-click="addFiles" class="btn-primary">--}}
+                    {{--                                {{ __('actions.Add') }}--}}
+                    {{--                            </x-livewire.action>--}}
+                    {{--                        </div>--}}
+
+                    {{--                        <hr />--}}
+
+                    {{--                        @livewire('media.index', ['model' => $answer], key('answer_media_' . microtime() . "_$answer->id"))--}}
+                    {{--                    </x-widgets.modal>--}}
                 </div>
             </div>
         </div>

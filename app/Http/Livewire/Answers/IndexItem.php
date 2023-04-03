@@ -4,14 +4,17 @@ namespace App\Http\Livewire\Answers;
 
 use App\Business\Livewire\WithEvents;
 use App\Models\Answer;
+use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class IndexItem extends Component
 {
-    use WithEvents;
+    use WithEvents, WithFileUploads;
 
     public Answer $answer;
     public $media_count;
+    public $files;
 
     protected array $rules = ['answer.content' => 'required'];
 
@@ -34,5 +37,17 @@ class IndexItem extends Component
 
         $this->edited('Answer');
         $this->dispatchBrowserEvent('saved_content_' . $this->answer->id);
+    }
+
+    public function addFiles()
+    {
+        if (!empty($this->files)) {
+            foreach ($this->files as $file) {
+                $this->answer->addMedia($file)->setFileName(Str::random(10))->toMediaCollection();
+            }
+        }
+
+        $this->saved();
+        $this->emitTo('media.index', 'refreshMedia');
     }
 }

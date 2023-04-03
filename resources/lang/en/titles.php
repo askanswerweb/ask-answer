@@ -36,4 +36,5 @@ return [
     "File"                  => "File",
     "Answer"                => "Answer",
     "Answers"               => "Answers",
+    "Content"               => "Content",
 ];

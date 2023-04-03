@@ -91,6 +91,13 @@
                                             <div class="mb-6 mh-200px overflow-y-auto pre-wrap">
                                                 {!! $question->description !!}
                                             </div>
+
+                                            <div class="w-100 d-flex-end">
+                                                <a class="btn btn-success"
+                                                   href="{{ route('questions.answers.create', ['question' => $question->id]) }}">
+                                                    {{ __('actions.Answer') }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

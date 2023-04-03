@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Questions;
 
 use App\Business\Livewire\WithEvents;
+use App\Business\Models\Medias;
 use App\Models\Question;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 trait QuestionTrait
@@ -28,14 +30,9 @@ trait QuestionTrait
         $exists = $this->question->exists;
 
         // Save Question
-        $this->question->user_id = auth()->id();
+        $this->question->user_id = $this->question->user_id ?: auth()->id();
         $this->question->save();
-
-        if (!empty($this->files)) {
-            foreach ($this->files as $file) {
-                $this->question->addMedia($file)->toMediaCollection();
-            }
-        }
+        Medias::addMedia($this->question, $this->files);
 
         if (!$exists) {
             $this->created('Question');
