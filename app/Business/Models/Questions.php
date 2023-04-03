@@ -20,6 +20,10 @@ class Questions
             $query->where('questions.id', $id);
         }
 
+        if ($user_id = $options->get('user_id')) {
+            $query->where('questions.user_id', $user_id);
+        }
+
         if ($status = $options->get('status')) {
             $query->where('questions.status', $status);
         }

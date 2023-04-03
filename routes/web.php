@@ -3,12 +3,9 @@
 use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Livewire\Questions\Index as IndexQuestion;
-use App\Http\Livewire\Questions\Create as CreateQuestion;
-use App\Http\Livewire\Questions\Edit as EditQuestion;
-use App\Http\Livewire\Users\Index as IndexUser;
-use App\Http\Livewire\Users\Create as CreateUser;
-use App\Http\Livewire\Users\Edit as EditUser;
+use App\Http\Livewire\Answers\{Index as IndexAnswer, Create as CreateAnswer, Edit as EditAnswer};
+use App\Http\Livewire\Questions\{Index as IndexQuestion, Create as CreateQuestion, Edit as EditQuestion};
+use App\Http\Livewire\Users\{Index as IndexUser, Create as CreateUser, Edit as EditUser};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +40,14 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/', IndexQuestion::class)->name('index');
             Route::get('/create', CreateQuestion::class)->name('create');
             Route::get('/{question}/edit', EditQuestion::class)->name('edit');
+            Route::get('/{question}/answers', IndexAnswer::class)->name('answers');
+        });
+
+        // Answers
+        Route::prefix('answers')->name('answers.')->group(function () {
+            Route::get('/', IndexAnswer::class)->name('index');
+            Route::get('/create', CreateAnswer::class)->name('create');
+            Route::get('/{answer}/edit', EditAnswer::class)->name('edit');
         });
 
         Route::prefix('dropzone')->group(function () {

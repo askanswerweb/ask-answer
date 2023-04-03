@@ -41,4 +41,9 @@ class Question extends BaseQuestion implements HasMedia
     {
         return $this->status->equals(Resolved::class);
     }
+
+    public function isForAuth(): bool
+    {
+        return $this->user_id == auth()->id();
+    }
 }

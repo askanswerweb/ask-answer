@@ -34,4 +34,6 @@ return [
     "QuestionDetails"       => "تفاصيل السؤال",
     "Files"                 => "الملفات",
     "File"                  => "الملف",
+    "Answer"                => "الاجابة",
+    "Answers"               => "الاجابات",
 ];

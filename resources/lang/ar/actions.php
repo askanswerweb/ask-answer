@@ -54,4 +54,5 @@ return [
     "Search"            => "ابحث",
     "PreviewAll"        => "عرض الجميع",
     "Actions"           => "الاجراءات",
+    "Answer"            => "الإجابة",
 ];

@@ -54,4 +54,5 @@ return [
     "Search"            => "Search",
     "PreviewAll"        => "Preview All",
     "Actions"           => "Actions",
+    "Answer"            => "Answer",
 ];

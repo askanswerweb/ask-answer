@@ -34,4 +34,6 @@ return [
     "QuestionDetails"       => "Question Details",
     "Files"                 => "Files",
     "File"                  => "File",
+    "Answer"                => "Answer",
+    "Answers"               => "Answers",
 ];

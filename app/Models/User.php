@@ -37,6 +37,11 @@ class User extends BaseUser implements Authenticatable
         return $this->role == UserRole::ADMIN->value;
     }
 
+    public function isWorker(): bool
+    {
+        return $this->role == UserRole::WORKER->value;
+    }
+
     public function isActive(): bool
     {
         return $this->status == ActiveStatus::ACTIVE->value;

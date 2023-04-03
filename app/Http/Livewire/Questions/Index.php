@@ -21,11 +21,15 @@ class Index extends Tables
 
     protected function query()
     {
-        return Questions::filter(Question::with('user')->latest('id'), [
+        $query = Question::with('user')
+            ->withCount('answers')
+            ->latest('id');
+        return Questions::filter($query, [
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
             'status' => $this->status,
             'title' => $this->title,
+            'user_id' => auth()->user()->isWorker() ? auth()->id() : null
         ]);
     }
 

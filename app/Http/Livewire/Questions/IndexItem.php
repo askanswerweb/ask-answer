@@ -14,10 +14,12 @@ class IndexItem extends Component
 
     public Question $question;
     public $reason;
+    public $answers_count;
 
     public function mount(Question $question)
     {
         $this->question = $question;
+        $this->answers_count = number_format($question->answers_count);
     }
 
     public function render()
