@@ -93,7 +93,12 @@
                                             </div>
 
                                             <div class="w-100 d-flex-end">
-                                                <a class="btn btn-success"
+                                                <button class="btn btn-sm btn-light btn-active-primary me-2"
+                                                        id="filter-toggle">
+                                                    {{ __('actions.Filter') }}
+                                                </button>
+
+                                                <a class="btn btn-success btn-sm"
                                                    href="{{ route('questions.answers.create', ['question' => $question->id]) }}">
                                                     {{ __('actions.Answer') }}
                                                 </a>
@@ -117,13 +122,13 @@
 
     <x-filters.container>
         <div class="mb-5">
-            <label class="form-label fw-bolder" for="answer_id">{{ __('titles.AnswerID') }}</label>
-            <input
-                id="answer_id"
-                type="text"
-                class="form-control form-control-solid"
-                wire:model.defer="answer_id"
-                placeholder="{{ __('titles.AnswerID') }}"
+            <label class="form-label fw-bolder" for="user_id">{{ __('titles.User') }}</label>
+            <x-filters.select2
+                model="user_id"
+                url="users"
+                :title="__('titles.User')"
+                :selected-id="@$selected_user->id"
+                :selected-text="@$selected_user->name"
             />
         </div>
 

@@ -111,6 +111,13 @@
                             }
                         }
                     })
+
+                    const clearListener = String('{{ $clearListener }}')
+                    if (clearListener) {
+                        document.addEventListener(clearListener, () => {
+                            element.val('')
+                        })
+                    }
                 }
             })
         </script>

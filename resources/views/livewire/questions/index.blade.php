@@ -50,17 +50,6 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="form-label fw-bolder" for="questionname">{{ __('titles.Username') }}</label>
-                    <input
-                        id="questionname"
-                        type="text"
-                        class="form-control form-control-solid"
-                        wire:model.defer="questionname"
-                        placeholder="{{ __('titles.Username') }}"
-                    />
-                </div>
-
-                <div class="mb-5">
                     <label class="form-label fw-bolder">{{ __('titles.CreateDate') }}</label>
                     <x-filters.date-range class="form-control-solid" />
                 </div>

@@ -24,6 +24,7 @@ class DateRange extends Component
     public $defer;
     public $withSubmit;
     public $dir;
+    public $clearListener;
 
     public function __construct(
         $id = 'daterangepicker',
@@ -42,7 +43,8 @@ class DateRange extends Component
         $clearAllTime = false,
         $parent = '',
         $defer = true,
-        $withSubmit = true
+        $withSubmit = true,
+        $clearListener = 'clear-date-range'
     )
     {
         $this->id = $id ?: 'daterangepicker';
@@ -62,6 +64,7 @@ class DateRange extends Component
         $this->parent = $parent;
         $this->defer = $defer;
         $this->withSubmit = $withSubmit;
+        $this->clearListener = $clearListener ?: 'clear-date-range';
         $this->dir = app()->getLocale() == 'ar' ? 'rtl' : 'ltr';
     }
 

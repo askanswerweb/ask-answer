@@ -3,6 +3,7 @@
 use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\Answers\{Index as IndexAnswer, Create as CreateAnswer, Edit as EditAnswer};
 use App\Http\Livewire\Questions\{Index as IndexQuestion, Create as CreateQuestion, Edit as EditQuestion};
 use App\Http\Livewire\Users\{Index as IndexUser, Create as CreateUser, Edit as EditUser};
@@ -56,6 +57,10 @@ Route::group(Localizations::routeGroup(), function () {
                 Route::post('save-image', [QuestionController::class, 'saveImage'])->name('images.post');
                 Route::post('delete-image', [QuestionController::class, 'deleteImage'])->name('images.delete');
             });
+        });
+
+        Route::prefix('select2')->name('select2.')->group(function () {
+            Route::get('users', [UserController::class, 'select2'])->name('users');
         });
     });
 });

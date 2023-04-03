@@ -15,6 +15,14 @@ class Users
     {
         $options = collect($options);
 
+        if ($search = $options->get('search')) {
+            $query->where(function ($query) use ($search) {
+                $query->where('users.id', $search);
+                $query->orWhereRaw(Queries::like('users.username', $search));
+                $query->orWhereRaw(Queries::like('users.name', $search));
+            });
+        }
+
         if ($id = $options->get('user_id')) {
             $query->where('users.id', $id);
         }
