@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="ar">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <title>{{ !empty($title) ? $title : config('app.name') }}</title>
     <x-partials.head />
 </head>
 
-<body dir="rtl" lang="ar" id="kt_body" data-bs-spy="scroll" data-bs-target="#kt_landing_menu"
+<body dir="{{ direction() }}" id="kt_body" data-bs-spy="scroll" data-bs-target="#kt_landing_menu"
       class="bg-white position-relative app-blank">
 
 <div class="d-flex flex-column flex-root" id="kt_app_root">

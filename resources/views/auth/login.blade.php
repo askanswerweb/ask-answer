@@ -1,7 +1,7 @@
 <x-layouts.auth>
     <div class="d-flex flex-column flex-center flex-column-fluid">
         <div class="d-flex justify-content-center flex-column-fluid flex-column px-5">
-            <form class="form w-100" novalidate="novalidate" method="post"
+            <form class="form w-100" novalidate="novalidate" method="post" id="kt_sign_in_form"
                   action="{{ route('login.post') }}">
                 @csrf
                 <div class="card-body">
@@ -56,8 +56,14 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                                {{__('auth.Signin')}}
+                            <button id="kt_sign_in_submit" class="btn btn-primary me-2 flex-shrink-0">
+                                <label class="indicator-label cursor-pointer" data-kt-translate="sign-in-submit">
+                                    {{__('auth.Signin')}}
+                                </label>
+                                <label class="indicator-progress">
+                                    <span data-kt-translate="general-progress">{{ __('actions.PleaseWait') }}</span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </label>
                             </button>
                         </div>
 
@@ -67,4 +73,8 @@
             </form>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
+    @endpush
 </x-layouts.auth>

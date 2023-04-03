@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <title>{{ !empty($title) ? $title : config('app.name') }}</title>
     <x-partials.head />
