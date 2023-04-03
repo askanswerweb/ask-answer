@@ -11,7 +11,6 @@ trait QuestionTrait
     use WithEvents, WithFileUploads;
 
     public Question $question;
-    public $uploaded_files;
     public $files;
 
     protected function rules(): array
@@ -34,7 +33,7 @@ trait QuestionTrait
 
         if (!empty($this->files)) {
             foreach ($this->files as $file) {
-                $media = $this->question->addMedia($file)->toMediaCollection();
+                $this->question->addMedia($file)->toMediaCollection();
             }
         }
 
@@ -45,5 +44,6 @@ trait QuestionTrait
         }
 
         $this->edited('Question');
+        $this->emitSelf('refreshQuestion');
     }
 }

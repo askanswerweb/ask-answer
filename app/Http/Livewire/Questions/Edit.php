@@ -15,12 +15,13 @@ class Edit extends Component
     public function mount(Question $question)
     {
         $this->question = $question;
-        $this->uploaded_files = $this->question->getMedia();
     }
 
     public function render()
     {
-        return view('livewire.questions.edit');
+        return view('livewire.questions.edit', [
+            'uploaded_files' => $this->question->getMedia()
+        ]);
     }
 
     public function showMedia($media_id)
