@@ -50,9 +50,12 @@
                     {{ __('actions.Back') }}
                 </a>
             @endif
-            <x-livewire.action wire-click="save" class="btn-primary">
-                {{ __('actions.Save') }}
-            </x-livewire.action>
+
+            @if(auth()->user()->isAdmin())
+                <x-livewire.action wire-click="save" class="btn-primary">
+                    {{ __('actions.Save') }}
+                </x-livewire.action>
+            @endif
         </div>
     </div>
 

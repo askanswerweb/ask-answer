@@ -53,7 +53,7 @@
                                                             {{ $question->getCreatedAtForHumans() }}
                                                         </span>
 
-                                                        <span class="text-gray-800 fs-1 fw-bold">
+                                                        <span class="text-gray-800 fs-1 fw-bold d-inline-block mw-250px text-wrap">
                                                             {{ $question->title }}
                                                         </span>
                                                     </div>
@@ -98,10 +98,12 @@
                                                     {{ __('actions.Filter') }}
                                                 </button>
 
-                                                <a class="btn btn-success btn-sm"
-                                                   href="{{ route('questions.answers.create', ['question' => $question->id]) }}">
-                                                    {{ __('actions.Answer') }}
-                                                </a>
+                                                @if(auth()->user()->isAdmin())
+                                                    <a class="btn btn-success btn-sm"
+                                                       href="{{ route('questions.answers.create', ['question' => $question->id]) }}">
+                                                        {{ __('actions.Answer') }}
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
