@@ -12,12 +12,14 @@
 
     <x-table :list="$list" :title="__('titles.Questions')" :with-export="false" class="text-center">
         <x-slot name="actions">
-            <x-tooltip text="{{ __('actions.Create') }}">
-                <a href="{{ route('questions.create') }}"
-                   class="btn btn-sm btn-icon btn-success me-1">
-                    <x-svg icon="square-plus" />
-                </a>
-            </x-tooltip>
+            @if(auth()->user()->isWorker())
+                <x-tooltip text="{{ __('actions.Create') }}">
+                    <a href="{{ route('questions.create') }}"
+                       class="btn btn-sm btn-icon btn-success me-1">
+                        <x-svg icon="square-plus" />
+                    </a>
+                </x-tooltip>
+            @endif
         </x-slot>
 
         <x-slot name="thead">
