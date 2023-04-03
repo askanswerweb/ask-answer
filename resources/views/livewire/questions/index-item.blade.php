@@ -30,14 +30,14 @@
                 </x-dropdown.item>
             @endif
 
-            {{--            @if($question->isForAuth())--}}
-            <x-dropdown.item>
-                <x-dropdown.link :href="route('questions.edit', ['question' => $question])">
-                    <x-svg icon="pencil" class="svg-icon-primary" />
-                    <span class="ms-2 fw-bolder">{{ __('actions.Edit') }}</span>
-                </x-dropdown.link>
-            </x-dropdown.item>
-            {{--            @endif--}}
+            @if($question->isForAuth() && !$question->isClosed())
+                <x-dropdown.item>
+                    <x-dropdown.link :href="route('questions.edit', ['question' => $question])">
+                        <x-svg icon="pencil" class="svg-icon-primary" />
+                        <span class="ms-2 fw-bolder">{{ __('actions.Edit') }}</span>
+                    </x-dropdown.link>
+                </x-dropdown.item>
+            @endif
 
             <x-dropdown.item>
                 <x-dropdown.link data-bs-target="#delete_{{ $question->id }}" data-bs-toggle="modal">
