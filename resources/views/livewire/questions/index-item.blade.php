@@ -12,7 +12,7 @@
                 {{ __('actions.Actions') }}
             </x-slot>
 
-            @if(!$question->isClosed())
+            @if($question->isResolved())
                 <x-dropdown.item>
                     <x-dropdown.link :href="route('questions.answers', ['question' => $question])">
                         <x-svg icon="shield-check" class="svg-icon-success" />

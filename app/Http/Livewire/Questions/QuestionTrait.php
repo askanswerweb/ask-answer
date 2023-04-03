@@ -44,6 +44,6 @@ trait QuestionTrait
         }
 
         $this->edited('Question');
-        $this->emitSelf('refreshQuestion');
+        $this->emitTo('media.index', 'refreshMedia');
     }
 }

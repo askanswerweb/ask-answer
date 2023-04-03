@@ -23,20 +23,4 @@ class Edit extends Component
             'uploaded_files' => $this->question->getMedia()
         ]);
     }
-
-    public function showMedia($media_id)
-    {
-        if (!($media = Media::find($media_id)) instanceof Media) {
-            return false;
-        }
-
-        return response()->download($media->getPath(), $media->file_name);
-    }
-
-    public function deleteMedia($media_id)
-    {
-        Media::where('id', $media_id)->delete();
-        $this->deleted('File');
-        $this->emitSelf('refreshQuestion');
-    }
 }

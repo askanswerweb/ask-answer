@@ -27,10 +27,16 @@
                                     <label class="fw-semibold text-gray-400 d-block fs-8">
                                         {{ __('titles.User') }}
                                     </label>
-                                    <a href="{{ route('users.edit', ['user' => $answer->user->id]) }}"
-                                       target="_blank" class="fw-bold text-gray-800 text-hover-primary fs-7">
-                                        {{ $answer->user->firstName() }}
-                                    </a>
+                                    @if(auth()->user()->isAdmin())
+                                        <a href="{{ route('users.edit', ['user' => $answer->user->id]) }}"
+                                           target="_blank" class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                            {{ $answer->user->firstName() }}
+                                        </a>
+                                    @else
+                                        <label class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                            {{ $answer->user->firstName() }}
+                                        </label>
+                                    @endif
                                 </div>
                             @endif
                         </div>
@@ -52,17 +58,65 @@
                     </div>
                 </div>
 
-                <div class="mb-6 mh-200px overflow-auto">
+                <div class="mb-6 mh-200px overflow-y-auto pre-wrap">
                     {!! $answer->content !!}
                 </div>
 
                 <div class="d-flex-end">
-                    <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
-                       class="btn btn-sm btn-icon btn-primary">
+                    <button
+                            class="btn btn-sm btn-icon btn-light me-2">
+                        <x-svg icon="attached" />
+                    </button>
+
+                    <button data-bs-toggle="modal" data-bs-target="#edit_{{ $answer->id }}"
+                            class="btn btn-sm btn-icon btn-primary">
                         <x-svg icon="pencil" />
-                    </a>
+                    </button>
+
+                    <x-widgets.modal id="edit_{{ $answer->id }}" :title="__('actions.Edit')"
+                                     subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
+                        <div class="w-100 text-start">
+                            <label class="form-label required" for="content_{{ $answer->id }}">
+                                {{ __('titles.Answer') }}
+                            </label>
+                            <textarea
+                                id="content_{{ $answer->id }}"
+                                wire:model.defer="answer.content"
+                                type="text"
+                                class="form-control form-control-solid resize-none @error('answer.content') is-invalid @enderror"
+                                placeholder="{{ __('titles.Answer') }}"
+                                autocomplete="off"
+                                rows="10"
+                                data-kt-autosize="true"
+                            ></textarea>
+                            @error('answer.content')
+                            <div class="fv-plugins-message-container invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <x-slot name="footer">
+                            <button class="btn btn-light" data-bs-dismiss="modal">
+                                {{ __('actions.Cancel') }}
+                            </button>
+                            <button class="btn btn-primary" wire:click="save">
+                                {{ __('actions.Close') }}
+                            </button>
+                        </x-slot>
+                    </x-widgets.modal>
                 </div>
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                document.addEventListener('saved_content_{{ $answer->id }}', () => {
+                    $('#edit_{{ $answer->id }}').modal('hide')
+                })
+            })
+        </script>
+    @endpush
 </div>
