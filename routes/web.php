@@ -4,6 +4,7 @@ use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Home\Index as IndexHome;
 use App\Http\Livewire\Answers\{Index as IndexAnswer, Create as CreateAnswer, Edit as EditAnswer};
 use App\Http\Livewire\Questions\{Index as IndexQuestion, Create as CreateQuestion, Edit as EditQuestion};
 use App\Http\Livewire\Users\{Index as IndexUser, Create as CreateUser, Edit as EditUser};
@@ -26,7 +27,7 @@ Route::group(Localizations::routeGroup(), function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::view('home', 'home')->name('home');
+        Route::get('home', IndexHome::class)->name('home');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
         // Users

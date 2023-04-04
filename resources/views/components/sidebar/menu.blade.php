@@ -1,10 +1,10 @@
 <x-sidebar.container>
-{{--    <x-sidebar.item :class="request()->route()->getName() == 'home' ? 'here show' : ''" href="{{ route('home') }}">--}}
-{{--        <x-slot name="icon">--}}
-{{--            <x-svg icon="layers" />--}}
-{{--        </x-slot>--}}
-{{--        <span>{{ __('titles.Dashboard') }}</span>--}}
-{{--    </x-sidebar.item>--}}
+    <x-sidebar.item :class="request()->route()->getName() == 'home' ? 'here show' : ''" href="{{ route('home') }}">
+        <x-slot name="icon">
+            <x-svg icon="layers" />
+        </x-slot>
+        <span>{{ __('titles.Dashboard') }}</span>
+    </x-sidebar.item>
 
     @if(auth()->user()->isAdmin())
         <x-sidebar.heading>{{ __('titles.Users') }}</x-sidebar.heading>

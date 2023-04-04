@@ -7,17 +7,17 @@ use App\Business\States\Question\Open;
 use App\Business\States\Question\QuestionState;
 use App\Business\States\Question\Resolved;
 use App\Models\Base\Question as BaseQuestion;
+use App\Traits\Models\MediaTrait;
 use App\Traits\Models\ModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property QuestionState $status
  */
 class Question extends BaseQuestion implements HasMedia
 {
-    use ModelTrait, HasFactory, InteractsWithMedia;
+    use ModelTrait, HasFactory, MediaTrait;
 
     protected $casts = [
         self::ID => 'int',

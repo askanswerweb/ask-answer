@@ -55,4 +55,5 @@ return [
     "PreviewAll"        => "عرض الجميع",
     "Actions"           => "الاجراءات",
     "Answer"            => "الإجابة",
+    "Reply"             => "الرد",
 ];

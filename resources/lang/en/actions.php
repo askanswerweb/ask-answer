@@ -55,4 +55,5 @@ return [
     "PreviewAll"        => "Preview All",
     "Actions"           => "Actions",
     "Answer"            => "Answer",
+    "Reply"             => "Reply",
 ];

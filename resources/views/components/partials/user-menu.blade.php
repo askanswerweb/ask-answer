@@ -4,7 +4,7 @@
         <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
              data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
              data-kt-menu-placement="{{ is_arabic() ? 'bottom-start' : 'bottom-end'}}">
-            <x-widgets.user-logo :user="auth()->user()" />
+            <x-widgets.user-logo :user="auth()->user()" class="symbol-circle" />
         </div>
 
         <div
@@ -12,7 +12,7 @@
             data-kt-menu="true">
             <div class="menu-item px-3">
                 <div class="menu-content d-flex align-items-center px-3">
-                    <x-widgets.user-logo :user="auth()->user()" class="me-3" />
+                    <x-widgets.user-logo :user="auth()->user()" class="symbol-circle me-3" />
                     <div class="d-flex flex-column">
                         <div class="fw-bold d-flex align-items-center fs-5">
                             {{ auth()->user()->name }}
