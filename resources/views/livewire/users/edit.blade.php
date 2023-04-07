@@ -55,10 +55,10 @@
                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
                     <input
                         id="name" placeholder="{{ __('titles.Password') }}"
-                        wire:model.defer="user.password" type="password" class="form-control form-control-solid"
+                        wire:model.defer="password" type="password" class="form-control form-control-solid"
                     />
 
-                    @error('user.password')
+                    @error('password')
                     <div class="fv-plugins-message-container invalid-feedback">
                         {{ $message }}
                     </div>

@@ -40,4 +40,5 @@ return [
     "QuickActions"          => "اجراءات سريعة",
     "OpenQuestions"         => "الاسئلة المتاحة",
     "NoMedia"               => "لا يوجد ملفات مرفقة!",
+    "TheMostInteractive"    => "الاكثر تفاعلاً",
 ];

@@ -11,13 +11,14 @@ trait UserTrait
     use WithEvents;
 
     public User $user;
+    public $password;
 
     protected function rules(): array
     {
         return [
             "user.name" => "required",
             "user.username" => "required|unique:users,username,{$this->user->id}|min:8",
-            "user.password" => "required|min:8",
+            "password" => $this->user->exists ? "nullable|min:8" : "required|min:8",
             "user.status" => "required",
         ];
     }
@@ -26,6 +27,10 @@ trait UserTrait
     {
         $exists = $this->user->exists;
         $this->user->role = UserRole::WORKER->value;
+        if ($this->password) {
+            $this->user->password = bcrypt($this->password);
+        }
+
         $this->user->save();
 
         if (!$exists) {

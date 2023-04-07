@@ -40,4 +40,5 @@ return [
     "QuickActions"          => "Quick Actions",
     "OpenQuestions"         => "Open Questions",
     "NoMedia"               => "There is no media!",
+    "TheMostInteractive"    => "The Most Interactive",
 ];
