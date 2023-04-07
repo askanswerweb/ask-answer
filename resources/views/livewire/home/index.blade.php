@@ -35,126 +35,49 @@
                         <div class="separator border-gray-200"></div>
                         <!--end::Menu separator-->
 
-                        <!--begin::Form-->
                         <div class="px-7 py-5">
-                            <!--begin::Input group-->
                             <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fw-semibold">Status:</label>
-                                <!--end::Label-->
+                                <label class="form-label fw-semibold" for="status">
+                                    {{ __('titles.Status') }}
+                                </label>
 
-                                <!--begin::Input-->
                                 <div>
-                                    <select class="form-select form-select-solid" data-kt-select2="true"
-                                            data-placeholder="Select option"
-                                            data-dropdown-parent="#kt_menu_642b6d0cf0ae3"
-                                            data-allow-clear="true">
-                                        <option></option>
-                                        <option value="1">Approved</option>
-                                        <option value="2">Pending</option>
-                                        <option value="2">In Process</option>
-                                        <option value="2">Rejected</option>
+                                    <select id="status" class="form-select form-select-solid" wire:model.defer="status">
+                                        <option value="">{{ __('titles.Status') }}</option>
+                                        <option value="open">{{ __('titles.Open') }}</option>
+                                        <option value="closed">{{ __('titles.Closed') }}</option>
+                                        <option value="resolved">{{ __('titles.Resolved') }}</option>
                                     </select>
                                 </div>
-                                <!--end::Input-->
                             </div>
-                            <!--end::Input group-->
 
-                            <!--begin::Input group-->
-                            <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fw-semibold">Member Type:</label>
-                                <!--end::Label-->
-
-                                <!--begin::Options-->
-                                <div class="d-flex">
-                                    <!--begin::Options-->
-                                    <label
-                                        class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                        <span class="form-check-label">
-                                            Author
-                                        </span>
-                                    </label>
-                                    <!--end::Options-->
-
-                                    <!--begin::Options-->
-                                    <label
-                                        class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="2"
-                                               checked="checked" />
-                                        <span class="form-check-label">
-                                            Customer
-                                        </span>
-                                    </label>
-                                    <!--end::Options-->
-                                </div>
-                                <!--end::Options-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fw-semibold">Notifications:</label>
-                                <!--end::Label-->
-
-                                <!--begin::Switch-->
-                                <div
-                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                           name="notifications" checked />
-                                    <label class="form-check-label">
-                                        Enabled
-                                    </label>
-                                </div>
-                                <!--end::Switch-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Actions-->
                             <div class="d-flex justify-content-end">
-                                <button type="reset"
+                                <button type="reset" wire:click="reset"
                                         class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                        data-kt-menu-dismiss="true">Reset
+                                        data-kt-menu-dismiss="true">
+                                    {{ __('actions.Reset') }}
                                 </button>
 
-                                <button type="submit" class="btn btn-sm btn-primary"
-                                        data-kt-menu-dismiss="true">Apply
+                                <button type="button" class="btn btn-sm btn-primary" wire:click="filter"
+                                        data-kt-menu-dismiss="true">
+                                    {{ __('actions.Apply') }}
                                 </button>
                             </div>
-                            <!--end::Actions-->
                         </div>
-                        <!--end::Form-->
                     </div>
-                    <!--end::Menu 1-->        </div>
-                <!--end::Filter menu-->
+                </div>
 
 
-                <!--begin::Secondary button-->
-                <!--end::Secondary button-->
-
-                <!--begin::Primary button-->
-                <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                   data-bs-target="#kt_modal_create_app">
-                    Create </a>
-                <!--end::Primary button-->
+                <a href="{{ route('questions.create') }}" class="btn btn-sm fw-bold btn-primary">
+                    {{ __('actions.Create') }}
+                </a>
             </div>
         </div>
     </div>
 
     <div id="kt_app_content_container" class="container-fluid">
         <div class="d-flex flex-row">
-            <div class="d-lg-flex flex-column flex-lg-row-auto w-lg-325px"
-                 data-kt-drawer="true"
-                 data-kt-drawer-name="start-sidebar"
-                 data-kt-drawer-activate="{default: true, lg: false}"
-                 data-kt-drawer-overlay="true"
-                 data-kt-drawer-width="{default:'200px', '250px': '300px'}"
-                 data-kt-drawer-direction="start"
-                 data-kt-drawer-toggle="#kt_social_start_sidebar_toggle"
-            >
-
+            <div class="d-lg-flex flex-column flex-lg-row-auto w-lg-325px">
 
                 <!--begin::User menu-->
                 <div class="card mb-5 mb-xl-8">
