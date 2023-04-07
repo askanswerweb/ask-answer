@@ -46,5 +46,5 @@
 @endif
 
 @livewireStyles
-@stack('styles')
 <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" />
+@stack('styles')

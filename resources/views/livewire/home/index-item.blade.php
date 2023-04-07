@@ -37,10 +37,8 @@
 
                     <x-svg icon="dots-h-three" />
                 </button>
-                <!--end::Menu toggle-->
 
 
-                <!--begin::Menu 2-->
                 <div
                     class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
                     data-kt-menu="true">
@@ -58,8 +56,8 @@
 
                     <!--begin::Menu item-->
                     <div class="menu-item px-3">
-                        <a href="javascript:void(0);" class="menu-link px-3">
-                            New Ticket
+                        <a href="{{ route('questions.preview', ['question' => $question->id]) }}" class="menu-link px-3">
+                            {{ __('actions.Preview') }}
                         </a>
                     </div>
                     <!--end::Menu item-->
@@ -127,25 +125,38 @@
                     <!--begin::Menu item-->
                     <div class="menu-item px-3">
                         <div class="menu-content px-3 py-3">
-                            <a class="btn btn-primary  btn-sm px-4" href="javascript:void(0);">
-                                Generate Reports
-                            </a>
+                            <button class="btn btn-danger w-100 btn-sm px-4" data-bs-toggle="modal"
+                                    data-bs-target="#delete_{{ $question->id }}">
+                                {{ __('actions.Delete') }}
+                            </button>
                         </div>
                     </div>
                     <!--end::Menu item-->
                 </div>
-                <!--end::Menu 2-->
-
             </div>
-            <!--end::Menu wrapper-->
         </div>
-        <!--end::Card toolbar-->
-    </div>
-    <!--end::Card header-->
 
-    <!--begin::Card body-->
+        <x-widgets.modal id="delete_{{ $question->id }}" :title="__('actions.Delete')" :subtitle="$question->title">
+            <div class="w-100 text-center">
+                <h4>{{ __('actions.ConfirmDelete') }}</h4>
+                <div class="text-muted fw-semibold fs-5">
+                    {{ __('titles.CantRevert') }}
+                </div>
+            </div>
+
+            <x-slot name="footer">
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                    {{ __('actions.Cancel') }}
+                </button>
+                <button class="btn btn-danger" wire:click="delete" data-bs-dismiss="modal">
+                    {{ __('actions.Delete') }}
+                </button>
+            </x-slot>
+        </x-widgets.modal>
+    </div>
+
     <div class="card-body">
-        <h2>{{ $question->title }}</h2>
+        <h2>{{ $question->id }} - {{ $question->title }}</h2>
         <!--begin::Post content-->
         <div class="fs-6 fw-normal text-gray-700 mt-0 mb-5 pre-wrap">
             {!! $question->description !!}
@@ -190,21 +201,17 @@
                                 <!--begin::Item-->
                                 <a class="d-block card-rounded overlay h-100"
                                    data-fslightbox="lightbox-projects"
-                                   href="/assets/media/stock/600x600/img-22.jpg">
+                                   href="{{ $media->getUrl() }}">
                                     <!--begin::Image-->
                                     <div
                                         class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-100"
-                                        style="background-image:url('/assets/media/stock/600x400/img-71.jpg')">
+                                        style="background-image:url('{{ $media->getUrl() }}')">
                                     </div>
-                                    <!--end::Image-->
 
-                                    <!--begin::Action-->
                                     <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                         <x-svg icon="eye" class="svg-icon-white svg-icon-2hx" />
                                     </div>
-                                    <!--end::Action-->
                                 </a>
-                                <!--end::Item-->
                             </div>
                         @endforeach
                     </div>
@@ -213,153 +220,5 @@
                 <!--end::Col-->
             </div>
         @endif
-    </div>
-    <!--end::Card body-->
-
-    <!--begin::Card footer-->
-    <div class="card-footer pt-0">
-        <!--begin::Info-->
-        <div class="mb-6">
-            <!--begin::Separator-->
-            <div class="separator separator-solid"></div>
-            <!--end::Separator-->
-
-            <!--begin::Nav-->
-            <ul class="nav py-3">
-                <!--begin::Item-->
-                <li class="nav-item">
-                    <a
-                        class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary btn-active-light-primary fw-bold px-4 me-1 collapsible active"
-                        data-bs-toggle="collapse"
-                        href="#kt_social_feeds_comments_1">
-
-                        <i class="ki-duotone ki-message-text-2 fs-2 me-1"><span
-                                class="path1"></span><span
-                                class="path2"></span><span class="path3"></span></i>
-                        2 Comments
-                    </a>
-                </li>
-                <!--end::Item-->
-
-                <!--begin::Item-->
-                <li class="nav-item">
-                    <a href="javascript:void(0);"
-                       class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4 me-1">
-                        <i class="ki-duotone ki-heart fs-2 me-1"><span
-                                class="path1"></span><span class="path2"></span></i>
-                        47k Likes
-                    </a>
-                </li>
-                <!--end::Item-->
-
-                <!--begin::Item-->
-                <li class="nav-item">
-                    <a href="javascript:void(0);"
-                       class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4">
-
-                        <i class="ki-duotone ki-bookmark fs-2 me-1"><span
-                                class="path1"></span><span class="path2"></span></i>
-                        900 Saves
-                    </a>
-                </li>
-                <!--end::Item-->
-            </ul>
-            <!--end::Nav-->
-
-            <!--begin::Separator-->
-            <div class="separator separator-solid mb-1"></div>
-            <!--end::Separator-->
-
-            <!--begin::Comments-->
-            <div class="collapse show" id="kt_social_feeds_comments_1">
-                @foreach($question->answers as $answer)
-                    @php /** @var \App\Models\Answer $answer */ @endphp
-
-                    <div class="d-flex pt-6">
-                        <div class="symbol symbol-45px me-5">
-                            <x-widgets.user-logo :user="$answer->user" />
-                        </div>
-
-                        <div class="d-flex flex-column flex-row-fluid">
-                            <div class="d-flex align-items-center flex-wrap mb-0">
-                                <a href="javascript:void(0);" class="text-gray-800 text-hover-primary fw-bold me-6">
-                                    {{ $answer->user->name }}
-                                </a>
-
-                                <span class="text-gray-400 fw-semibold fs-7 me-5">
-                                    {{ $answer->getCreatedAtForHumans() }}
-                                </span>
-
-                                <a href="javascript:void(0);" class="ms-auto text-gray-400 text-hover-primary fw-semibold fs-7">
-                                    {{ __('actions.Reply') }}
-                                </a>
-                            </div>
-
-                            <span class="text-gray-800 fs-7 fw-normal pt-1 pre-wrap mh-100px overflow-y-auto">
-                                {!! $answer->content !!}
-                            </span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-        <div class="d-flex align-items-center">
-            <!--begin::Author-->
-            <div class="symbol symbol-35px me-3">
-                <x-widgets.user-logo :user="auth()->user()" />
-            </div>
-            <!--end::Author-->
-
-            <!--begin::Input group-->
-            <div class="position-relative w-100">
-                <!--begin::Input-->
-                <textarea type="text"
-                          class="form-control form-control-solid border ps-5"
-                          rows="1" name="search" value="" data-kt-autosize="true"
-                          placeholder="Write your comment..">
-                </textarea>
-                <!--end::Input-->
-
-                <!--begin::Actions-->
-                <div
-                    class="position-absolute top-0 end-0 translate-middle-x mt-1 me-n14">
-                    <!--begin::Btn-->
-                    <button
-                        class="btn btn-icon btn-sm btn-color-gray-500 btn-active-color-primary w-25px p-0">
-                        <i class="ki-duotone ki-paper-clip fs-2"></i></button>
-                    <!--end::Btn-->
-
-                    <!--begin::Btn-->
-                    <button
-                        class="btn btn-icon btn-sm btn-color-gray-500 btn-active-color-primary w-25px p-0">
-                        <i class="ki-duotone ki-like fs-2"><span
-                                class="path1"></span><span class="path2"></span></i>
-                    </button>
-                    <!--end::Btn-->
-
-                    <!--begin::Btn-->
-                    <button
-                        class="btn btn-icon btn-sm btn-color-gray-500 btn-active-color-primary w-25px p-0">
-                        <i class="ki-duotone ki-badge fs-2"><span
-                                class="path1"></span><span
-                                class="path2"></span><span
-                                class="path3"></span><span
-                                class="path4"></span><span class="path5"></span></i>
-                    </button>
-                    <!--end::Btn-->
-
-                    <!--begin::Btn-->
-                    <button
-                        class="btn btn-icon btn-sm btn-color-gray-500 btn-active-color-primary w-25px p-0">
-                        <i class="ki-duotone ki-geolocation fs-2"><span
-                                class="path1"></span><span class="path2"></span></i>
-                    </button>
-                    <!--end::Btn-->
-                </div>
-                <!--end::Actions-->
-            </div>
-            <!--end::Input group-->
-        </div>
     </div>
 </div>

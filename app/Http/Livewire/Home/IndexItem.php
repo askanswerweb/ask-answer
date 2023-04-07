@@ -22,4 +22,11 @@ class IndexItem extends Component
     {
         return view('livewire.home.index-item');
     }
+
+    public function delete()
+    {
+        $this->question->delete();
+        $this->deleted('question');
+        $this->emitTo('home.index', 'refreshIndexHome');
+    }
 }

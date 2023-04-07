@@ -37,4 +37,7 @@ return [
     "Answer"                => "الاجابة",
     "Answers"               => "الاجابات",
     "Content"               => "المحتوى",
+    "QuickActions"          => "اجراءات سريعة",
+    "OpenQuestions"         => "الاسئلة المتاحة",
+    "NoMedia"               => "لا يوجد ملفات مرفقة!",
 ];

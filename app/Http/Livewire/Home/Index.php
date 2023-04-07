@@ -14,6 +14,8 @@ class Index extends Tables
     public $status;
     public $user_id;
 
+    protected $listeners = ['refreshIndexHome' => '$refresh'];
+
     public function render()
     {
         return view('livewire.home.index', [
@@ -24,12 +26,13 @@ class Index extends Tables
     protected function query()
     {
         $query = Question::with(['user', 'images', 'answers' => function ($query) {
-            $query->whereHas('user');
-            $query->with('user');
-            $query->latest();
-        }])
+                $query->whereHas('user');
+                $query->with('user');
+                $query->latest();
+            }])
             ->whereHas('user')
             ->latest();
+
         return Questions::filter($query, [
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,

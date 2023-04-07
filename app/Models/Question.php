@@ -9,11 +9,16 @@ use App\Business\States\Question\Resolved;
 use App\Models\Base\Question as BaseQuestion;
 use App\Traits\Models\MediaTrait;
 use App\Traits\Models\ModelTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
 
 /**
  * @property QuestionState $status
+ *
+ * @method static Builder open()
+ * @method static Builder closed()
+ * @method static Builder resolved()
  */
 class Question extends BaseQuestion implements HasMedia
 {
@@ -45,5 +50,20 @@ class Question extends BaseQuestion implements HasMedia
     public function isForAuth(): bool
     {
         return $this->user_id == auth()->id();
+    }
+
+    public function scopeOpen(Builder $builder): Builder
+    {
+        return $builder->where('questions.status', Open::$name);
+    }
+
+    public function scopeClosed(Builder $builder): Builder
+    {
+        return $builder->where('questions.status', Closed::$name);
+    }
+
+    public function scopeResolved(Builder $builder): Builder
+    {
+        return $builder->where('questions.status', Resolved::$name);
     }
 }

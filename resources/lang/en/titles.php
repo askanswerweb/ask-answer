@@ -37,4 +37,7 @@ return [
     "Answer"                => "Answer",
     "Answers"               => "Answers",
     "Content"               => "Content",
+    "QuickActions"          => "Quick Actions",
+    "OpenQuestions"         => "Open Questions",
+    "NoMedia"               => "There is no media!",
 ];

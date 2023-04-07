@@ -1,3 +1,5 @@
-<div>
-    <!-- Breathing in, I calm body and mind. Breathing out, I smile. - Thich Nhat Hanh -->
+<div id="pre_loader">
+    <div class="spinner-container">
+        <div class="spinner-border"></div>
+    </div>
 </div>

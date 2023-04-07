@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Livewire\Home\Index as IndexHome;
 use App\Http\Livewire\Answers\{Index as IndexAnswer, Create as CreateAnswer, Edit as EditAnswer};
 use App\Http\Livewire\Questions\{Index as IndexQuestion, Create as CreateQuestion, Edit as EditQuestion};
+use App\Http\Livewire\Questions\Preview as PreviewQuestion;
 use App\Http\Livewire\Users\{Index as IndexUser, Create as CreateUser, Edit as EditUser};
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,7 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/{question}/edit', EditQuestion::class)->name('edit');
             Route::get('/{question}/answers', IndexAnswer::class)->name('answers');
             Route::get('/{question}/answers/create', CreateAnswer::class)->name('answers.create');
+            Route::get('/{question}/preview', PreviewQuestion::class)->name('preview');
         });
 
         // Answers
