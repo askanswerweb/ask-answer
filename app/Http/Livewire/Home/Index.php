@@ -62,4 +62,11 @@ class Index extends Tables
             'status' => $this->status,
         ]);
     }
+
+    public function resetFilters()
+    {
+        $this->resetExcept('topUsers');
+        $this->dispatchBrowserEvent('select2_clear');
+        $this->dispatchBrowserEvent('clear-date-range');
+    }
 }

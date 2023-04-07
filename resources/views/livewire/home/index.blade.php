@@ -43,16 +43,16 @@
 
                                 <div>
                                     <select id="status" class="form-select form-select-solid" wire:model.defer="status">
-                                        <option value="">{{ __('titles.Status') }}</option>
-                                        <option value="open">{{ __('titles.Open') }}</option>
-                                        <option value="closed">{{ __('titles.Closed') }}</option>
-                                        <option value="resolved">{{ __('titles.Resolved') }}</option>
+                                        <option value="">{{ __('titles.All') }}</option>
+                                        <option value="open">{{ __('states.open') }}</option>
+                                        <option value="closed">{{ __('states.closed') }}</option>
+                                        <option value="resolved">{{ __('states.resolved') }}</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-end">
-                                <button type="reset" wire:click="reset"
+                                <button type="reset" wire:click="resetFilters"
                                         class="btn btn-sm btn-light btn-active-light-primary me-2"
                                         data-kt-menu-dismiss="true">
                                     {{ __('actions.Reset') }}
@@ -79,7 +79,6 @@
         <div class="d-flex flex-row">
             <div class="d-lg-flex flex-column flex-lg-row-auto w-lg-325px">
 
-                <!--begin::User menu-->
                 <div class="card mb-5 mb-xl-8">
                     <!--begin::Body-->
                     <div class="card-body pt-15 px-0">

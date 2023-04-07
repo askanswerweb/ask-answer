@@ -41,4 +41,5 @@ return [
     "OpenQuestions"         => "Open Questions",
     "NoMedia"               => "There is no media!",
     "TheMostInteractive"    => "The Most Interactive",
+    "All"                   => "All",
 ];
