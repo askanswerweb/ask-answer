@@ -9,7 +9,7 @@
             <div class="mb-0">
 
                 <a href="{{ auth()->user()->isAdmin() ? route('users.edit', ['user' => $answer->user->id]) : 'javascript:void(0);' }}"
-                   class="text-gray-700 fw-bold text-hover-primary" target="_blank">
+                   class="text-gray-700 fw-bold text-hover-primary" @if(auth()->user()->isAdmin()) target="_blank" @endif>
                     {{ $answer->user->firstName() }}
                 </a>
 
@@ -18,7 +18,7 @@
                 @if($answer->hasMedia())
                     <x-tooltip :text="__('titles.Files')">
                         <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
-                                class="btn btn-sm btn-icon btn-light me-2">
+                                class="btn btn-sm btn-icon btn-primary">
                             <x-svg icon="attached" />
                         </button>
                     </x-tooltip>
