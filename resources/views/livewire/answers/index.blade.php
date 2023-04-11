@@ -19,7 +19,7 @@
     <div class="card card-flush bg-transparent pm-0 w-100">
         <div class="card-header pm-0">
             <h3 class="card-title align-items-start flex-column pm-0">
-                <label class="card-label fw-bold fs-3 mb-1 d-flex-start-wrap pm-0">
+                <label class="card-label fw-bold fs-3 d-flex-start-wrap pm-0">
                     {{ $list->total() }}
                     {{ __('titles.Answers') }}
                 </label>
@@ -32,7 +32,7 @@
 
         <div class="card-body pm-0">
             <div class="row g-3 g-xl-5 mb-5" id="livewire-container">
-                <div id="kt_app_content" class="px-0 app-content flex-column-fluid">
+                <div id="kt_app_content" class="app-content flex-column-fluid pm-0">
                     <div id="kt_app_content_container" class="">
                         <div class="d-flex flex-column flex-xl-row">
                             <div class="flex-column flex-lg-row-auto w-100 w-xl-300px mb-5">
@@ -53,7 +53,8 @@
                                                             {{ $question->getCreatedAtForHumans() }}
                                                         </span>
 
-                                                        <span class="text-gray-800 fs-1 fw-bold d-inline-block mw-250px text-wrap">
+                                                        <span
+                                                            class="text-gray-800 fs-1 fw-bold d-inline-block mw-250px text-wrap">
                                                             {{ $question->title }}
                                                         </span>
                                                     </div>
@@ -123,6 +124,17 @@
     </div>
 
     <x-filters.container>
+        <div class="mb-5">
+            <label class="form-label fw-bolder" for="answer_id">{{ __('inputs.ID') }}</label>
+            <input
+                id="answer_id"
+                type="number"
+                class="form-control form-control-solid"
+                wire:model.defer="answer_id"
+                placeholder="{{ __('inputs.ID') }}"
+            />
+        </div>
+
         <div class="mb-5">
             <label class="form-label fw-bolder" for="user_id">{{ __('titles.User') }}</label>
             <x-filters.select2

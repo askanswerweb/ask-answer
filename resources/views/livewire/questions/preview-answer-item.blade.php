@@ -13,12 +13,27 @@
                     {{ $answer->user->firstName() }}
                 </a>
 
+                <br>
+
                 @if($answer->hasMedia())
-                    <span class="text-gray-400 fs-7 fw-semibold d-block mt-1">
-                        <x-livewire.action wire-click="download" :with-text="false" class="pm-0">
-                            <x-svg icon="download" />
-                        </x-livewire.action>
-                    </span>
+                    <x-tooltip :text="__('titles.Files')">
+                        <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
+                                class="btn btn-sm btn-icon btn-light me-2">
+                            <x-svg icon="attached" />
+                        </button>
+                    </x-tooltip>
+
+                    <x-widgets.modal
+                        class="modal-lg"
+                        id="media_{{ $answer->id }}" :title="__('titles.Files')"
+                        subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
+
+                        <div class="row">
+                            @foreach($answer->getMedia() as $media)
+                                @livewire('media.index-item', ['media' => $media, 'show' => true], key("media_" . microtime() . "_" . $media->id))
+                            @endforeach
+                        </div>
+                    </x-widgets.modal>
                 @endif
             </div>
         @endif

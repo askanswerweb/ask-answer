@@ -38,10 +38,12 @@
                 </div>
             @endif
 
-            <a href="{{ route('questions.answers', ['question' => $question->id]) }}"
-               class="btn btn-sm fw-bold btn-primary">
-                {{ __('actions.Answer') }}
-            </a>
+            @if(auth()->user()->isAdmin())
+                <a href="{{ route('questions.answers', ['question' => $question->id]) }}"
+                   class="btn btn-sm fw-bold btn-primary">
+                    {{ __('actions.Answer') }}
+                </a>
+            @endif
         </div>
     </div>
 

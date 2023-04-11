@@ -2,7 +2,7 @@
 <div class="col-lg-4">
     <div class="card card-flush h-xl-100">
         <div class="card-body py-9">
-            <div class="d-flex flex-column h-100">
+            <div class="d-flex flex-column">
                 <div class="mb-7">
                     <div class="d-flex flex-stack mb-6">
                         <div class="flex-shrink-0 me-5">
@@ -63,67 +63,29 @@
                 </div>
 
                 <div class="d-flex-end">
-                    {{--                    <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"--}}
-                    {{--                            class="btn btn-sm btn-icon btn-light me-2">--}}
-                    {{--                        <x-svg icon="attached" />--}}
-                    {{--                    </button>--}}
+                    <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
+                            class="btn btn-sm btn-icon btn-light me-2">
+                        <x-svg icon="attached" />
+                    </button>
 
-                    <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
-                       class="btn btn-sm btn-icon btn-primary">
-                        <x-svg icon="pencil" />
-                    </a>
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
+                           class="btn btn-sm btn-icon btn-primary">
+                            <x-svg icon="pencil" />
+                        </a>
+                    @endif
 
-                    <x-widgets.modal id="edit_{{ $answer->id }}" :title="__('actions.Edit')"
-                                     subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
-                        <div class="w-100 text-start">
-                            <label class="form-label required" for="content_{{ $answer->id }}">
-                                {{ __('titles.Answer') }}
-                            </label>
-                            <textarea
-                                id="content_{{ $answer->id }}"
-                                wire:model.defer="answer.content"
-                                type="text"
-                                class="form-control form-control-solid resize-none @error('answer.content') is-invalid @enderror"
-                                placeholder="{{ __('titles.Answer') }}"
-                                autocomplete="off"
-                                rows="10"
-                                data-kt-autosize="true"
-                            ></textarea>
-                            @error('answer.content')
-                            <div class="fv-plugins-message-container invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                    <x-widgets.modal
+                        class="modal-lg"
+                        id="media_{{ $answer->id }}" :title="__('titles.Files')"
+                        subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
+
+                        <div class="row">
+                            @foreach($answer->getMedia() as $media)
+                                @livewire('media.index-item', ['media' => $media, 'show' => true], key("media_" . microtime() . "_" . $media->id))
+                            @endforeach
                         </div>
-
-                        <x-slot name="footer">
-                            <button class="btn btn-light" data-bs-dismiss="modal">
-                                {{ __('actions.Cancel') }}
-                            </button>
-                            <button class="btn btn-primary" wire:click="save">
-                                {{ __('actions.Close') }}
-                            </button>
-                        </x-slot>
                     </x-widgets.modal>
-
-                    {{--                    <x-widgets.modal--}}
-                    {{--                        class="modal-lg"--}}
-                    {{--                        id="media_{{ $answer->id }}" :title="__('actions.Edit')"--}}
-                    {{--                        subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">--}}
-                    {{--                        <div class="d-flex-start-wrap">--}}
-                    {{--                            <div class="mw-300px me-2">--}}
-                    {{--                                <input type="file" class="form-control form-control-solid" wire:model="files"--}}
-                    {{--                                       multiple />--}}
-                    {{--                            </div>--}}
-                    {{--                            <x-livewire.action wire-click="addFiles" class="btn-primary">--}}
-                    {{--                                {{ __('actions.Add') }}--}}
-                    {{--                            </x-livewire.action>--}}
-                    {{--                        </div>--}}
-
-                    {{--                        <hr />--}}
-
-                    {{--                        @livewire('media.index', ['model' => $answer], key('answer_media_' . microtime() . "_$answer->id"))--}}
-                    {{--                    </x-widgets.modal>--}}
                 </div>
             </div>
         </div>

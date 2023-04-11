@@ -58,7 +58,7 @@
                                 &copy;
                             </span>
                             <a href="#" class="text-gray-800 text-hover-primary">
-                                {{ __('titles.Sibawayh') }}
+                                {{ __('titles.AskAnswer') }}
                             </a>
                         </div>
                     </div>

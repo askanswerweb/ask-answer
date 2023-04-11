@@ -1,5 +1,5 @@
 @php /** @var \App\Models\Media $media */ @endphp
-<div class="col-md-6 col-lg-4 col-xl-3">
+<div class="col-md-6 col-lg-4 {{ !$show ? 'col-xl-3' : 'col-xl-4' }}">
     <div class="card h-100 bg-light">
         <div class="card-body d-flex justify-content-center text-center flex-column my-0">
             <div class="text-gray-800 text-hover-primary d-flex flex-column">
@@ -21,10 +21,12 @@
 
         <div class="card-footer my-0 pt-0">
             <div class="d-flex-center-wrap">
-                <button class="btn btn-sm btn-icon btn-danger me-2" data-bs-toggle="modal"
-                        data-bs-target="#delete_media_{{ $media->id }}">
-                    <x-svg icon="times" />
-                </button>
+                @if(!$show)
+                    <button class="btn btn-sm btn-icon btn-danger me-2" data-bs-toggle="modal"
+                            data-bs-target="#delete_media_{{ $media->id }}">
+                        <x-svg icon="times" />
+                    </button>
+                @endif
                 <x-livewire.action :with-text="false" wire-click="show" class="btn-sm btn-icon btn-primary">
                     <x-svg icon="download" />
                 </x-livewire.action>

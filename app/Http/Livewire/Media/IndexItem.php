@@ -11,10 +11,12 @@ class IndexItem extends Component
     use WithEvents;
 
     public Media $media;
+    public bool $show = false;
 
-    public function mount(Media $media)
+    public function mount(Media $media, bool $show = false)
     {
         $this->media = $media;
+        $this->show = $show;
     }
 
     public function render()
