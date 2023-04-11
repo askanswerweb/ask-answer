@@ -5,9 +5,11 @@ namespace App\Business\Models;
 use App\Business\Utilities\Dates;
 use App\Business\Utilities\Queries;
 use App\Http\Enums\ActiveStatus;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class Users
 {
@@ -67,5 +69,21 @@ class Users
             'password' => $request->password,
             'status' => ActiveStatus::ACTIVE->value
         ];
+    }
+
+    public static function topFive(): array
+    {
+        return User::query()
+            ->select([
+                'users.id',
+                'users.name',
+                DB::raw(Queries::count_distinct('questions.id', 'questions'))
+            ])
+            ->join('questions', 'questions.user_id', 'users.id')
+            ->orderByRaw('questions DESC')
+            ->limit(5)
+            ->groupBy('users.id')
+            ->get()
+            ->toArray();
     }
 }

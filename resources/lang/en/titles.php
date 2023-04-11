@@ -42,4 +42,9 @@ return [
     "NoMedia"               => "There is no media!",
     "TheMostInteractive"    => "The Most Interactive",
     "All"                   => "All",
+    "Welcome"               => "Welcome to Ask Answer App",
+    "NoQuestionsYet"        => "There are no questions yet!",
+    "CreateFirstQuestion"   => "Create you first question",
+    "AddQuestion"           => "Add a Question",
+    "LastQuestions"         => "Last Questions",
 ];

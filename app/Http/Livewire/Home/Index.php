@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Home;
 
 use App\Business\Livewire\Tables;
 use App\Business\Models\Questions;
+use App\Business\Models\Users;
 use App\Business\Utilities\Queries;
 use App\Models\Question;
 use App\Models\User;
@@ -19,21 +20,15 @@ class Index extends Tables
 
     protected $listeners = ['refreshIndexHome' => '$refresh'];
     public $topUsers;
+    public $lastQuestions;
 
     public function mount()
     {
-        $this->topUsers = User::query()
-            ->select([
-                'users.id',
-                'users.name',
-                DB::raw(Queries::count_distinct('questions.id', 'questions'))
-            ])
-            ->join('questions', 'questions.user_id', 'users.id')
-            ->orderByRaw('questions DESC')
-            ->limit(5)
-            ->groupBy('users.id')
-            ->get()
-            ->toArray();
+        if (auth()->user()->isAdmin()) {
+            $this->topUsers = Users::topFive();
+        } else {
+            $this->lastQuestions = Questions::lastFive();
+        }
     }
 
     public function render()

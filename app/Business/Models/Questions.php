@@ -49,4 +49,12 @@ class Questions
             ->withProperties(['old_status' => $old_status, 'new_status' => $question->status])
             ->log($reason ?: 'Question status updated');
     }
+
+    public static function lastFive(): array
+    {
+        return Question::query()
+            ->where('user_id', auth()->id())
+            ->get()
+            ->toArray();
+    }
 }

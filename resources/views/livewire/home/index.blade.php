@@ -117,9 +117,36 @@
                 </div>
 
                 <div class="mb-10" id="kt_social_feeds_posts">
-                    @foreach($list as $item)
-                        @livewire('home.index-item', ['question' => $item], key(microtime()))
-                    @endforeach
+                    @if($list->isEmpty())
+                        <div class="card ">
+                            <div class="card-body p-0">
+                                <div class="card-px text-center py-20 my-10">
+                                    <h2 class="fs-2x fw-bold mb-10">
+                                        {{ __('titles.Welcome') }}
+                                    </h2>
+
+                                    <p class="text-gray-400 fs-4 fw-semibold mb-10">
+                                        {{ __('titles.NoQuestionsYet') }}
+                                        <br>
+                                        {{ __('titles.CreateFirstQuestion') }}
+                                    </p>
+
+                                    <a href="{{ route('questions.create') }}" class="btn btn-primary">
+                                        {{ __('titles.AddQuestion') }}
+                                    </a>
+                                </div>
+
+                                <div class="text-center px-4">
+                                    <img class="mw-100 mh-300px" alt=""
+                                         src="{{ asset('assets/media/illustrations/sketchy-1/2.png') }}">
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        @foreach($list as $item)
+                            @livewire('home.index-item', ['question' => $item], key(microtime()))
+                        @endforeach
+                    @endif
                 </div>
 
                 <div class="d-flex flex-center">
@@ -171,6 +198,42 @@
                                             </div>
 
                                             <a href="{{ route('users.edit', ['user' => $user['id']]) }}"
+                                               class="btn btn-sm btn-light fs-8 fw-bold" target="_blank">
+                                                {{ __('actions.Preview') }}
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    @if(!$loop->last)
+                                        <div class="separator separator-dashed my-4"></div>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                @else
+                    <div class="card mb-5 mb-xl-8">
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">
+                                    {{ __('titles.LastQuestions') }}
+                                </span>
+                            </h3>
+                        </div>
+
+                        <div class="card-body pt-5">
+                            @if(is_iterable($lastQuestions))
+                                @foreach($lastQuestions as $lastQuestion)
+                                    <div class="d-flex flex-stack mb-3">
+                                        <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                            <div class="flex-grow-1">
+                                                <a href="javascript:void(0);"
+                                                   class="text-gray-800 text-hover-primary fs-6 fw-bold">
+                                                    {{ strtoupper(Strings::firstWord($lastQuestion['title'])) }}
+                                                </a>
+                                            </div>
+
+                                            <a href="{{ route('questions.edit', ['question' => $lastQuestion['id']]) }}"
                                                class="btn btn-sm btn-light fs-8 fw-bold" target="_blank">
                                                 {{ __('actions.Preview') }}
                                             </a>

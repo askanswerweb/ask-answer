@@ -42,4 +42,9 @@ return [
     "NoMedia"               => "لا يوجد ملفات مرفقة!",
     "TheMostInteractive"    => "الاكثر تفاعلاً",
     "All"                   => "الجميع",
+    "Welcome"               => "اهلاً بك في تطبيق سؤال وجواب",
+    "NoQuestionsYet"        => "لا توجد أسئلة حتى الآن!",
+    "CreateFirstQuestion"   => "قم بانشاء سؤالك الاول",
+    "AddQuestion"           => "أضف سؤالك",
+    "LastQuestions"         => "الاسئلة الاخيرة",
 ];
