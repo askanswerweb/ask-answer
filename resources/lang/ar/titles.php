@@ -47,4 +47,5 @@ return [
     "CreateFirstQuestion"   => "قم بانشاء سؤالك الاول",
     "AddQuestion"           => "أضف سؤالك",
     "LastQuestions"         => "الاسئلة الاخيرة",
+    "ToDownload"            => "لتنزيل الملف انقر هنا",
 ];

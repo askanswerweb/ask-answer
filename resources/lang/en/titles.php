@@ -47,4 +47,5 @@ return [
     "CreateFirstQuestion"   => "Create you first question",
     "AddQuestion"           => "Add a Question",
     "LastQuestions"         => "Last Questions",
+    "ToDownload"            => "To download file please click here",
 ];

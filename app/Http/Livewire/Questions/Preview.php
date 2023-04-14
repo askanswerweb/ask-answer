@@ -21,4 +21,10 @@ class Preview extends Component
     {
         return view('livewire.questions.preview');
     }
+
+    public function download($media_id)
+    {
+        $media = Media::find($media_id);
+        return response()->download($media->getPath(), $media->file_name);
+    }
 }

@@ -124,20 +124,36 @@
                             </div>
                         @else
                             @foreach($question->getMedia() as $file)
+                                @php /** @var \App\Models\Media $file */ @endphp
                                 <div class="d-flex flex-stack mb-7">
 
                                     <div class="symbol symbol-60px symbol-2by3 me-4">
-                                        <div class="symbol-label"
-                                             style="background-image: url('/assets/media/stock/600x400/img-1.jpg')"></div>
+                                        @if($file->isImage())
+                                            <div class="symbol-label"
+                                                 style="background-image: url('{{ $file->getUrl() }}')"></div>
+                                        @endif
                                     </div>
 
-                                    <div class="m-0">
-                                        <a href="#" class="text-dark fw-bold text-hover-primary fs-6">About Bootstrap
-                                            Admin</a>
+                                    <div class="m-0" wire:click="download('{{ $file->id }}')">
+                                        <label class="text-dark fw-bold text-hover-primary fs-6 cursor-pointer">
+                                            {{ __('titles.File') }}
+                                        </label>
 
-                                        <span class="text-gray-600 fw-semibold d-block pt-1 fs-7">We’ve been a focused
-                                            on making
-                                            a the sky</span>
+                                        <span>
+                                            <span
+                                                class="text-muted text-hover-primary fw-semibold d-block pt-1 fs-7 cursor-pointer"
+                                                wire:target="download('{{ $file->id }}')"
+                                                wire:loading.remove>
+                                                {{ __('titles.ToDownload') }}
+                                            </span>
+                                            <span
+                                                wire:target="download('{{ $file->id }}')"
+                                                class="indicator-progress pm-0"
+                                                wire:loading
+                                            >
+                                                <span class="spinner-border spinner-border-sm align-middle"></span>
+                                            </span>
+                                        </span>
                                     </div>
                                 </div>
                             @endforeach
