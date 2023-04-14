@@ -63,10 +63,12 @@
                 </div>
 
                 <div class="d-flex-end">
-                    <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
-                            class="btn btn-sm btn-icon btn-light me-2">
-                        <x-svg icon="attached" />
-                    </button>
+                    @if($media_count > 0)
+                        <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
+                                class="btn btn-sm btn-icon btn-light me-2">
+                            <x-svg icon="attached" />
+                        </button>
+                    @endif
 
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
