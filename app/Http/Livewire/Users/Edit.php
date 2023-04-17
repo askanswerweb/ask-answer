@@ -12,6 +12,9 @@ class Edit extends Component
     public function mount(User $user)
     {
         $this->user = $user;
+        if ($this->user->is(auth()->user())) {
+            abort(403);
+        }
     }
 
 
