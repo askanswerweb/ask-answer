@@ -59,4 +59,6 @@ return [
     "AddQuestions"          => "إضافة سؤال",
     "ActiveUsers"           => "المستخدمين الفعالين",
     "Top3Branches"          => "اعلى 3 فروع لديهم مستخدمين",
+    "DateFrom"              => "التاريخ من",
+    "DateTo"                => "التاريخ الى",
 ];

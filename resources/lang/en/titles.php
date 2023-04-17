@@ -59,4 +59,6 @@ return [
     "AddQuestions"          => "Add Questions",
     "ActiveUsers"           => "Active Users",
     "Top3Branches"          => "Top 3 Branches",
+    "DateFrom"              => "Date From",
+    "DateTo"                => "Date To",
 ];
