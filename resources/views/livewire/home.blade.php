@@ -364,11 +364,26 @@
             const questions = @json($questions);
 
             if (!!element) {
+                let open = arrayColumn(questions, 'open')
+                if (!Array.isArray(open) || !open.length){
+                    open = []
+                }
+
+                let resolved = arrayColumn(questions, 'resolved')
+                if (!Array.isArray(resolved) || !resolved.length){
+                    resolved = []
+                }
+
+                let closed = arrayColumn(questions, 'closed')
+                if (!Array.isArray(closed) || !closed.length){
+                    closed = []
+                }
+
                 const options = {
                     series: [
-                        {name: '{{ __('states.open') }}', data: arrayColumn(questions, 'open')},
-                        {name: '{{ __('states.resolved') }}', data: arrayColumn(questions, 'resolved')},
-                        {name: '{{ __('states.closed') }}', data: arrayColumn(questions, 'closed')}
+                        {name: '{{ __('states.open') }}', data: open},
+                        {name: '{{ __('states.resolved') }}', data: resolved},
+                        {name: '{{ __('states.closed') }}', data: closed},
                     ],
                     chart: {
                         type: 'bar',
