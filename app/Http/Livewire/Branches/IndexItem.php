@@ -8,12 +8,12 @@ use Livewire\Component;
 class IndexItem extends Component
 {
     public Branch $branch;
-    public ?int $user = null;
+    public ?int $users = null;
 
     public function mount(Branch $branch)
     {
         $this->branch = $branch;
-        $this->user = $this->branch->users_count ?: 0;
+        $this->users = $this->branch->users_count ?: 0;
     }
 
     public function render()

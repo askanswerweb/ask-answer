@@ -2,7 +2,12 @@
 <tr>
     <td>{{ $branch->id }}</td>
     <td>{{ $branch->name }}</td>
-    <td>{{ $branch->created_at?->format('Y-m-d') }}</td>
+    <td>{{ number_format($users) }}</td>
+    <td>
+        <x-tooltip :text="$branch->created_at">
+            {{ $branch->getCreatedAtForHumans() }}
+        </x-tooltip>
+    </td>
     <td>
         <x-dropdown.menu menu="min-w-200px">
             <x-slot name="trigger">

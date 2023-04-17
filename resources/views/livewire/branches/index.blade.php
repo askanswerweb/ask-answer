@@ -23,6 +23,7 @@
         <x-slot name="thead">
             <th>#</th>
             <th>{{ __('titles.Name') }}</th>
+            <th>{{ __('titles.Users') }}</th>
             <th>{{ __('titles.CreateDate') }}</th>
             <th class="min-w-50px">{{ __('actions.Manage') }}</th>
         </x-slot>

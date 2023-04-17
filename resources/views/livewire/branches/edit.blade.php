@@ -32,7 +32,7 @@
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             <input type="text" id="name" wire:model.defer="branch.name"
                                    class="form-control form-control-solid @error('branch.name') is-invalid @enderror"
-                                   placeholder="{{ __('words.name') }}" />
+                                   placeholder="{{ __('titles.Name') }}" />
                             @error('branch.name')
                             <div class="fv-plugins-message-container invalid-feedback">
                                 {{ $message }}
