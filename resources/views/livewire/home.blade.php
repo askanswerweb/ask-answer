@@ -379,6 +379,9 @@
                     closed = []
                 }
 
+                console.log(open)
+                console.log(resolved)
+                console.log(closed)
                 const options = {
                     series: [
                         {name: '{{ __('states.open') }}', data: open},
