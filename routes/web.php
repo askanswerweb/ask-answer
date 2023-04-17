@@ -5,12 +5,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Branches\{Index as IndexBranch, Create as CreateBranch, Edit as EditBranch};
-use App\Http\Livewire\Home\Index as IndexHome;
-use App\Http\Livewire\Answers\{Index as IndexAnswer, Create as CreateAnswer, Edit as EditAnswer};
-use App\Http\Livewire\Questions\{Index as IndexQuestion, Create as CreateQuestion, Edit as EditQuestion};
+use App\Http\Livewire\Home;
+use App\Http\Livewire\Answers\{Create as CreateAnswer, Edit as EditAnswer, Index as IndexAnswer};
+use App\Http\Livewire\Branches\{Create as CreateBranch, Edit as EditBranch, Index as IndexBranch};
+use App\Http\Livewire\Feeds\Index as IndexHome;
+use App\Http\Livewire\Questions\{Create as CreateQuestion, Edit as EditQuestion, Index as IndexQuestion};
 use App\Http\Livewire\Questions\Preview as PreviewQuestion;
-use App\Http\Livewire\Users\{Index as IndexUser, Create as CreateUser, Edit as EditUser};
+use App\Http\Livewire\Users\{Create as CreateUser, Edit as EditUser, Index as IndexUser};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::group(Localizations::routeGroup(), function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::get('home', IndexHome::class)->name('home');
+        Route::get('home', Home::class)->name('home');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
         // Users
@@ -41,6 +42,7 @@ Route::group(Localizations::routeGroup(), function () {
         });
 
         // Questions
+        Route::get('question-feeds', IndexHome::class)->name('question.feeds');
         Route::prefix('questions')->name('questions.')->group(function () {
             Route::get('/', IndexQuestion::class)->name('index');
             Route::get('/create', CreateQuestion::class)->name('create');

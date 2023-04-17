@@ -28,6 +28,7 @@ return [
     "EditUser"              => "تعديل مستخدم",
     "Question"              => "السؤال",
     "Questions"             => "الأسئلة",
+    "QuestionsList"         => "قائمة الأسئلة",
     "Title"                 => "العنوان",
     "CantRevert"            => "لن تتمكن من التراجع عن هذا!",
     "Reason"                => "السبب",
@@ -55,4 +56,7 @@ return [
     "Branch"                => "الفرع",
     "Selected"              => "المحدد",
     "Details"               => "التفاصيل",
+    "AddQuestions"          => "إضافة سؤال",
+    "ActiveUsers"           => "المستخدمين الفعالين",
+    "Top3Branches"          => "اعلى 3 فروع لديهم مستخدمين",
 ];

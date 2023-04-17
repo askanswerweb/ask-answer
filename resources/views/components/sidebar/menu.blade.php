@@ -31,11 +31,20 @@
     <x-sidebar.heading>{{ __('titles.Questions') }}</x-sidebar.heading>
 
     <x-sidebar.item
+        :class="request()->route()->getName() == 'question.feeds' ? 'here show' : ''"
+        :href="route('question.feeds')">
+        <x-slot name="icon">
+            <x-svg icon="question-circle" />
+        </x-slot>
+        {{ __('titles.Questions') }}
+    </x-sidebar.item>
+
+    <x-sidebar.item
         :class="request()->route()->getName() == 'questions.index' ? 'here show' : ''"
         :href="route('questions.index')">
         <x-slot name="icon">
             <x-svg icon="question-circle" />
         </x-slot>
-        {{ __('titles.Questions') }}
+        {{ __('titles.QuestionsList') }}
     </x-sidebar.item>
 </x-sidebar.container>

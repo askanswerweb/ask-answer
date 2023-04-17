@@ -144,7 +144,7 @@
                         </div>
                     @else
                         @foreach($list as $item)
-                            @livewire('home.index-item', ['question' => $item], key(microtime()))
+                            @livewire('feeds.index-item', ['question' => $item], key(microtime()))
                         @endforeach
                     @endif
                 </div>

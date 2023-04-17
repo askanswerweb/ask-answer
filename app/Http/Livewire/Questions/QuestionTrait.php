@@ -19,6 +19,7 @@ trait QuestionTrait
     {
         return [
             'question.title' => 'required',
+            'question.branch_id' => 'required',
             'question.description' => '',
             'files.*' => 'file|max:2048'
         ];

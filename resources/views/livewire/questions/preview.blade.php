@@ -29,7 +29,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-2 gap-lg-3">
-            @if($question->isForAuth() && !$question->isClosed())
+            @if($question->isForAuth() && $question->isOpen())
                 <div class="m-0">
                     <a href="{{ route('questions.edit', ['question' => $question->id]) }}"
                        class="btn btn-sm btn-flex bg-body btn-color-gray-700 btn-active-color-primary fw-bold">

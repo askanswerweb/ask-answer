@@ -28,6 +28,7 @@ return [
     "EditUser"              => "Edit User",
     "Question"              => "Question",
     "Questions"             => "Questions",
+    "QuestionsList"         => "Questions List",
     "Title"                 => "Title",
     "CantRevert"            => "You wont be able to revert this!",
     "Reason"                => "Reason",
@@ -55,4 +56,7 @@ return [
     "Branch"                => "Branch",
     "Selected"              => "Selected",
     "Details"               => "Details",
+    "AddQuestions"          => "Add Questions",
+    "ActiveUsers"           => "Active Users",
+    "Top3Branches"          => "Top 3 Branches",
 ];

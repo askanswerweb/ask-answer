@@ -4,8 +4,10 @@ namespace App\Business\Models;
 
 use App\Business\Utilities\Dates;
 use App\Business\Utilities\Queries;
+use App\Models\Branch;
 use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class Branches
 {
@@ -35,5 +37,22 @@ class Branches
         ]);
 
         return $query;
+    }
+
+    public static function topBranches(int $take = 3)
+    {
+        return Branch::query()
+            ->select([
+                'branches.id',
+                'branches.name',
+                DB::raw(Queries::count_distinct('users.id', 'users'))
+            ])
+            ->join('branch_user', 'branch_user.branch_id', 'branches.id')
+            ->join('users', 'users.id', 'branch_user.user_id')
+            ->groupByRaw('id')
+            ->orderByRaw('users DESC')
+            ->take($take > 0 ? $take : 3)
+            ->get()
+            ->toArray();
     }
 }

@@ -108,7 +108,7 @@
 
                 <div class="col-6">
                     <div class="row g-7 h-250px h-md-375px">
-                        @foreach($question->images->skip(1) as $media)
+                        @foreach($question->images->skip(1)->take(3) as $media)
                             @php /** @var \App\Models\Media $media */ @endphp
                             <div class="col-lg-12">
                                 <a class="d-block card-rounded overlay h-100"
@@ -129,5 +129,38 @@
                 </div>
             </div>
         @endif
+    </div>
+
+    <div class="card-footer py-0">
+        <div>
+            <!--begin::Separator-->
+            <div class="separator separator-solid"></div>
+            <!--end::Separator-->
+
+            <!--begin::Nav-->
+            <ul class="nav py-3">
+                <li class="nav-item">
+                    <a href="#" class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4 me-1">
+                        {!! $question->status?->html() !!}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary btn-active-light-primary fw-bold px-4 me-1 collapsible active" data-bs-toggle="collapse" href="#kt_social_feeds_comments_1">
+                        <x-svg icon="message" />
+                        {{ $question->answers?->count() }} {{ __('titles.Answers') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4">
+
+                        <i class="ki-duotone ki-bookmark fs-2 me-1"><span class="path1"></span><span class="path2"></span></i>
+                        900 Saves
+                    </a>
+                </li>
+            </ul>
+            <!--end::Nav-->
+        </div>
     </div>
 </div>

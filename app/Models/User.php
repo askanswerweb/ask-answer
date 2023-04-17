@@ -62,7 +62,7 @@ class User extends BaseUser implements Authenticatable
     ########## MODEL SCOPES ##########
     public function scopeActive(Builder $builder): Builder
     {
-        return $builder->where('users.status', '');
+        return $builder->where('users.status', ActiveStatus::ACTIVE->value);
     }
 
     public function scopeAdmin(Builder $builder): Builder

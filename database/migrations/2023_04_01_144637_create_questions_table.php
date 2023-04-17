@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->enum('status', array_keys(QuestionState::all()->toArray()))->default(Open::$name);
             $table->foreignId('user_id')->constrained();
             $table->foreignId('branch_id')->constrained();
+            $table->foreignId('assignee_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

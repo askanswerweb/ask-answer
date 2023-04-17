@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Home;
+namespace App\Http\Livewire\Feeds;
 
 use App\Business\Livewire\Tables;
 use App\Business\Models\Questions;
 use App\Business\Models\Users;
-use App\Business\Utilities\Queries;
 use App\Models\Branch;
 use App\Models\Question;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 
 class Index extends Tables
 {
@@ -38,7 +35,7 @@ class Index extends Tables
 
     public function render()
     {
-        return view('livewire.home.index', [
+        return view('livewire.feeds.index', [
             'list' => $this->pagination()
         ]);
     }

@@ -26,6 +26,7 @@ class QuestionFactory extends Factory
             Question::STATUS => $this->faker->randomElement(QuestionState::all()->toArray()),
             Question::USER_ID => User::inRandomOrder()->value('id'),
             Question::BRANCH_ID => Branch::inRandomOrder()->value('id'),
+            Question::ASSIGNEE_ID => $this->faker->randomElement([User::consultant()->value('id'), null]),
             Question::CREATED_AT => $this->faker->dateTimeThisYear,
         ];
     }

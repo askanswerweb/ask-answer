@@ -1,3 +1,4 @@
+@php /** @var \App\Models\Question $question */ @endphp
 <section>
     <div class="card mb-5 mb-xl-10">
         <div class="card-header border-0">
@@ -21,10 +22,33 @@
                             wire:model.defer="question.title"
                             type="text"
                             class="form-control form-control-solid"
-                            placeholder="{{ __('inputs.NameAR') }}"
+                            placeholder="{{ __('inputs.Title') }}"
                         />
 
                         @error('question.title')
+                        <div class="fv-plugins-message-container invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6" for="branch_id">
+                        {{ __('titles.Branch') }}
+                    </label>
+
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <x-filters.select2
+                            id="branches"
+                            model="question.branch_id"
+                            url="branches"
+                            :title="__('titles.Branches')"
+                            :selected-id="$question->branch?->id"
+                            :selected-text="$question->branch?->name"
+                        />
+
+                        @error('question.branch_id')
                         <div class="fv-plugins-message-container invalid-feedback">
                             {{ $message }}
                         </div>
