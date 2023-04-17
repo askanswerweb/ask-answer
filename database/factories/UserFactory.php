@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Http\Enums\ActiveStatus;
 use App\Http\Enums\UserRole;
+use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -37,5 +38,15 @@ class UserFactory extends Factory
             User::ROLE => UserRole::ADMIN->value,
             User::STATUS => ActiveStatus::ACTIVE->value,
         ]);
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->branches()->sync(Branch::inRandomOrder()
+                ->take($this->faker->numberBetween(1, 5))
+                ->pluck('id')
+                ->toArray());
+        });
     }
 }

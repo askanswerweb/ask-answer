@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,16 +21,5 @@ class BranchFactory extends Factory
             Branch::NAME => $this->faker->name,
             Branch::CREATED_AT => $this->faker->dateTimeThisYear,
         ];
-    }
-
-    public function configure()
-    {
-        return $this->afterCreating(function (Branch $branch) {
-            $branch->users()->sync(User::notAdmin()
-                ->inRandomOrder()
-                ->take($this->faker->numberBetween(3, 10))
-                ->pluck('id')
-                ->toArray());
-        });
     }
 }

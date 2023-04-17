@@ -76,8 +76,8 @@
     </div>
 
     <div id="kt_app_content_container" class="container-fluid">
-        <div class="d-flex flex-row">
-            <div class="d-lg-flex flex-column flex-lg-row-auto w-lg-325px">
+        <div class="d-flex flex-row flex-wrap flex-lg-nowrap">
+            <div class="d-lg-flex flex-column flex-lg-row-auto w-100 w-lg-325px">
 
                 <div class="card mb-5 mb-xl-8">
                     <!--begin::Body-->
@@ -101,21 +101,6 @@
             </div>
 
             <div class="w-100 flex-lg-row-fluid mx-lg-5">
-                <div class="d-flex d-lg-none align-items-center justify-content-end mb-10">
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="btn btn-icon btn-active-color-primary w-30px h-30px"
-                             id="kt_social_start_sidebar_toggle">
-                            <i class="ki-duotone ki-profile-circle fs-1"><span
-                                    class="path1"></span><span class="path2"></span><span
-                                    class="path3"></span></i></div>
-
-                        <div class="btn btn-icon btn-active-color-primary w-30px h-30px"
-                             id="kt_social_end_sidebar_toggle">
-                            <i class="ki-duotone ki-scroll fs-1"><span class="path1"></span><span
-                                    class="path2"></span><span class="path3"></span></i></div>
-                    </div>
-                </div>
-
                 <div class="mb-10" id="kt_social_feeds_posts">
                     @if($list->isEmpty())
                         <div class="card ">
