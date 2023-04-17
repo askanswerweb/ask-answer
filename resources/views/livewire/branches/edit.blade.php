@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <x-breadcrumb.container :header="$branch->exists ? __('actions.Edit') : __('actions.Create')">
         <x-breadcrumb.link :href="route('branches.index')">
-            {{ __('sales_forces.trip_plans') }}
+            {{ __('titles.Branches') }}
         </x-breadcrumb.link>
 
         <x-breadcrumb.bullet />
@@ -13,12 +13,12 @@
     </x-breadcrumb.container>
 
     <div class="row mb-6 g-5">
-        <div class="col-lg-7 py-0">
-            <div class="card mb-6 h-lg-100">
+        <div class="col-lg-4 py-0">
+            <div class="card mb-6">
                 <div class="card-header border-0">
                     <div class="card-title m-0">
                         <h3 class="fw-bold m-0">
-                            {{ __('words.details') }}
+                            {{ __('titles.Details') }}
                         </h3>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="card-body border-top p-9">
                     <div class="row mb-6">
                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" for="name">
-                            {{ __('words.name') }}
+                            {{ __('titles.Name') }}
                         </label>
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
@@ -42,9 +42,19 @@
                     </div>
                 </div>
             </div>
+
+            <div class="d-flex-end mb-6 mb-xl-10">
+                <a href="{{ route('branches.index') }}" class="btn btn-light bg-body text-gray-800 me-2">
+                    {{ __('actions.Back') }}
+                </a>
+
+                <x-livewire.action wire-click="save" class="btn btn-primary">
+                    {{ __('actions.Save') }}
+                </x-livewire.action>
+            </div>
         </div>
 
-        <div class="col-lg-5 py-0">
+        <div class="col-lg-8 py-0">
             <div class="card mb-6 h-lg-100" id="users_table">
                 <div class="card-header border-0">
                     <div class="card-title">
@@ -53,7 +63,7 @@
                             <input
                                 id="search"
                                 wire:model.debounce.600ms="search"
-                                type="text"
+                                type="search"
                                 class="form-control form-control-solid w-250px ps-13"
                                 placeholder="{{ __('actions.Search') }}"
                             />
@@ -132,16 +142,16 @@
                             <table class="table align-middle table-row-dashed fs-6" id="kt_users_table">
                                 <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>{{ __('titles.Name') }}</th>
-                                    <th>{{ __('titles.Role') }}</th>
+                                    <th class="py-0"></th>
+                                    <th class="py-0">{{ __('titles.Name') }}</th>
+                                    <th class="py-0">{{ __('titles.Role') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody class="fw-semibold">
                                 @foreach($users as $user)
                                     @php /** @var \App\Models\User $user */ @endphp
                                     <tr>
-                                        <td>
+                                        <td class="py-2">
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                                 <input
                                                     id="customer_{{ $user->id }}"
@@ -152,10 +162,10 @@
                                                 />
                                             </div>
                                         </td>
-                                        <td>
+                                        <td class="py-2">
                                             <label class="fw-bold" for="customer_{{ $user->id }}">{{ $user->name }}</label>
                                         </td>
-                                        <td>{{ $user->getRole() }}</td>
+                                        <td class="py-2">{{ $user->getRole() }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -169,16 +179,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="d-flex-end mb-6 mb-xl-10">
-        <a href="{{ route('branches.index') }}" class="btn btn-light btn-active-light-primary me-2">
-            {{ __('actions.Back') }}
-        </a>
-
-        <x-livewire.action wire-click="save" class="btn btn-secondary">
-            {{ __('actions.Save') }}
-        </x-livewire.action>
     </div>
 
     @push('scripts')

@@ -54,4 +54,5 @@ return [
     "Branches"              => "الفروع",
     "Branch"                => "الفرع",
     "Selected"              => "المحدد",
+    "Details"               => "التفاصيل",
 ];

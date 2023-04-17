@@ -54,4 +54,5 @@ return [
     "Branches"              => "Branches",
     "Branch"                => "Branch",
     "Selected"              => "Selected",
+    "Details"               => "Details",
 ];
