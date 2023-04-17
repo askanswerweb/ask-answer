@@ -24,7 +24,7 @@ class QuestionFactory extends Factory
             Question::DESCRIPTION => $this->faker->paragraphs(asText: true),
             Question::STATUS => $this->faker->randomElement(QuestionState::all()->toArray()),
             Question::USER_ID => User::inRandomOrder()->value('id'),
-            Question::CREATED_AT => $this->faker->dateTime,
+            Question::CREATED_AT => $this->faker->dateTimeThisYear,
         ];
     }
 }

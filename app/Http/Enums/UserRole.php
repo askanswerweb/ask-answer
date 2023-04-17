@@ -8,6 +8,7 @@ enum UserRole: string
 {
     use EnumToArray;
 
-    case ADMIN  = 'admin';
-    case WORKER = 'worker';
+    case ADMIN      = 'admin';
+    case WORKER     = 'worker';
+    case CONSULTANT = 'consultant';
 }

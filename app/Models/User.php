@@ -17,6 +17,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static Builder active()
  * @method static Builder admin()
  * @method static Builder worker()
+ * @method static Builder consultant()
+ * @method static Builder notAdmin()
  */
 class User extends BaseUser implements Authenticatable
 {
@@ -66,6 +68,16 @@ class User extends BaseUser implements Authenticatable
     public function scopeWorker(Builder $builder): Builder
     {
         return $builder->where('users.role', UserRole::WORKER->value);
+    }
+
+    public function scopeConsultant(Builder $builder): Builder
+    {
+        return $builder->where('users.role', UserRole::CONSULTANT->value);
+    }
+
+    public function scopeNotAdmin(Builder $builder): Builder
+    {
+        return $builder->where('users.role', '<>', UserRole::ADMIN->value);
     }
     ########## MODEL SCOPES ##########
 }

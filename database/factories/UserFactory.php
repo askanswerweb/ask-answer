@@ -4,11 +4,11 @@ namespace Database\Factories;
 
 use App\Http\Enums\ActiveStatus;
 use App\Http\Enums\UserRole;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
@@ -20,22 +20,22 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'username' => fake()->unique()->userName(),
-            'password' => bcrypt('password'),
-            'role' => UserRole::WORKER->value,
-            'status' => $this->faker->randomElement(ActiveStatus::values()),
-            'created_at' => $this->faker->date
+            User::NAME => $this->faker->name(),
+            User::USERNAME => $this->faker->unique()->userName(),
+            User::PASSWORD => bcrypt('password'),
+            User::ROLE => $this->faker->randomElement(array_filter(UserRole::values(), fn($role) => $role != UserRole::ADMIN->value)),
+            User::STATUS => $this->faker->randomElement(ActiveStatus::values()),
+            User::CREATED_AT => $this->faker->dateTimeThisYear,
         ];
     }
 
     public function admin(): static
     {
         return $this->state(fn(array $attributes) => [
-            'name' => 'Osama Sadah',
-            'username' => 'osama',
-            'role' => UserRole::ADMIN->value,
-            'status' => ActiveStatus::ACTIVE->value,
+            User::NAME => 'Osama Sadah',
+            User::USERNAME => 'osama',
+            User::ROLE => UserRole::ADMIN->value,
+            User::STATUS => ActiveStatus::ACTIVE->value,
         ]);
     }
 }

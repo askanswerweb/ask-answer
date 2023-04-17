@@ -20,10 +20,10 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => $this->faker->paragraphs(6, true),
-            'user_id' => User::inRandomOrder()->value('id'),
-            'question_id' => Question::inRandomOrder()->value('id'),
-            'created_at' => $this->faker->dateTime
+            Answer::CONTENT => $this->faker->paragraphs(6, true),
+            Answer::USER_ID => User::inRandomOrder()->value('id'),
+            Answer::QUESTION_ID => Question::inRandomOrder()->value('id'),
+            Answer::CREATED_AT => $this->faker->dateTimeThisYear
         ];
     }
 }
