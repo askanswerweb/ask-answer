@@ -379,10 +379,6 @@
                     closed = []
                 }
 
-                console.log(open)
-                console.log(resolved)
-                console.log(closed)
-                console.log(arrayColumn(questions, 'month'))
                 const options = {
                     series: [
                         {name: '{{ __('states.open') }}', data: open},

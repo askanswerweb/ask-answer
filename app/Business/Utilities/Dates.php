@@ -59,11 +59,17 @@ class Dates
 
     public static function properTimezone($timezone)
     {
-        $localEnvironment = app()->environment('local');
+//        $localEnvironment = app()->environment('local');
+//
+//        return match (strtolower($timezone)) {
+//            "+00:00", "utc" => $localEnvironment ? '+00:00' : 'UTC',
+//            "+03:00", "asia/amman", "asia/qatar" => $localEnvironment ? '+03:00' : 'Asia/Qatar',
+//            default => null,
+//        };
 
         return match (strtolower($timezone)) {
-            "+00:00", "utc" => $localEnvironment ? '+00:00' : 'UTC',
-            "+03:00", "asia/amman", "asia/qatar" => $localEnvironment ? '+03:00' : 'Asia/Qatar',
+            "+00:00", "utc" => '+00:00',
+            "+03:00", "asia/amman", "asia/qatar" => '+03:00',
             default => null,
         };
     }
