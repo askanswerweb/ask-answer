@@ -51,4 +51,6 @@ return [
     "worker"                => "Worker",
     "consultant"            => "Consultant",
     "admin"                 => "Admin",
+    "Branches"              => "Branches",
+    "Branch"                => "Branch",
 ];

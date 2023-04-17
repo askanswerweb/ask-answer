@@ -51,4 +51,6 @@ return [
     "worker"                => "عامل",
     "consultant"            => "مستشار",
     "admin"                 => "ادمن",
+    "Branches"              => "الفروع",
+    "Branch"                => "الفرع",
 ];

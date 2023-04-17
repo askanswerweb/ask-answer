@@ -17,6 +17,15 @@
             </x-slot>
             {{ __('titles.Users') }}
         </x-sidebar.item>
+
+        <x-sidebar.item
+            :class="request()->route()->getName() == 'branches.index' ? 'here show' : ''"
+            :href="route('branches.index')">
+            <x-slot name="icon">
+                <x-svg icon="layout-4-blocks" />
+            </x-slot>
+            {{ __('titles.Branches') }}
+        </x-sidebar.item>
     @endif
 
     <x-sidebar.heading>{{ __('titles.Questions') }}</x-sidebar.heading>

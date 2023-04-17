@@ -4,6 +4,7 @@ use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Branches\{Index as IndexBranch, Create as CreateBranch, Edit as EditBranch};
 use App\Http\Livewire\Home\Index as IndexHome;
 use App\Http\Livewire\Answers\{Index as IndexAnswer, Create as CreateAnswer, Edit as EditAnswer};
 use App\Http\Livewire\Questions\{Index as IndexQuestion, Create as CreateQuestion, Edit as EditQuestion};
@@ -53,6 +54,13 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/', IndexAnswer::class)->name('index');
             Route::get('/create', CreateAnswer::class)->name('create');
             Route::get('/{answer}/edit', EditAnswer::class)->name('edit');
+        });
+
+        // Branches
+        Route::prefix('branches')->name('branches.')->group(function () {
+            Route::get('/', IndexBranch::class)->name('index');
+            Route::get('/create', CreateBranch::class)->name('create');
+            Route::get('/{branch}/edit', EditBranch::class)->name('edit');
         });
 
         Route::prefix('dropzone')->group(function () {
