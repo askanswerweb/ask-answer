@@ -32,7 +32,7 @@ class HomeController extends Controller
             'closed_questions' => $closed_questions,
             'branches' => Branches::filter(Branch::query(), $request->all())->count(),
             'answers' => Answers::filter(Answer::query(), $request->all())->count(),
-            'top_branches' => Branches::topBranches(),
+            'top_branches' => Branches::topBranches(options: $request->all()),
         ]);
     }
 }

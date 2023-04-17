@@ -39,9 +39,10 @@ class Branches
         return $query;
     }
 
-    public static function topBranches(int $take = 3)
+    public static function topBranches(int $take = 3, array $options = [])
     {
-        return Branch::query()
+        $options = collect($options);
+        $query = Branch::query()
             ->select([
                 'branches.id',
                 'branches.name',
@@ -51,8 +52,14 @@ class Branches
             ->join('users', 'users.id', 'branch_user.user_id')
             ->groupByRaw('id')
             ->orderByRaw('users DESC')
-            ->take($take > 0 ? $take : 3)
-            ->get()
-            ->toArray();
+            ->take($take > 0 ? $take : 3);
+
+        Dates::filter($query, [
+            'date_from' => $options->get('date_from'),
+            'date_to' => $options->get('date_to'),
+            'column' => $options->get('date_column', 'branches.created_at'),
+        ]);
+
+        return $query->get()->toArray();
     }
 }
