@@ -48,4 +48,7 @@ return [
     "AddQuestion"           => "Add a Question",
     "LastQuestions"         => "Last Questions",
     "ToDownload"            => "To download file please click here",
+    "worker"                => "Worker",
+    "consultant"            => "Consultant",
+    "admin"                 => "Admin",
 ];

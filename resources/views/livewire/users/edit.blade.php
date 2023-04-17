@@ -81,6 +81,22 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-semibold fs-6" for="role">
+                    {{ __('titles.Role') }}
+                </label>
+
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <x-filters.user-role :model="'user.role'" />
+
+                    @error('user.role')
+                    <div class="fv-plugins-message-container invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+            </div>
         </div>
     </div>
 

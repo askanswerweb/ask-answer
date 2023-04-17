@@ -48,4 +48,7 @@ return [
     "AddQuestion"           => "أضف سؤالك",
     "LastQuestions"         => "الاسئلة الاخيرة",
     "ToDownload"            => "لتنزيل الملف انقر هنا",
+    "worker"                => "عامل",
+    "consultant"            => "مستشار",
+    "admin"                 => "ادمن",
 ];
