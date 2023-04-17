@@ -20,6 +20,31 @@
                     <span class="ms-2 fw-bolder">{{ __('actions.Edit') }}</span>
                 </x-dropdown.link>
             </x-dropdown.item>
+
+            <x-dropdown.item>
+                <x-dropdown.link data-bs-target="#delete_{{ $branch->id }}" data-bs-toggle="modal">
+                    <x-svg icon="trash-solid" class="svg-icon-danger" />
+                    <span class="ms-2 fw-bolder">{{ __('actions.Delete') }}</span>
+                </x-dropdown.link>
+            </x-dropdown.item>
         </x-dropdown.menu>
+
+        <x-widgets.modal id="delete_{{ $branch->id }}" :title="__('actions.Delete')" :subtitle="$branch->title">
+            <div class="w-100 text-center">
+                <h4>{{ __('actions.ConfirmDelete') }}</h4>
+                <div class="text-muted fw-semibold fs-5">
+                    {{ __('titles.CantRevert') }}
+                </div>
+            </div>
+
+            <x-slot name="footer">
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                    {{ __('actions.Cancel') }}
+                </button>
+                <button class="btn btn-danger" wire:click="delete" data-bs-dismiss="modal">
+                    {{ __('actions.Delete') }}
+                </button>
+            </x-slot>
+        </x-widgets.modal>
     </td>
 </tr>

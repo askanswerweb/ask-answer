@@ -135,6 +135,7 @@ return [
     "AttributeCreated"      => ":attribute created successfully!",
     "AttributeNotFound"     => ":attribute not found!",
     "UserNotFound"          => "User not found",
+    "CannotDelete"          => "It cannot be removed; please check it's association with other records!",
 
     /*
     |--------------------------------------------------------------------------

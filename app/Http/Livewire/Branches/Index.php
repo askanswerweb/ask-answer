@@ -12,6 +12,9 @@ class Index extends Tables
     public $branch_id;
     public $name;
 
+    // Variables
+    protected $listeners = ['refreshIndexBranch' => '$refresh'];
+
     public function render()
     {
         return view('livewire.branches.index', ['list' => $this->pagination()]);
