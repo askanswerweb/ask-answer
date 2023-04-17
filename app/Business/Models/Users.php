@@ -2,6 +2,7 @@
 
 namespace App\Business\Models;
 
+use App\Business\Utilities\Arrays;
 use App\Business\Utilities\Dates;
 use App\Business\Utilities\Queries;
 use App\Http\Enums\ActiveStatus;
@@ -45,12 +46,8 @@ class Users
             $query->whereRaw(Queries::like('users.name', $name));
         }
 
-        if ($search = $options->get('search')) {
-            $query->where(function ($query) use ($search) {
-                $query->where('users.id', $search);
-                $query->orWhereRaw(Queries::like('users.username', $search));
-                $query->orWhereRaw(Queries::like('users.name', $search));
-            });
+        if ($branch_id = Arrays::whereNotEmpty($options->get('branch_id'))) {
+            $query->whereHas('branches', fn($query) => $query->whereIn('branches.id', $branch_id));
         }
 
         Dates::filter($query, [
@@ -58,6 +55,8 @@ class Users
             'date_to' => $options->get('date_to'),
             'column' => $options->get('date_column', 'users.created_at'),
         ]);
+
+        info($query->toSql());
 
         return $query;
     }

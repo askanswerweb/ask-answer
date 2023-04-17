@@ -53,4 +53,5 @@ return [
     "admin"                 => "ادمن",
     "Branches"              => "الفروع",
     "Branch"                => "الفرع",
+    "Selected"              => "المحدد",
 ];

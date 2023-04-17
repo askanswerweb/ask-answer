@@ -53,4 +53,5 @@ return [
     "admin"                 => "Admin",
     "Branches"              => "Branches",
     "Branch"                => "Branch",
+    "Selected"              => "Selected",
 ];

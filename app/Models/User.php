@@ -54,6 +54,11 @@ class User extends BaseUser implements Authenticatable
         return __("titles.$this->status");
     }
 
+    public function getRole(): string
+    {
+        return __("titles.$this->role");
+    }
+
     ########## MODEL SCOPES ##########
     public function scopeActive(Builder $builder): Builder
     {

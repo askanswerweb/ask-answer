@@ -96,25 +96,16 @@
 
     @push('scripts')
         <script>
-            const livewire_table = document.querySelector('#livewire_table')
-
-            const blockUI = new KTBlockUI(livewire_table, {
-                message: `<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>`,
-                overlayClass: "bg-dark bg-opacity-10",
-            });
-
-            Livewire.hook("message.sent", () => {
-                blockUI.block();
+            document.addEventListener('DOMContentLoaded', () => {
+                new LivewireBlockUI('#livewire_table')
             })
 
             Livewire.hook("message.processed", () => {
                 KTMenu.updateDropdowns();
-                blockUI.release();
             })
 
             Livewire.hook("message.failed", () => {
                 KTMenu.updateDropdowns();
-                blockUI.release();
             })
         </script>
     @endpush

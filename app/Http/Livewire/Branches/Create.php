@@ -17,7 +17,10 @@ class Create extends Component
     public function save()
     {
         $this->validate();
+
         $this->branch->save();
+        $this->branch->users()->sync($this->selected);
+
         $this->saved();
         $this->redirect(route('branches.edit', ['branch' => $this->branch->id]));
     }
