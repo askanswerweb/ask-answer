@@ -56,8 +56,6 @@ class Users
             'column' => $options->get('date_column', 'users.created_at'),
         ]);
 
-        info($query->toSql());
-
         return $query;
     }
 
