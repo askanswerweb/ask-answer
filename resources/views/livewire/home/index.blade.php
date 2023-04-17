@@ -36,7 +36,7 @@
                         <!--end::Menu separator-->
 
                         <div class="px-7 py-5">
-                            <div class="mb-10">
+                            <div class="mb-5">
                                 <label class="form-label fw-semibold" for="status">
                                     {{ __('titles.Status') }}
                                 </label>
@@ -49,6 +49,21 @@
                                         <option value="resolved">{{ __('states.resolved') }}</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="form-label fw-semibold" for="branches">
+                                    {{ __('titles.Branches') }}
+                                </label>
+
+                                <x-filters.select2
+                                    id="branches"
+                                    model="branch_id"
+                                    url="branches"
+                                    :title="__('titles.Branches')"
+                                    :selected-id="$branch?->id"
+                                    :selected-text="$branch?->name"
+                                />
                             </div>
 
                             <div class="d-flex justify-content-end">

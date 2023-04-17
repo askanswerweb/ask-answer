@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Business\States\Question\QuestionState;
+use App\Models\Branch;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,6 +25,7 @@ class QuestionFactory extends Factory
             Question::DESCRIPTION => $this->faker->paragraphs(asText: true),
             Question::STATUS => $this->faker->randomElement(QuestionState::all()->toArray()),
             Question::USER_ID => User::inRandomOrder()->value('id'),
+            Question::BRANCH_ID => Branch::inRandomOrder()->value('id'),
             Question::CREATED_AT => $this->faker->dateTimeThisYear,
         ];
     }

@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->text('close_reason')->nullable();
             $table->enum('status', array_keys(QuestionState::all()->toArray()))->default(Open::$name);
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('branch_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
