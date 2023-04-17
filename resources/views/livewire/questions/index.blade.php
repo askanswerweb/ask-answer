@@ -26,6 +26,7 @@
             <th>#</th>
             <th class="mw-150px">{{ __('titles.Title') }}</th>
             <th>{{ __('titles.User') }}</th>
+            <th>{{ __('titles.Branch') }}</th>
             <th>{{ __('titles.Answers') }}</th>
             <th>{{ __('titles.Status') }}</th>
             <th>{{ __('titles.CreateDate') }}</th>

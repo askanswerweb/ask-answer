@@ -21,7 +21,7 @@ class Index extends Tables
 
     protected function query()
     {
-        $query = Question::with('user')
+        $query = Question::with(['user', 'branch'])
             ->withCount('answers')
             ->latest('id');
         return Questions::filter($query, [

@@ -3,6 +3,7 @@
     <td class="min-w-50px">{{ $question->id }}</td>
     <td class="min-w-150px">{{ $question->title }}</td>
     <td class="min-w-150px">{{ $question->user?->name }}</td>
+    <td class="min-w-150px">{{ $question->branch?->name }}</td>
     <td class="min-w-150px">{{ $answers_count }}</td>
     <td class="min-w-150px">{!! $question->status?->html() !!}</td>
     <td class="min-w-150px">{{ $question->created_at?->format('Y-m-d') }}</td>
