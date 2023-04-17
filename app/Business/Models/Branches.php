@@ -13,6 +13,13 @@ class Branches
     {
         $options = collect($options);
 
+        if ($search = $options->get('search')) {
+            $query->where(function ($query) use ($search) {
+                $query->where('branches.id', $search);
+                $query->orWhereRaw(Queries::like('branches.name', $search));
+            });
+        }
+
         if ($id = $options->get('id')) {
             $query->where('branches.id', $id);
         }

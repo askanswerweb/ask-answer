@@ -11,10 +11,13 @@ class Edit extends Component
 
     public function mount(User $user)
     {
-        $this->user = $user;
-        if ($this->user->is(auth()->user())) {
+        if ($user->is(auth()->user())) {
             abort(403);
         }
+
+        $this->user = $user;
+        $this->selected_branches = $this->user->branches()->scopes('select2')->get()->toArray();
+        $this->branches = array_column($this->selected_branches, 'id');
     }
 
 

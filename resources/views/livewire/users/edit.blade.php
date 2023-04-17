@@ -1,3 +1,4 @@
+@php /** @var \App\Models\User $user */ @endphp
 <div class="card mb-5 mb-xl-10">
     <div class="card-header border-0">
         <div class="card-title m-0">
@@ -88,13 +89,30 @@
                 </label>
 
                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                    <x-filters.user-role :model="'user.role'" />
+                    <x-filters.user-role :model="'user.role'" :defer="false" />
 
                     @error('user.role')
                     <div class="fv-plugins-message-container invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
+                </div>
+            </div>
+
+            <div class="row mb-6 {{ $user->isAdmin() ? 'd-none' : '' }}">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6" for="branches">
+                    {{ __('titles.Branches') }}
+                </label>
+
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <x-filters.select2
+                        id="branches"
+                        model="branches"
+                        url="branches"
+                        :title="__('titles.Branches')"
+                        :multiple="true"
+                        multi-selected="selected_branches"
+                    />
                 </div>
             </div>
         </div>
@@ -109,4 +127,8 @@
             {{ __('actions.Save') }}
         </x-livewire.action>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('assets/js/spinner-livewire.js') }}"></script>
+    @endpush
 </div>

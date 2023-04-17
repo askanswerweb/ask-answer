@@ -11,6 +11,8 @@ trait UserTrait
 
     public User $user;
     public $password;
+    public array $branches = [];
+    public array $selected_branches = [];
 
     protected function rules(): array
     {
@@ -20,6 +22,7 @@ trait UserTrait
             "password" => $this->user->exists ? "nullable|min:8" : "required|min:8",
             "user.status" => "required",
             "user.role" => "required",
+            "branches" => "",
         ];
     }
 
@@ -31,6 +34,7 @@ trait UserTrait
         }
 
         $this->user->save();
+        $this->user->branches()->sync($this->branches);
 
         if (!$exists) {
             $this->created('User');

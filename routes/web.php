@@ -2,6 +2,7 @@
 
 use App\Business\Localizations;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Branches\{Index as IndexBranch, Create as CreateBranch, Edit as EditBranch};
@@ -72,6 +73,7 @@ Route::group(Localizations::routeGroup(), function () {
 
         Route::prefix('select2')->name('select2.')->group(function () {
             Route::get('users', [UserController::class, 'select2'])->name('users');
+            Route::get('branches', [BranchController::class, 'select2'])->name('branches');
         });
     });
 });
