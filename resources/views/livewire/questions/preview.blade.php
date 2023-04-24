@@ -8,13 +8,13 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{ __('titles.Question') }}
+                {{ __('actions.Preview') }}
             </h1>
 
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('home') }}" class="text-muted text-hover-primary">
-                        {{ __('titles.Dashboard') }}
+                    <a href="{{ route('question.feeds') }}" class="text-muted text-hover-primary">
+                        {{ __('titles.Questions') }}
                     </a>
                 </li>
 
@@ -23,7 +23,7 @@
                 </li>
 
                 <li class="breadcrumb-item text-muted">
-                    {{ __('titles.Question') }}
+                    {{ __('actions.Preview') }}
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
                 </div>
             @endif
 
-            @if(auth()->user()->isAdmin())
+            @if(!auth()->user()->isWorker())
                 <a href="{{ route('questions.answers', ['question' => $question->id]) }}"
                    class="btn btn-sm fw-bold btn-primary">
                     {{ __('actions.Answer') }}

@@ -51,20 +51,22 @@
                                 </div>
                             </div>
 
-                            <div class="mb-5">
-                                <label class="form-label fw-semibold" for="branches">
-                                    {{ __('titles.Branches') }}
-                                </label>
+                            @if(auth()->user()->isAdmin())
+                                <div class="mb-5">
+                                    <label class="form-label fw-semibold" for="branches">
+                                        {{ __('titles.Branches') }}
+                                    </label>
 
-                                <x-filters.select2
-                                    id="branches"
-                                    model="branch_id"
-                                    url="branches"
-                                    :title="__('titles.Branches')"
-                                    :selected-id="$branch?->id"
-                                    :selected-text="$branch?->name"
-                                />
-                            </div>
+                                    <x-filters.select2
+                                        id="branches"
+                                        model="branch_id"
+                                        url="branches"
+                                        :title="__('titles.Branches')"
+                                        :selected-id="$branch?->id"
+                                        :selected-text="$branch?->name"
+                                    />
+                                </div>
+                            @endif
 
                             <div class="d-flex justify-content-end">
                                 <button type="reset" wire:click="resetFilters"
@@ -164,7 +166,7 @@
                  data-kt-drawer-toggle="#kt_social_end_sidebar_toggle"
             >
 
-                @if(auth()->user()->isAdmin())
+                @if(!auth()->user()->isWorker())
                     <div class="card mb-5 mb-xl-8">
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
@@ -197,10 +199,12 @@
                                                 </span>
                                             </div>
 
-                                            <a href="{{ route('users.edit', ['user' => $user['id']]) }}"
-                                               class="btn btn-sm btn-light fs-8 fw-bold" target="_blank">
-                                                {{ __('actions.Preview') }}
-                                            </a>
+                                            @if(auth()->user()->isAdmin())
+                                                <a href="{{ route('users.edit', ['user' => $user['id']]) }}"
+                                                   class="btn btn-sm btn-light fs-8 fw-bold" target="_blank">
+                                                    {{ __('actions.Preview') }}
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
 

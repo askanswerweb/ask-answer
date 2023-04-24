@@ -24,7 +24,7 @@ class Index extends Tables
 
     public function mount()
     {
-        if (auth()->user()->isAdmin()) {
+        if (!auth()->user()->isWorker()) {
             $this->topUsers = Users::topFive();
         } else {
             $this->lastQuestions = Questions::lastFive();
@@ -57,7 +57,7 @@ class Index extends Tables
             'question_id' => $this->question_id,
             'title' => $this->title,
             'status' => $this->status,
-            'branch_id' => $this->branch_id,
+            'branch_id' => $this->getBranch(),
         ]);
     }
 
@@ -76,5 +76,14 @@ class Index extends Tables
     protected function paginationFactors(): array
     {
         return ['user_id', 'question_id', 'title', 'status', 'branch_id'];
+    }
+
+    private function getBranch()
+    {
+        if (auth()->user()->isAdmin()) {
+            return $this->branch_id;
+        }
+
+        return auth()->user()->branches()->pluck('id')->toArray();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Business\Models;
 
 use App\Business\States\Question\QuestionState;
+use App\Business\Utilities\Arrays;
 use App\Business\Utilities\Dates;
 use App\Business\Utilities\Queries;
 use App\Models\Question;
@@ -25,8 +26,9 @@ class Questions
             $query->where('questions.user_id', $user_id);
         }
 
-        if ($branch_id = $options->get('branch_id')) {
-            $query->where('questions.branch_id', $branch_id);
+        if ($branch_id = Arrays::whereNotEmpty($options->get('branch_id'))) {
+            if (count($branch_id))
+                $query->where('questions.branch_id', $branch_id);
         }
 
         if ($status = $options->get('status')) {

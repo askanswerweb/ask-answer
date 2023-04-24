@@ -70,15 +70,22 @@ class Users
 
     public static function topFive(): array
     {
-        return User::query()
+        $query = User::query()
             ->select([
                 'users.id',
                 'users.name',
                 DB::raw(Queries::count_distinct('questions.id', 'questions'))
             ])
             ->join('questions', 'questions.user_id', 'users.id')
-            ->orderByRaw('questions DESC')
-            ->limit(5)
+            ->orderByRaw('questions DESC');
+
+        if (auth()->user()?->isConsultant()) {
+            $query->whereHas('branches', function ($query) {
+                $query->whereIn('branches.id', auth()->user()->branches()->pluck('id')->toArray());
+            });
+        }
+
+        return $query->limit(5)
             ->groupBy('users.id')
             ->get()
             ->toArray();
