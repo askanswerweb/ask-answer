@@ -1,13 +1,7 @@
 @php /** @var \App\Models\Question $question */ @endphp
 <div class="container-fluid">
     <x-breadcrumb.container :header="__('titles.Answers')">
-        <x-breadcrumb.link :href="route('home')">
-            {{ __('titles.Dashboard') }}
-        </x-breadcrumb.link>
-
-        <x-breadcrumb.bullet />
-
-        <x-breadcrumb.link :href="route('questions.index')">
+        <x-breadcrumb.link :href="route('question.feeds')">
             {{ __('titles.Questions') }}
         </x-breadcrumb.link>
 
@@ -99,7 +93,7 @@
                                                     {{ __('actions.Filter') }}
                                                 </button>
 
-                                                @if(auth()->user()->isAdmin())
+                                                @if(!auth()->user()->isWorker())
                                                     <a class="btn btn-success btn-sm"
                                                        href="{{ route('questions.answers.create', ['question' => $question->id]) }}">
                                                         {{ __('actions.Answer') }}

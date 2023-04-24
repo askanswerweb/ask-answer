@@ -51,7 +51,7 @@
                 </a>
             @endif
 
-            @if(auth()->user()->isAdmin())
+            @if(!auth()->user()->isWorker())
                 <x-livewire.action wire-click="save" class="btn-primary">
                     {{ __('actions.Save') }}
                 </x-livewire.action>

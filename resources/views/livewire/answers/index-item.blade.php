@@ -61,45 +61,35 @@
                 <div class="mb-6 mh-200px overflow-y-auto pre-wrap">
                     {!! $answer->content !!}
                 </div>
-
-                <div class="d-flex-end">
-                    @if($media_count > 0)
-                        <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
-                                class="btn btn-sm btn-icon btn-light me-2">
-                            <x-svg icon="attached" />
-                        </button>
-                    @endif
-
-                    @if(auth()->user()->isAdmin())
-                        <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
-                           class="btn btn-sm btn-icon btn-primary">
-                            <x-svg icon="pencil" />
-                        </a>
-                    @endif
-
-                    <x-widgets.modal
-                        class="modal-lg"
-                        id="media_{{ $answer->id }}" :title="__('titles.Files')"
-                        subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
-
-                        <div class="row">
-                            @foreach($answer->getMedia() as $media)
-                                @livewire('media.index-item', ['media' => $media, 'show' => true], key("media_" . microtime() . "_" . $media->id))
-                            @endforeach
-                        </div>
-                    </x-widgets.modal>
-                </div>
             </div>
         </div>
-    </div>
 
-    @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                document.addEventListener('saved_content_{{ $answer->id }}', () => {
-                    $('#edit_{{ $answer->id }}').modal('hide')
-                })
-            })
-        </script>
-    @endpush
+        <div class="card-footer pt-0 mt-0 d-flex-end">
+            @if($media_count > 0)
+                <button data-bs-toggle="modal" data-bs-target="#media_{{ $answer->id }}"
+                        class="btn btn-sm btn-icon btn-light me-2">
+                    <x-svg icon="attached" />
+                </button>
+            @endif
+
+            @if(auth()->user()->isAdmin())
+                <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
+                   class="btn btn-sm btn-icon btn-primary">
+                    <x-svg icon="pencil" />
+                </a>
+            @endif
+
+            <x-widgets.modal
+                class="modal-lg"
+                id="media_{{ $answer->id }}" :title="__('titles.Files')"
+                subtitle="{{ __('titles.Answer') }} #{{ $answer->id }}">
+
+                <div class="row">
+                    @foreach($answer->getMedia() as $media)
+                        @livewire('media.index-item', ['media' => $media, 'show' => true], key("media_" . microtime() . "_" . $media->id))
+                    @endforeach
+                </div>
+            </x-widgets.modal>
+        </div>
+    </div>
 </div>

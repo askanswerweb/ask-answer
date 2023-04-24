@@ -44,6 +44,13 @@
                             {{ __('actions.Preview') }}
                         </a>
                     </div>
+
+                    <div class="menu-item px-3">
+                        <a href="{{ route('questions.answers', ['question' => $question->id]) }}" class="menu-link px-3">
+                            {{ __('actions.Answer') }}
+                        </a>
+                    </div>
+
                     <div class="separator mt-3 opacity-75"></div>
 
                     <div class="menu-item px-3">
