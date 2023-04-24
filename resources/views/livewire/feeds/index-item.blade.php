@@ -55,6 +55,15 @@
                         </div>
                     @endif
 
+                    @if($question->isForAuth() && $question->isOpen())
+                        <div class="menu-item px-3">
+                            <a href="{{ route('questions.edit', ['question' => $question->id]) }}"
+                               class="menu-link px-3">
+                                {{ __('actions.Edit') }}
+                            </a>
+                        </div>
+                    @endif
+
                     @if(auth()->user()->isAdmin())
                         <div class="menu-item px-3">
                             <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="modal"

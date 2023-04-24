@@ -27,8 +27,9 @@ class Questions
         }
 
         if ($branch_id = Arrays::whereNotEmpty($options->get('branch_id'))) {
-            if (count($branch_id))
-                $query->where('questions.branch_id', $branch_id);
+            if (count($branch_id)) {
+                $query->whereIn('questions.branch_id', $branch_id);
+            }
         }
 
         if ($status = $options->get('status')) {
