@@ -15,6 +15,7 @@ class Index extends Tables
     public ?string $name = null;
     public ?string $username = null;
     public ?string $status = null;
+    public ?string $role = null;
 
     public function render()
     {
@@ -23,12 +24,13 @@ class Index extends Tables
 
     protected function query()
     {
-        return Users::filter(User::worker()->latest('id'), [
+        return Users::filter(User::notAdmin()->latest('id'), [
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
             'name' => $this->name,
             'username' => $this->username,
             'status' => $this->status,
+            'role' => $this->role,
         ]);
     }
 
@@ -39,6 +41,6 @@ class Index extends Tables
 
     protected function paginationFactors(): array
     {
-        return ['name', 'username', 'status'];
+        return ['name', 'username', 'status', 'role'];
     }
 }

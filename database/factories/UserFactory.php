@@ -24,7 +24,7 @@ class UserFactory extends Factory
             User::NAME => $this->faker->name(),
             User::USERNAME => $this->faker->unique()->userName(),
             User::PASSWORD => bcrypt('password'),
-            User::ROLE => $this->faker->randomElement(array_filter(UserRole::values(), fn($role) => $role != UserRole::ADMIN->value)),
+            User::ROLE => $this->faker->randomElement([UserRole::CONSULTANT->value, UserRole::WORKER->value]),
             User::STATUS => $this->faker->randomElement(ActiveStatus::values()),
             User::CREATED_AT => $this->faker->dateTimeThisYear,
         ];

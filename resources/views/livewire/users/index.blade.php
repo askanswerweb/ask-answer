@@ -25,6 +25,7 @@
             <th>{{ __('titles.Name') }}</th>
             <th>{{ __('titles.Username') }}</th>
             <th>{{ __('titles.Status') }}</th>
+            <th>{{ __('titles.Role') }}</th>
             <th>{{ __('titles.CreateDate') }}</th>
             <th class="min-w-50px">{{ __('actions.Manage') }}</th>
         </x-slot>
@@ -60,6 +61,11 @@
                 <div class="mb-5">
                     <label class="form-label fw-bolder" for="status">{{ __('titles.Status') }}</label>
                     <x-filters.user-status />
+                </div>
+
+                <div class="mb-5">
+                    <label class="form-label fw-bolder" for="status">{{ __('titles.Role') }}</label>
+                    <x-filters.user-role />
                 </div>
 
                 <div class="mb-5">

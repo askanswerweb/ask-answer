@@ -18,7 +18,7 @@ class UserRole extends Component
 
     public function __construct($id = 'role', $model = 'role', $label = '', bool $withIcon = false, bool $defer = true)
     {
-        $this->roles = UserRoleEnum::values();
+        $this->roles = [UserRoleEnum::WORKER->value, UserRoleEnum::CONSULTANT->value];
         $this->label = $label;
         $this->model = $model;
         $this->id = $id ?: $this->model;

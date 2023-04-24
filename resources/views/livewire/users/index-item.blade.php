@@ -8,6 +8,7 @@
             <span class="w-100 text-center">{{ $user->getStatus() }}</span>
         </x-widgets.badge>
     </td>
+    <td>{{ $user->getRole() }}</td>
     <td>{{ $user->created_at?->format('Y-m-d') }}</td>
     <td>
         <x-dropdown.menu menu="min-w-200px">

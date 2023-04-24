@@ -153,11 +153,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4">
-
+                    <button class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4">
                         <i class="ki-duotone ki-bookmark fs-2 me-1"><span class="path1"></span><span class="path2"></span></i>
-                        900 Saves
-                    </a>
+                        {{ $question->branch?->name }}
+                    </button>
                 </li>
             </ul>
             <!--end::Nav-->
