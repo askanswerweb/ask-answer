@@ -40,27 +40,34 @@
                     <div class="separator mb-3 opacity-75"></div>
 
                     <div class="menu-item px-3">
-                        <a href="{{ route('questions.preview', ['question' => $question->id]) }}" class="menu-link px-3">
+                        <a href="{{ route('questions.preview', ['question' => $question->id]) }}"
+                           class="menu-link px-3">
                             {{ __('actions.Preview') }}
                         </a>
                     </div>
 
-                    <div class="menu-item px-3">
-                        <a href="{{ route('questions.answers', ['question' => $question->id]) }}" class="menu-link px-3">
-                            {{ __('actions.Answer') }}
-                        </a>
-                    </div>
-
-                    <div class="separator mt-3 opacity-75"></div>
-
-                    <div class="menu-item px-3">
-                        <div class="menu-content px-3 py-3">
-                            <button class="btn btn-danger w-100 btn-sm px-4" data-bs-toggle="modal"
-                                    data-bs-target="#delete_{{ $question->id }}">
-                                {{ __('actions.Delete') }}
-                            </button>
+                    @if(!auth()->user()->isWorker())
+                        <div class="menu-item px-3">
+                            <a href="{{ route('questions.answers', ['question' => $question->id]) }}"
+                               class="menu-link px-3">
+                                {{ __('actions.Answer') }}
+                            </a>
                         </div>
-                    </div>
+                    @endif
+
+
+                    @if(auth()->user()->isAdmin() || $question->isForAuth())
+                        <div class="separator mt-3 opacity-75"></div>
+
+                        <div class="menu-item px-3">
+                            <div class="menu-content px-3 py-3">
+                                <button class="btn btn-danger w-100 btn-sm px-4" data-bs-toggle="modal"
+                                        data-bs-target="#delete_{{ $question->id }}">
+                                    {{ __('actions.Delete') }}
+                                </button>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -147,13 +154,15 @@
             <!--begin::Nav-->
             <ul class="nav py-3">
                 <li class="nav-item">
-                    <a href="#" class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4 me-1">
+                    <a href="#"
+                       class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4 me-1">
                         {!! $question->status?->html() !!}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary btn-active-light-primary fw-bold px-4 me-1 collapsible active" data-bs-toggle="collapse" href="#kt_social_feeds_comments_1">
+                    <a class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary btn-active-light-primary fw-bold px-4 me-1 collapsible active"
+                       data-bs-toggle="collapse" href="#kt_social_feeds_comments_1">
                         <x-svg icon="message" />
                         {{ $question->answers?->count() }} {{ __('titles.Answers') }}
                     </a>
@@ -161,7 +170,8 @@
 
                 <li class="nav-item">
                     <button class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary fw-bold px-4">
-                        <i class="ki-duotone ki-bookmark fs-2 me-1"><span class="path1"></span><span class="path2"></span></i>
+                        <i class="ki-duotone ki-bookmark fs-2 me-1"><span class="path1"></span><span
+                                class="path2"></span></i>
                         {{ $question->branch?->name }}
                     </button>
                 </li>

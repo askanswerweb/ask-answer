@@ -12,4 +12,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Answer extends BaseAnswer implements HasMedia
 {
     use ModelTrait, HasFactory, MediaTrait;
+
+    public function isForAuth(): bool
+    {
+        return auth()->check() && $this->user_id == auth()->id();
+    }
 }

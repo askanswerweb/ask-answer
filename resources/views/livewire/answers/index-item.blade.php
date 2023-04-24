@@ -72,7 +72,7 @@
                 </button>
             @endif
 
-            @if(auth()->user()->isAdmin())
+            @if($answer->isForAuth())
                 <a href="{{ route('answers.edit', ['answer' => $answer->id]) }}"
                    class="btn btn-sm btn-icon btn-primary">
                     <x-svg icon="pencil" />

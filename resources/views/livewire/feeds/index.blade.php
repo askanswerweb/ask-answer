@@ -15,9 +15,8 @@
                     <a href="#"
                        class="btn btn-sm btn-flex bg-body btn-color-gray-700 btn-active-color-primary fw-bold"
                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                        <i class="ki-duotone ki-filter fs-6 text-muted me-1"><span
-                                class="path1"></span><span class="path2"></span></i>
-                        Filter
+                        <x-svg icon="filter" />
+                        {{ __('actions.Filter') }}
                     </a>
                     <!--end::Menu toggle-->
 
@@ -84,10 +83,12 @@
                     </div>
                 </div>
 
-
-                <a href="{{ route('questions.create') }}" class="btn btn-sm fw-bold btn-primary">
-                    {{ __('actions.Create') }}
-                </a>
+                @if(auth()->user()->isWorker())
+                    <a href="{{ route('questions.create') }}" class="btn btn-sm fw-bold btn-primary">
+                        <x-svg icon="plus" />
+                        {{ __('actions.Create') }}
+                    </a>
+                @endif
             </div>
         </div>
     </div>
