@@ -61,4 +61,7 @@ return [
     "Top3Branches"          => "اعلى 3 فروع لديهم مستخدمين",
     "DateFrom"              => "التاريخ من",
     "DateTo"                => "التاريخ الى",
+    "ChangeBranch"          => "تغيير الفرع",
+    "CurrentBranch"         => "الفرع الحالي",
+    "NewBranch"             => "الفرع الجديد",
 ];

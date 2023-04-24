@@ -61,4 +61,7 @@ return [
     "Top3Branches"          => "Top 3 Branches",
     "DateFrom"              => "Date From",
     "DateTo"                => "Date To",
+    "ChangeBranch"          => "Change Branch",
+    "CurrentBranch"         => "Current Branch",
+    "NewBranch"             => "New Branch",
 ];

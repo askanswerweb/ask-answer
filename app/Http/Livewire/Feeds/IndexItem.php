@@ -11,11 +11,14 @@ class IndexItem extends Component
     use WithEvents;
 
     public Question $question;
+    public ?int $answers_count = 0;
+    public $new_branch_id;
+    protected $listeners = ['refreshIndexFeedItem' => '$refresh'];
 
     public function mount(Question $question)
     {
         $this->question = $question;
-        $this->question->answers = $this->question->answers->take(3);;
+        $this->answers_count = $this->question->answers_count;
     }
 
     public function render()
@@ -28,5 +31,18 @@ class IndexItem extends Component
         $this->question->delete();
         $this->deleted('question');
         $this->emitTo('home.index', 'refreshIndexHome');
+    }
+
+    public function changeBranch()
+    {
+        $this->validate(['new_branch_id' => 'required']);
+
+        $this->question->branch_id = $this->new_branch_id;
+        $this->question->save();
+
+        $this->reset('new_branch_id');
+        $this->dispatchBrowserEvent('clear-select2');
+        $this->emitSelf('refreshIndexFeedItem');
+        $this->saved();
     }
 }

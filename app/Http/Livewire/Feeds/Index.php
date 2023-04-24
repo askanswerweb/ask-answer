@@ -42,12 +42,9 @@ class Index extends Tables
 
     protected function query()
     {
-        $query = Question::with(['branch', 'user', 'images', 'answers' => function ($query) {
-            $query->whereHas('user');
-            $query->with('user');
-            $query->latest();
-        }])
+        $query = Question::with(['branch', 'user', 'images', 'answers'])
             ->whereHas('user')
+            ->withCount('answers')
             ->latest();
 
         return Questions::filter($query, [

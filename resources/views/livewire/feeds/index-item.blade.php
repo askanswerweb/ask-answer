@@ -55,6 +55,14 @@
                         </div>
                     @endif
 
+                    @if(auth()->user()->isAdmin())
+                        <div class="menu-item px-3">
+                            <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="modal"
+                               data-bs-target="#change_branch_{{ $question->id }}">
+                                {{ __('titles.ChangeBranch') }}
+                            </a>
+                        </div>
+                    @endif
 
                     @if(auth()->user()->isAdmin() || $question->isForAuth())
                         <div class="separator mt-3 opacity-75"></div>
@@ -72,23 +80,59 @@
             </div>
         </div>
 
-        <x-widgets.modal id="delete_{{ $question->id }}" :title="__('actions.Delete')" :subtitle="$question->title">
-            <div class="w-100 text-center">
-                <h4>{{ __('actions.ConfirmDelete') }}</h4>
-                <div class="text-muted fw-semibold fs-5">
-                    {{ __('titles.CantRevert') }}
+        @if(auth()->user()->isAdmin() || $question->isForAuth())
+            <x-widgets.modal id="delete_{{ $question->id }}" :title="__('actions.Delete')" :subtitle="$question->title">
+                <div class="w-100 text-center">
+                    <h4>{{ __('actions.ConfirmDelete') }}</h4>
+                    <div class="text-muted fw-semibold fs-5">
+                        {{ __('titles.CantRevert') }}
+                    </div>
                 </div>
-            </div>
 
-            <x-slot name="footer">
-                <button class="btn btn-light" data-bs-dismiss="modal">
-                    {{ __('actions.Cancel') }}
-                </button>
-                <button class="btn btn-danger" wire:click="delete" data-bs-dismiss="modal">
-                    {{ __('actions.Delete') }}
-                </button>
-            </x-slot>
-        </x-widgets.modal>
+                <x-slot name="footer">
+                    <button class="btn btn-light" data-bs-dismiss="modal">
+                        {{ __('actions.Cancel') }}
+                    </button>
+                    <button class="btn btn-danger" wire:click="delete" data-bs-dismiss="modal">
+                        {{ __('actions.Delete') }}
+                    </button>
+                </x-slot>
+            </x-widgets.modal>
+        @endif
+
+        @if(auth()->user()->isAdmin())
+            <x-widgets.modal id="change_branch_{{ $question->id }}" :title="__('titles.ChangeBranch')"
+                             :subtitle="$question->title">
+                <div class="w-100 text-center">
+                    <div class="row mb-5 mb-xl-10 text-start fw-semibold">
+                        <label>{{ __('titles.CurrentBranch') }}</label>
+                        <label class="form-select form-select-solid">
+                            {{ $question->branch?->name }}
+                        </label>
+                    </div>
+
+                    <div class="row mb-5 mb-xl-10 text-start fw-semibold">
+                        <label>{{ __('titles.NewBranch') }}</label>
+                        <x-filters.select2
+                            id="new_branch_id"
+                            model="new_branch_id"
+                            url="branches"
+                            :title="__('titles.NewBranch')"
+                            :clear="false"
+                        />
+                    </div>
+                </div>
+
+                <x-slot name="footer">
+                    <button class="btn btn-light" data-bs-dismiss="modal">
+                        {{ __('actions.Cancel') }}
+                    </button>
+                    <button class="btn btn-primary" wire:click="changeBranch" data-bs-dismiss="modal">
+                        {{ __('actions.Save') }}
+                    </button>
+                </x-slot>
+            </x-widgets.modal>
+        @endif
     </div>
 
     <div class="card-body">
@@ -164,7 +208,7 @@
                     <a class="nav-link btn btn-sm btn-color-gray-600 btn-active-color-primary btn-active-light-primary fw-bold px-4 me-1 collapsible active"
                        data-bs-toggle="collapse" href="#kt_social_feeds_comments_1">
                         <x-svg icon="message" />
-                        {{ $question->answers?->count() }} {{ __('titles.Answers') }}
+                        {{ number_format($answers_count) }} {{ __('titles.Answers') }}
                     </a>
                 </li>
 
