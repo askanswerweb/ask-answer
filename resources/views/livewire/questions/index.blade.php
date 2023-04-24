@@ -30,7 +30,7 @@
             <th>{{ __('titles.Answers') }}</th>
             <th>{{ __('titles.Status') }}</th>
             <th>{{ __('titles.CreateDate') }}</th>
-            <th>{{ __('actions.Manage') }}</th>
+{{--            <th>{{ __('actions.Manage') }}</th>--}}
         </x-slot>
 
         @foreach($list as $question)
