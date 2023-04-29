@@ -13,7 +13,7 @@ class AuthController extends Controller
             return back()->with('error', __('auth.failed'))->withInput();
         }
 
-        return to_route('home');
+        return auth()->user()->isAdmin() ? to_route('home') : to_route('question.feeds');
     }
 
     public function logout()
