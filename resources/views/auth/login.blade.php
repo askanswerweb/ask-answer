@@ -38,6 +38,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="fv-row mb-10">
                             <label class="form-label fs-6 fw-bolder text-dark" for="password">
                                 {{__('titles.Password')}}
@@ -55,7 +56,7 @@
                             @enderror
                         </div>
 
-                        <div class="text-center">
+                        <div class="text-center mb-5">
                             <button id="kt_sign_in_submit" class="btn btn-primary me-2 flex-shrink-0">
                                 <label class="indicator-label cursor-pointer" data-kt-translate="sign-in-submit">
                                     {{__('auth.Signin')}}
@@ -67,14 +68,18 @@
                             </button>
                         </div>
 
+                        <div class="text-gray-500 text-center fw-semibold fs-6">
+                            {{ __('titles.NotMemberYet') }}
+
+                            <a href="{{ route('register') }}" class="link-primary">
+                                {{ __('auth.Signup') }}
+                            </a>
+                        </div>
+
                         <x-partials.auth-footer />
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
-    @push('scripts')
-        <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
-    @endpush
 </x-layouts.auth>

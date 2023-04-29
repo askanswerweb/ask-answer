@@ -6,6 +6,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Answers\{Create as CreateAnswer, Edit as EditAnswer, Index as IndexAnswer};
 use App\Http\Livewire\Branches\{Create as CreateBranch, Edit as EditBranch, Index as IndexBranch};
 use App\Http\Livewire\Feeds\Index as IndexFeed;
@@ -23,11 +24,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(Localizations::routeGroup(), function () {
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('welcome');
 
     Route::middleware('guest')->group(function () {
         Route::view('login', 'auth.login')->name('login');
         Route::post('login', [AuthController::class, 'login'])->name('login.post');
+        Route::get('register', Register::class)->name('register');
     });
 
     Route::middleware('auth')->group(function () {

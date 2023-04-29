@@ -64,4 +64,6 @@ return [
     "ChangeBranch"          => "تغيير الفرع",
     "CurrentBranch"         => "الفرع الحالي",
     "NewBranch"             => "الفرع الجديد",
+    "NotMemberYet"          => "ليس بديك حساب بعد؟",
+    "ConfirmPassword"       => "تأكيد كلمة المرور",
 ];

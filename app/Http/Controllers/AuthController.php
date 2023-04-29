@@ -19,6 +19,6 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return to_route('login');
+        return to_route('welcome');
     }
 }

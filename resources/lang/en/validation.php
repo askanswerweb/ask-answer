@@ -136,6 +136,7 @@ return [
     "AttributeNotFound"     => ":attribute not found!",
     "UserNotFound"          => "User not found",
     "CannotDelete"          => "It cannot be removed; please check it's association with other records!",
+    "Username"              => "The username must contain only letters, numbers, underscores, or dashes, and be between 8 and 20 characters in length.",
 
     /*
     |--------------------------------------------------------------------------
