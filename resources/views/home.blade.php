@@ -66,7 +66,6 @@
 
 
             <div class="row g-5 mb-5">
-                <!--begin::Col-->
                 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5">
                     <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end h-md-50 mb-5"
                          style="background-color: #04acc4;">
@@ -124,7 +123,6 @@
                         </div>
                     </div>
                 </div>
-                <!--end::Col-->
 
                 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5">
                     <div class="card card-flush h-md-50 mb-5">
@@ -150,43 +148,30 @@
                     </div>
 
                     <div class="card card-flush h-md-50 mb-5">
-                        <!--begin::Header-->
                         <div class="card-header pt-5">
-                            <!--begin::Title-->
                             <div class="card-title d-flex flex-column">
-                                <!--begin::Amount-->
                                 <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">
                                     {{ number_format($users) }}
                                 </span>
-                                <!--end::Amount-->
 
-                                <!--begin::Subtitle-->
                                 <span class="text-gray-400 pt-1 fw-semibold fs-6">
                                     {{ __('titles.User') }}
                                 </span>
-                                <!--end::Subtitle-->
                             </div>
-                            <!--end::Title-->
                         </div>
-                        <!--end::Header-->
 
-                        <!--begin::Card body-->
                         <div class="card-body d-flex-center">
                             <a href="javascript:void(0);"
                                class="border border-success border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3 me-lg-2 grow">
-                                <!--begin::Number-->
                                 <span class="fs-6 text-gray-700 fw-bold">
                                     <span class="ms-n1 counted">
                                         {{ number_format($users_workers) }}
                                     </span>
                                 </span>
-                                <!--end::Number-->
 
-                                <!--begin::Label-->
                                 <div class="fw-semibold text-gray-400">
                                     {{ __('titles.worker') }}
                                 </div>
-                                <!--end::Label-->
                             </a>
                             <a href="javascript:void(0);"
                                class="border border-danger border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3 me-lg-2 grow">
@@ -197,14 +182,11 @@
                                     </span>
                                 </span>
 
-                                <!--begin::Label-->
                                 <div class="fw-semibold text-gray-400">
                                     {{ __('titles.consultant') }}
                                 </div>
-                                <!--end::Label-->
                             </a>
                         </div>
-                        <!--end::Card body-->
                     </div>
                 </div>
 
@@ -224,16 +206,12 @@
             </div>
 
             <div class="row g-5">
-                <!--begin::Col-->
                 <div class="col-xl-4">
-                    <!--begin::Lists Widget 19-->
                     <div class="card card-flush h-xl-100">
-                        <!--begin::Heading-->
                         <div
                             class="card-header rounded bgi-no-repeat bgi-size-cover bgi-position-y-top bgi-position-x-center align-items-start h-250px"
                             style="background-image:url('{{ asset('assets/media/svg/shapes/top-green.png') }}')"
                             data-bs-theme="light">
-                            <!--begin::Title-->
                             <div class="card-title align-items-start flex-column text-white pt-15">
                                 <span class="fw-bold fs-2x mb-3">
                                     {{ __('titles.Questions') }}
@@ -249,11 +227,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <!--end::Title-->
                         </div>
-                        <!--end::Heading-->
 
-                        <!--begin::Body-->
                         <div class="card-body mt-n20">
                             <div class="mt-n20 position-relative">
                                 <div class="row g-3 g-lg-6">
@@ -346,24 +321,17 @@
     </div>
 
     @push('scripts')
-        <script src="{{ asset('assets/js/spinner-livewire.js') }}"></script>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const element = document.getElementById('kt_apexcharts_1');
                 const height = parseInt(KTUtil.css(element, 'height'));
                 const labelColor = KTUtil.getCssVariableValue('--bs-gray-500');
                 const borderColor = KTUtil.getCssVariableValue('--bs-gray-200');
-                const openColor = KTUtil.getCssVariableValue('--bs-primary');
                 const resolvedColor = KTUtil.getCssVariableValue('--bs-success');
                 const closedColor = KTUtil.getCssVariableValue('--bs-danger');
                 const questions = @json($questions);
 
                 if (!!element) {
-                    let open = arrayColumn(questions, 'open')
-                    if (!Array.isArray(open) || !open.length) {
-                        open = []
-                    }
-
                     let resolved = arrayColumn(questions, 'resolved')
                     if (!Array.isArray(resolved) || !resolved.length) {
                         resolved = []
@@ -376,7 +344,6 @@
 
                     const options = {
                         series: [
-                            {name: '{{ __('states.open') }}', data: open},
                             {name: '{{ __('states.resolved') }}', data: resolved},
                             {name: '{{ __('states.closed') }}', data: closed},
                         ],
@@ -438,7 +405,7 @@
                                 }
                             }
                         },
-                        colors: [openColor, resolvedColor, closedColor],
+                        colors: [resolvedColor, closedColor],
                         grid: {
                             borderColor: borderColor,
                             strokeDashArray: 4,
