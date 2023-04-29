@@ -52,6 +52,25 @@
 
                     <div class="row mb-5">
                         <div class="col-md-4">
+                            <label class="form-label fs-6 fw-bolder text-dark" for="branch_id">
+                                {{__('titles.Branch')}}
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <x-filters.select2
+                                id="branch_id"
+                                model="branch_id"
+                                url="branches"
+                                :title="__('titles.Branch')"
+                                :clear="false"
+                            />
+
+                            <x-error error="password_confirmation" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-4">
                             <label class="form-label fs-6 fw-bolder text-dark" for="password">
                                 {{__('titles.Password')}}
                             </label>

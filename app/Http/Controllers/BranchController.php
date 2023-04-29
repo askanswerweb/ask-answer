@@ -12,7 +12,7 @@ class BranchController extends Controller
     public function select2(Request $request)
     {
         $query = Branches::filter(Branch::select2(), ['search' => $request->term]);
-        if (auth()->user()->isWorker()) {
+        if (auth()->user()?->isWorker()) {
             $query->whereHas('users', fn($q) => $q->where('users.id', auth()->id()));
         }
 

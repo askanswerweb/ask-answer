@@ -80,4 +80,8 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('branches', [BranchController::class, 'select2'])->name('branches');
         });
     });
+
+    Route::prefix('select2')->name('select2.')->group(function () {
+        Route::get('branches', [BranchController::class, 'select2'])->name('branches');
+    });
 });

@@ -11,6 +11,7 @@ use Livewire\Component;
 class Register extends Component
 {
     public User $user;
+    public $branch_id;
     public $password;
     public $password_confirmation;
 
@@ -33,6 +34,7 @@ class Register extends Component
         $this->user->status = ActiveStatus::ACTIVE->value;
         $this->user->password = bcrypt($this->password);
         $this->user->save();
+        $this->user->branches()->sync($this->branch_id);
 
         auth()->login($this->user);
         return to_route('home');
@@ -43,6 +45,7 @@ class Register extends Component
         return [
             'user.name' => ['required'],
             'user.username' => ['required', 'min:8', new UsernameRule, 'unique:users,username'],
+            'branch_id' => ['required'],
             'password' => ['required', 'min:8', 'confirmed'],
             'password_confirmation' => ['required'],
         ];
