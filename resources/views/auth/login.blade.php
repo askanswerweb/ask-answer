@@ -82,4 +82,8 @@
             </form>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
+    @endpush
 </x-layouts.auth>

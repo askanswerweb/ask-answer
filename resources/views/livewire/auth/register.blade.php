@@ -98,10 +98,10 @@
                     </div>
 
                     <div class="text-gray-500 text-center fw-semibold fs-6">
-                        {{ __('titles.NotMemberYet') }}
+                        {{ __('titles.HaveAccount') }}
 
-                        <a href="{{ route('register') }}" class="link-primary" >
-                            {{ __('auth.Signup') }}
+                        <a href="{{ route('login') }}" class="link-primary" >
+                            {{ __('auth.Signin') }}
                         </a>
                     </div>
 

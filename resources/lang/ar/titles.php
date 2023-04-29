@@ -66,4 +66,5 @@ return [
     "NewBranch"             => "الفرع الجديد",
     "NotMemberYet"          => "ليس بديك حساب بعد؟",
     "ConfirmPassword"       => "تأكيد كلمة المرور",
+    "HaveAccount"           => "لديك حساب بالفعل؟",
 ];

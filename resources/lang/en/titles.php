@@ -66,4 +66,5 @@ return [
     "NewBranch"             => "New Branch",
     "NotMemberYet"          => "Not a Member yet?",
     "ConfirmPassword"       => "Confirm Password",
+    "HaveAccount"           => "Already have an account?",
 ];
