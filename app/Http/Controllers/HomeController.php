@@ -8,11 +8,21 @@ use App\Business\Models\Questions;
 use App\Business\Models\Users;
 use App\Models\Answer;
 use App\Models\Branch;
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function welcome()
+    {
+        return view('welcome', [
+            'questions' => Question::count(),
+            'answers' => Answer::count(),
+            'branches' => Branch::count(),
+        ]);
+    }
+
     public function home(Request $request)
     {
         $questions = Questions::lastMonths(options: $request->all());

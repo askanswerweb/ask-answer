@@ -22,9 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(Localizations::routeGroup(), function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+
+    Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
     Route::middleware('guest')->group(function () {
         Route::view('login', 'auth.login')->name('login');
