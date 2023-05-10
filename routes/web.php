@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Auth\Register;
+use App\Http\Livewire\Messages\Index as IndexMessage;
 use App\Http\Livewire\Answers\{Create as CreateAnswer, Edit as EditAnswer, Index as IndexAnswer};
 use App\Http\Livewire\Branches\{Create as CreateBranch, Edit as EditBranch, Index as IndexBranch};
 use App\Http\Livewire\Feeds\Index as IndexFeed;
@@ -67,6 +68,8 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/{branch}/edit', EditBranch::class)->name('edit');
         });
 
+        Route::get('messages', IndexMessage::class)->name('messages');
+
         Route::prefix('dropzone')->group(function () {
             Route::prefix('questions')->name('questions')->group(function () {
                 Route::post('save-image', [QuestionController::class, 'saveImage'])->name('images.post');
@@ -83,4 +86,6 @@ Route::group(Localizations::routeGroup(), function () {
     Route::prefix('select2')->name('select2.')->group(function () {
         Route::get('branches', [BranchController::class, 'select2'])->name('branches');
     });
+
+    Route::get('test', fn() => event(new \App\Events\TestEvent));
 });

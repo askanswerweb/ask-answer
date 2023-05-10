@@ -87,4 +87,5 @@ return [
     "WeMakeThingsBetter"    => "نحن نجعل الأمور أفضل",
     "Statistics"            => "إحصائيات",
     "Home"                  => "الرئيسية",
+    "Messages"              => "الرسائل",
 ];

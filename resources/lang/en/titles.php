@@ -87,4 +87,5 @@ return [
     "WeMakeThingsBetter"    => "We Make Things Better",
     "Statistics"            => "Statistics",
     "Home"                  => "Home",
+    "Messages"              => "Messages",
 ];
