@@ -32,13 +32,13 @@
                 </div>
 
                 <div class="app-navbar flex-shrink-0 d-flex align-items-stretch justify-content-end flex-lg-grow-1">
-                    <a href="{{ route('messages') }}" class="app-navbar-item ms-1 ms-md-3">
-                        <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px position-relative" id="kt_drawer_chat_toggle">
-                            <x-svg icon="message" />
-                            <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink">
-                            </span>
-                        </div>
-                    </a>
+{{--                    <a href="{{ route('messages') }}" class="app-navbar-item ms-1 ms-md-3">--}}
+{{--                        <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px position-relative" id="kt_drawer_chat_toggle">--}}
+{{--                            <x-svg icon="message" />--}}
+{{--                            <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink">--}}
+{{--                            </span>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
 
                     <x-partials.user-menu />
                 </div>
