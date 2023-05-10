@@ -88,4 +88,6 @@ return [
     "Statistics"            => "إحصائيات",
     "Home"                  => "الرئيسية",
     "Messages"              => "الرسائل",
+    "ChangePassword"        => "تغيير كلمة المرور",
+    "CurrentPasswordAlert"  => "كلمة المرور الحالية غير صحيحة!",
 ];

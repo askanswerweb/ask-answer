@@ -23,4 +23,7 @@ return [
     "PasswordResetSuccessDescription"   => "You have changed your password successfully, you can signin now",
     "PasswordResetLinkExpire"           => "This password reset link will expire in 60 minutes.",
     "PasswordResetAction"               => "If you did not request a password reset, no further action is required.",
+    "CurrentPassword"                   => "Current Password",
+    "NewPassword"                       => "New Password",
+    "ConfirmNewPassword"                => "Confirm New Password",
 ];

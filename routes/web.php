@@ -1,11 +1,13 @@
 <?php
 
 use App\Business\Localizations;
+use App\Events\TestEvent;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Auth\ChangePassword;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Messages\Index as IndexMessage;
 use App\Http\Livewire\Answers\{Create as CreateAnswer, Edit as EditAnswer, Index as IndexAnswer};
@@ -35,6 +37,7 @@ Route::group(Localizations::routeGroup(), function () {
     Route::middleware('auth')->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::get('change-password', ChangePassword::class)->name('change.password');
 
         // Users
         Route::prefix('users')->name('users.')->group(function () {
@@ -87,5 +90,5 @@ Route::group(Localizations::routeGroup(), function () {
         Route::get('branches', [BranchController::class, 'select2'])->name('branches');
     });
 
-    Route::get('test', fn() => event(new \App\Events\TestEvent));
+    Route::get('test', fn() => event(new TestEvent));
 });

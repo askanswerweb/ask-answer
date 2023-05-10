@@ -68,6 +68,12 @@
                 </div>
             </div>
 
+            <div class="menu-item px-5">
+                <a href="{{ route('change.password') }}" class="btn w-100 menu-link px-5">
+                    {{ __('titles.ChangePassword') }}
+                </a>
+            </div>
+
             <!-- Logout -->
             <div class="menu-item px-5">
                 <button type="submit" class="btn w-100 menu-link px-5" form="logout">

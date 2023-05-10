@@ -30,23 +30,25 @@ class UserFactory extends Factory
         ];
     }
 
-    public function admin(): static
+    public function abd(): static
     {
         return $this->state(fn(array $attributes) => [
-            User::NAME => 'Osama Sadah',
-            User::USERNAME => 'osama',
+            User::NAME => 'Abdalrahman Alshantawi',
+            User::USERNAME => 'abood',
             User::ROLE => UserRole::ADMIN->value,
             User::STATUS => ActiveStatus::ACTIVE->value,
+            User::PASSWORD => bcrypt('12345678'),
         ]);
     }
 
-    public function configure()
+    public function musab(): static
     {
-        return $this->afterCreating(function (User $user) {
-            $user->branches()->sync(Branch::inRandomOrder()
-                ->take($this->faker->numberBetween(1, 5))
-                ->pluck('id')
-                ->toArray());
-        });
+        return $this->state(fn(array $attributes) => [
+            User::NAME => 'Musab Naeem',
+            User::USERNAME => 'musab_naeem',
+            User::ROLE => UserRole::ADMIN->value,
+            User::STATUS => ActiveStatus::ACTIVE->value,
+            User::PASSWORD => bcrypt('12345678'),
+        ]);
     }
 }

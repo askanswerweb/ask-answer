@@ -23,4 +23,7 @@ return [
     "PasswordResetSuccessDescription"   => "لقد قمت بتغيير كلمة المرور بنجاح, يمكنك الآن تسجيل الدخول",
     "PasswordResetLinkExpire"           => "ستنتهي صلاحية رابط إعادة تعيين كلمة المرور هذا خلال 60 دقيقة.",
     "PasswordResetAction"               => "إذا لم تطلب إعادة تعيين كلمة المرور ، فلا داعي لاتخاذ أي إجراء آخر.",
+    "CurrentPassword"                   => "كلمة المرور الحالية",
+    "NewPassword"                       => "كلمة المرور الجديدة",
+    "ConfirmNewPassword"                => "تأكيد كلمة المرور الجديدة",
 ];

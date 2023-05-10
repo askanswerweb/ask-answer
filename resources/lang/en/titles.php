@@ -88,4 +88,6 @@ return [
     "Statistics"            => "Statistics",
     "Home"                  => "Home",
     "Messages"              => "Messages",
+    "ChangePassword"        => "Change Password",
+    "CurrentPasswordAlert"  => "Incorrect Current Password!",
 ];
