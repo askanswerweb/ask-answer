@@ -134,9 +134,11 @@
                                         {{ __('titles.CreateFirstQuestion') }}
                                     </p>
 
-                                    <a href="{{ route('questions.create') }}" class="btn btn-primary">
-                                        {{ __('titles.AddQuestion') }}
-                                    </a>
+                                    @if(auth()->user()->isWorker())
+                                        <a href="{{ route('questions.create') }}" class="btn btn-primary">
+                                            {{ __('titles.AddQuestion') }}
+                                        </a>
+                                    @endif
                                 </div>
 
                                 <div class="text-center px-4">
