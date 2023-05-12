@@ -17,7 +17,7 @@ class TestEvent implements ShouldBroadcast
      */
     public function __construct(public string $name = '')
     {
-        $this->name = 'test';
+        $this->name = $name ?: 'test';
     }
 
     /**
@@ -28,7 +28,7 @@ class TestEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('channel-name'),
+            new Channel('test'),
         ];
     }
 }

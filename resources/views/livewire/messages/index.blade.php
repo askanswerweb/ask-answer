@@ -40,358 +40,74 @@
                                  data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto"
                                  data-kt-scroll-dependencies="#kt_header, #kt_app_header, #kt_toolbar, #kt_app_toolbar, #kt_footer, #kt_app_footer, #kt_chat_contacts_header"
                                  data-kt-scroll-wrappers="#kt_content, #kt_app_content, #kt_chat_contacts_body"
-                                 data-kt-scroll-offset="5px" style="max-height: 356px;">
+                                 data-kt-scroll-offset="5px" style="min-height: 200px; max-height: 356px;">
 
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><span
-                                                class="symbol-label  bg-light-danger text-danger fs-6 fw-bolder ">M</span>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Melody
-                                                Macy</a>
-                                            <div class="fw-semibold text-muted">melody@altbox.com</div>
+                                @if($list->isEmpty())
+                                    <div class="card card-flush">
+                                        <div class="card-body">
+                                            <div class="card-px text-center mb-0">
+                                                <h2 class="fs-2x fw-bold">{{ __('inventory.seller_product_unit_group') }}</h2>
+                                                <p class="text-gray-400 fs-4 fw-semibold mb-5">{{ __('titles.NoUsers') }}</p>
+
+                                                <a class="btn btn-secondary" target="_blank"
+                                                   href="#">
+                                                    {{ __('inventory.add_measurement_unit') }}
+                                                </a>
+                                            </div>
+
+                                            <div class="text-center px-4">
+                                                <img class="mw-100 mh-200px" alt="" src="{{ asset('assets/media/illustrations/sigma-1/5.png') }}">
+                                            </div>
                                         </div>
-                                        <!--end::Details-->
                                     </div>
-                                    <!--end::Details-->
+                                @else
+                                    @foreach($list as $user)
+                                        @php /** @var \App\Models\User $user */ @endphp
+                                        <div class="d-flex flex-stack py-4">
+                                            <div class="d-flex align-items-center">
+                                                <div class="symbol  symbol-45px symbol-circle "><span
+                                                        class="symbol-label  bg-light-danger text-danger fs-6 fw-bolder ">
+                                                        {{ $user->getFirstLetter() }}
+                                                    </span>
+                                                </div>
 
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">1 week</span>
+                                                <div class="ms-5">
+                                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">
+                                                        {{ $user->name }}
+                                                    </a>
+                                                    <div class="fw-semibold text-muted">melody@altbox.com</div>
+                                                </div>
+                                            </div>
 
-                                        <span class="badge badge-sm badge-circle badge-light-success">6</span>
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
+                                            <div class="d-flex flex-column align-items-end ms-2">
+                                                <span class="text-muted fs-7 mb-1">1 week</span>
 
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><img alt="Pic"
-                                                                                             src="/assets/media/avatars/300-1.jpg">
-                                            <div
-                                                class="symbol-badge bg-success start-100 top-100 border-4 h-8px w-8px ms-n2 mt-n2"></div>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Max
-                                                Smith</a>
-                                            <div class="fw-semibold text-muted">max@kt.com</div>
+                                                <span class="badge badge-sm badge-circle badge-light-success">6</span>
+                                            </div>
                                         </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">1 day</span>
-
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><img alt="Pic"
-                                                                                             src="/assets/media/avatars/300-5.jpg">
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sean
-                                                Bean</a>
-                                            <div class="fw-semibold text-muted">sean@dellito.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">2 weeks</span>
-
-                                        <span class="badge badge-sm badge-circle badge-light-warning">9</span>
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><img alt="Pic"
-                                                                                             src="/assets/media/avatars/300-25.jpg">
-                                            <div
-                                                class="symbol-badge bg-success start-100 top-100 border-4 h-8px w-8px ms-n2 mt-n2"></div>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Brian
-                                                Cox</a>
-                                            <div class="fw-semibold text-muted">brian@exchange.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">1 week</span>
-
-                                        <span class="badge badge-sm badge-circle badge-light-warning">9</span>
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><span
-                                                class="symbol-label  bg-light-warning text-warning fs-6 fw-bolder ">C</span>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Mikaela
-                                                Collins</a>
-                                            <div class="fw-semibold text-muted">mik@pex.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">1 day</span>
-
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><img alt="Pic"
-                                                                                             src="/assets/media/avatars/300-9.jpg">
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Francis
-                                                Mitcham</a>
-                                            <div class="fw-semibold text-muted">f.mit@kpmg.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">20 hrs</span>
-
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><span
-                                                class="symbol-label  bg-light-danger text-danger fs-6 fw-bolder ">O</span>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Olivia
-                                                Wild</a>
-                                            <div class="fw-semibold text-muted">olivia@corpmail.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">2 weeks</span>
-
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><span
-                                                class="symbol-label  bg-light-primary text-primary fs-6 fw-bolder ">N</span>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Neil
-                                                Owen</a>
-                                            <div class="fw-semibold text-muted">owen.neil@gmail.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">20 hrs</span>
-
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><img alt="Pic"
-                                                                                             src="/assets/media/avatars/300-23.jpg">
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Dan
-                                                Wilson</a>
-                                            <div class="fw-semibold text-muted">dam@consilting.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">1 week</span>
-
-                                        <span class="badge badge-sm badge-circle badge-light-success">2</span>
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-                                <!--begin::Separator-->
-                                <div class="separator separator-dashed d-none"></div>
-                                <!--end::Separator-->
-
-                                <!--begin::User-->
-                                <div class="d-flex flex-stack py-4">
-                                    <!--begin::Details-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol  symbol-45px symbol-circle "><span
-                                                class="symbol-label  bg-light-danger text-danger fs-6 fw-bolder ">E</span>
-                                        </div><!--end::Avatar-->
-                                        <!--begin::Details-->
-                                        <div class="ms-5">
-                                            <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma
-                                                Bold</a>
-                                            <div class="fw-semibold text-muted">emma@intenso.com</div>
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Details-->
-
-                                    <!--begin::Lat seen-->
-                                    <div class="d-flex flex-column align-items-end ms-2">
-                                        <span class="text-muted fs-7 mb-1">1 day</span>
-
-                                    </div>
-                                    <!--end::Lat seen-->
-                                </div>
-                                <!--end::User-->
-
-
+                                    @endforeach
+                                @endif
                             </div>
-                            <!--end::List-->
                         </div>
-                        <!--end::Card body-->
                     </div>
-                    <!--end::Contacts-->    </div>
-                <!--end::Sidebar-->
+                </div>
 
-                <!--begin::Content-->
                 <div class="flex-lg-row-fluid ms-lg-5">
-                    <!--begin::Messenger-->
                     <div class="card" id="kt_chat_messenger">
-                        <!--begin::Card header-->
                         <div class="card-header" id="kt_chat_messenger_header">
-                            <!--begin::Title-->
                             <div class="card-title">
-                                <!--begin::User-->
                                 <div class="d-flex justify-content-center flex-column me-3">
                                     <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Brian
                                         Cox</a>
 
-                                    <!--begin::Info-->
                                     <div class="mb-0 lh-1">
                                         <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
                                         <span class="fs-7 fw-semibold text-muted">Active</span>
                                     </div>
-                                    <!--end::Info-->
                                 </div>
-                                <!--end::User-->
                             </div>
-                            <!--end::Title-->
 
-                            <!--begin::Card toolbar-->
                             <div class="card-toolbar">
-                                <!--begin::Menu-->
                                 <div class="me-n3">
                                     <button class="btn btn-sm btn-icon btn-active-light-primary"
                                             data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -399,7 +115,6 @@
                                                 class="path2"></span><span class="path3"></span><span
                                                 class="path4"></span></i></button>
 
-                                    <!--begin::Menu 3-->
                                     <div
                                         class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
                                         data-kt-menu="true">

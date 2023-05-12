@@ -90,4 +90,5 @@ return [
     "Messages"              => "الرسائل",
     "ChangePassword"        => "تغيير كلمة المرور",
     "CurrentPasswordAlert"  => "كلمة المرور الحالية غير صحيحة!",
+    "NoUsers"               => "لا يوجد مستخدمين",
 ];

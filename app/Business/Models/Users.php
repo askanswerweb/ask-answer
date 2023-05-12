@@ -4,6 +4,7 @@ namespace App\Business\Models;
 
 use App\Business\Utilities\Arrays;
 use App\Business\Utilities\Dates;
+use App\Business\Utilities\Models;
 use App\Business\Utilities\Queries;
 use App\Http\Enums\ActiveStatus;
 use App\Models\User;
@@ -49,6 +50,8 @@ class Users
         if ($branch_id = Arrays::whereNotEmpty($options->get('branch_id'))) {
             $query->whereHas('branches', fn($query) => $query->whereIn('branches.id', $branch_id));
         }
+
+        Models::exclude($query, $options->get('exclude'));
 
         Dates::filter($query, [
             'date_from' => $options->get('date_from'),

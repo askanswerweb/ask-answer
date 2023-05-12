@@ -19,6 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static Builder worker()
  * @method static Builder consultant()
  * @method static Builder notAdmin()
+ * @method static Builder notConsultant()
  */
 class User extends BaseUser implements Authenticatable
 {
@@ -89,5 +90,16 @@ class User extends BaseUser implements Authenticatable
     {
         return $builder->where('users.role', '<>', UserRole::ADMIN->value);
     }
+
+    public function scopeNotConsultant(Builder $builder): Builder
+    {
+        return $builder->where('users.role', '<>', UserRole::CONSULTANT->value);
+    }
+
     ########## MODEL SCOPES ##########
+
+    public function getFirstLetter(): string
+    {
+        return Strings::firstLetter($this->name);
+    }
 }

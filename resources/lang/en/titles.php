@@ -90,4 +90,5 @@ return [
     "Messages"              => "Messages",
     "ChangePassword"        => "Change Password",
     "CurrentPasswordAlert"  => "Incorrect Current Password!",
+    "NoUsers"               => "There are no users!",
 ];
