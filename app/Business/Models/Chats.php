@@ -3,6 +3,7 @@
 namespace App\Business\Models;
 
 use App\Business\Utilities\Dates;
+use App\Business\Utilities\Queries;
 use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -16,6 +17,15 @@ class Chats
             $query->where(function ($query) use ($user_id) {
                 $query->where('chats.sender_id', $user_id);
                 $query->orWhere('chats.receiver_id', $user_id);
+            });
+        }
+
+        if ($search = $options->get('search')) {
+            $query->where(function ($query) use ($search) {
+                $query->where('chats.sender_id', $search);
+                $query->orWhere('chats.receiver_id', $search);
+                $query->orWhereHas('receiver', fn($q) => $q->whereRaw(Queries::like('users.name', $search)));
+                $query->orWhereHas('sender', fn($q) => $q->whereRaw(Queries::like('users.name', $search)));
             });
         }
 

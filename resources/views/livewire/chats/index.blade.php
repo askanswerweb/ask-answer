@@ -23,7 +23,7 @@
                             </div>
                             <form class="w-100 position-relative" autocomplete="off">
                                 <input type="text" class="form-control form-control-solid"
-                                       wire:model.defer="search" placeholder="{{ __('actions.Search') }}">
+                                       wire:model.debounce.600ms="search" placeholder="{{ __('actions.Search') }}">
                             </form>
                         </div>
 
