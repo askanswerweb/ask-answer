@@ -64,10 +64,7 @@ class Index extends Tables
         $this->selected = $user_id;
         $this->selected_user = User::find($this->selected);
 
-        ChatMessage::where(ChatMessage::SENDER_ID, $this->selected)
-            ->where(ChatMessage::RECEIVER_ID, auth()->id())
-            ->update(['seen' => true]);
-
+        $this->makeSeen();
         $this->setTotalMessages();
     }
 
@@ -121,6 +118,7 @@ class Index extends Tables
 
     public function newMessage()
     {
+        $this->makeSeen();
         $this->dispatchBrowserEvent('new_message');
     }
 
@@ -142,5 +140,12 @@ class Index extends Tables
     public function loadMore()
     {
         $this->loadAmount += 10;
+    }
+
+    private function makeSeen()
+    {
+        ChatMessage::where(ChatMessage::SENDER_ID, $this->selected)
+            ->where(ChatMessage::RECEIVER_ID, auth()->id())
+            ->update(['seen' => true]);
     }
 }
