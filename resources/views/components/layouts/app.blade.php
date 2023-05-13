@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="app-navbar flex-shrink-0 d-flex align-items-stretch justify-content-end flex-lg-grow-1">
-                    <a href="{{ route('messages') }}" class="app-navbar-item ms-1 ms-md-3">
+                    <a href="{{ route('chats.index') }}" class="app-navbar-item ms-1 ms-md-3">
                         <div
                             class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px position-relative"
                             id="kt_drawer_chat_toggle">

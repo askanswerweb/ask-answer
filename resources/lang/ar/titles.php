@@ -91,4 +91,6 @@ return [
     "ChangePassword"        => "تغيير كلمة المرور",
     "CurrentPasswordAlert"  => "كلمة المرور الحالية غير صحيحة!",
     "NoUsers"               => "لا يوجد مستخدمين",
+    "StartChat"             => "ابدأ المحادثة",
+    "ChatReceiver"          => "مستلم المحادثة",
 ];

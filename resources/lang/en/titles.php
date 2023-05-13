@@ -91,4 +91,6 @@ return [
     "ChangePassword"        => "Change Password",
     "CurrentPasswordAlert"  => "Incorrect Current Password!",
     "NoUsers"               => "There are no users!",
+    "StartChat"             => "Start Chat",
+    "ChatReceiver"          => "Chat Receiver",
 ];

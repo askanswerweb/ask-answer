@@ -12,6 +12,13 @@ class Chats
     {
         $options = collect($options);
 
+        if ($user_id = $options->get('user_id')) {
+            $query->where(function ($query) use ($user_id) {
+                $query->where('chats.sender_id', $user_id);
+                $query->orWhere('chats.receiver_id', $user_id);
+            });
+        }
+
         if ($sender_id = $options->get('sender_id')) {
             $query->where('chats.sender_id', $sender_id);
         }

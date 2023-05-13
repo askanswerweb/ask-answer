@@ -4,6 +4,7 @@ use App\Business\Localizations;
 use App\Events\TestEvent;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
@@ -71,7 +72,8 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/{branch}/edit', EditBranch::class)->name('edit');
         });
 
-        Route::get('messages', IndexMessage::class)->name('messages');
+        Route::get('messages', \App\Http\Livewire\Messages\Index::class)->name('messages');
+        Route::get('chats', \App\Http\Livewire\Chats\Index::class)->name('chats.index');
 
         Route::prefix('dropzone')->group(function () {
             Route::prefix('questions')->name('questions')->group(function () {
@@ -83,12 +85,13 @@ Route::group(Localizations::routeGroup(), function () {
         Route::prefix('select2')->name('select2.')->group(function () {
             Route::get('users', [UserController::class, 'select2'])->name('users');
             Route::get('branches', [BranchController::class, 'select2'])->name('branches');
+            Route::get('chat-receiver', [ChatController::class, 'chatReceiverSelect2'])->name('chat.receiver');
         });
     });
 
-    Route::prefix('select2')->name('select2.')->group(function () {
-        Route::get('branches', [BranchController::class, 'select2'])->name('branches');
-    });
+//    Route::prefix('select2')->name('select2.')->group(function () {
+//        Route::get('branches', [BranchController::class, 'select2'])->name('branches');
+//    });
 
     Route::get('test', fn() => event(new TestEvent));
 });

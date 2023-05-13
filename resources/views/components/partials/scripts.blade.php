@@ -3,6 +3,7 @@
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/js/block-livewire.js') }}"></script>
+<script src="{{ asset('assets/js/DraggableModal.js') }}"></script>
 @livewireScripts
 <script>
     toastr.options = {

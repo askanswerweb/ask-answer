@@ -41,7 +41,7 @@ class Select2 extends Component
     )
     {
         $this->id = $id ?: $model;
-        $this->url = app()->getLocale() . "/select2/$url";
+        $this->url = "/select2/$url";
 
         $this->selectedId = $selectedId;
         $this->selectedText = $selectedText;
