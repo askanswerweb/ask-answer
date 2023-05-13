@@ -97,7 +97,8 @@
                         <div class="card-header" id="kt_chat_messenger_header">
                             <div class="card-title">
                                 <div class="d-flex justify-content-center flex-column me-3">
-                                    <a href="javascript:void(0);" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">
+                                    <a href="javascript:void(0);"
+                                       class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">
                                         {{ $selected_user?->name }}
                                     </a>
 
@@ -112,7 +113,8 @@
                         <!--end::Card header-->
 
                         <div class="card-body">
-                            <div class="scroll-y me-n5 pe-5 h-300px" id="kt_chat_messenger_body">
+                            <div class="scroll-y me-n5 pe-5 h-300px" id="kt_chat_messenger_body"
+                                 wire:loading.delay.class="opacity-50">
                                 @if(!count($messages))
                                     <div class="card card-flush">
                                         <div class="card-body">
@@ -130,7 +132,7 @@
                                     @foreach($messages as $message)
                                         @php /** @var \App\Models\ChatMessage $message */ @endphp
                                         @if($message->sender_id == auth()->id())
-                                            <div class="d-flex justify-content-end mb-10 ">
+                                            <div class="d-flex justify-content-end mb-10">
                                                 <div class="d-flex flex-column align-items-end">
                                                     <div class="d-flex align-items-center mb-2">
                                                         <div class="me-3">
@@ -189,6 +191,14 @@
                                             </div>
                                         @endif
                                     @endforeach
+
+                                    @if($loadAmount < $totalMessages)
+                                        <div class="d-flex-center w-100">
+                                            <x-livewire.action class="btn btn-primary btn-sm" wire-click="loadMore">
+                                                {{ __('actions.LoadMore') }}
+                                            </x-livewire.action>
+                                        </div>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -225,12 +235,30 @@
         <script type="module">
             document.addEventListener('new_message', () => {
                 const objDiv = document.getElementById("kt_chat_messenger_body");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                objDiv.scrollTop = 0;
+                console.log('test')
             })
 
             document.addEventListener('DOMContentLoaded', () => {
                 const objDiv = document.getElementById("kt_chat_messenger_body");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                objDiv.scrollTop = 0;
+
+                // const firstRecord = document.getElementById('first_record');
+                // const options = {
+                //     root: null,
+                //     threshold: 1,
+                //     rootMargin: '0px'
+                // };
+                //
+                // const observer = new IntersectionObserver((entries, observer) => {
+                //     entries.forEach(entry => {
+                //         if (entry.isIntersecting) {
+                //         @this.loadMore();
+                //         }
+                //     })
+                // })
+                //
+                // observer.observe(firstRecord)
             })
         </script>
     @endpush

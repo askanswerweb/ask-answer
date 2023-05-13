@@ -57,4 +57,5 @@ return [
     "Answer"            => "Answer",
     "Reply"             => "Reply",
     "Start"             => "Start",
+    "LoadMore"          => "Load More",
 ];

@@ -18,11 +18,12 @@ class Index extends Tables
     public $content;
     public ?User $selected_user = null;
     protected $queryString = ['search', 'selected'];
-
-//    protected $listeners = ['echo:test,TestEvent' => 'test', 'selectUser'];
+    public int $totalMessages = 0;
+    public int $loadAmount = 10;
 
     public function mount()
     {
+        $this->setTotalMessages();
         $this->selected_user = $this->selected ? User::find($this->selected) : null;
     }
 
@@ -32,11 +33,6 @@ class Index extends Tables
             'list' => $this->pagination(true),
             'messages' => $this->messages()
         ]);
-    }
-
-    public function test()
-    {
-        info('test');
     }
 
     public function query()
@@ -67,9 +63,12 @@ class Index extends Tables
     {
         $this->selected = $user_id;
         $this->selected_user = User::find($this->selected);
+
         ChatMessage::where(ChatMessage::SENDER_ID, $this->selected)
             ->where(ChatMessage::RECEIVER_ID, auth()->id())
             ->update(['seen' => true]);
+
+        $this->setTotalMessages();
     }
 
     protected function messages()
@@ -89,6 +88,8 @@ class Index extends Tables
                     $query->where(ChatMessage::SENDER_ID, $this->selected);
                 });
             })
+            ->latest('id')
+            ->limit($this->loadAmount)
             ->get();
     }
 
@@ -121,5 +122,25 @@ class Index extends Tables
     public function newMessage()
     {
         $this->dispatchBrowserEvent('new_message');
+    }
+
+    private function setTotalMessages()
+    {
+        if ($this->selected)
+            $this->totalMessages = ChatMessage::where(function ($query) {
+                $query->where(function ($query) {
+                    $query->where(ChatMessage::SENDER_ID, auth()->id());
+                    $query->where(ChatMessage::RECEIVER_ID, $this->selected);
+                });
+                $query->orWhere(function ($query) {
+                    $query->where(ChatMessage::RECEIVER_ID, auth()->id());
+                    $query->where(ChatMessage::SENDER_ID, $this->selected);
+                });
+            })->count();
+    }
+
+    public function loadMore()
+    {
+        $this->loadAmount += 10;
     }
 }
