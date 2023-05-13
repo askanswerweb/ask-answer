@@ -44,6 +44,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder join($table, $first, $operator = null, $second = null, $type = 'inner', $where = false)
  * @method static LengthAwarePaginator paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
  * @method static Builder inRandomOrder($seed = '')
+ * @method static Builder|mixed scopes($scopes)
  * @method static mixed value($column)
  **/
 trait ModelTrait

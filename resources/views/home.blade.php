@@ -72,7 +72,7 @@
                         <div class="card-header pt-5">
                             <div class="card-title d-flex flex-column">
                                 <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">
-                                    {{ number_format($all_active_users) }}
+                                    {{ number_format($active_users) }}
                                 </span>
 
                                 <span class="text-white opacity-75 pt-1 fw-semibold fs-6">
@@ -83,18 +83,24 @@
 
                         <div class="card-body d-flex align-items-end pt-0">
                             <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                <div
-                                    class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                    <span>{{ number_format($all_active_users) }} {{ __('titles.active') }}
-                                        / {{ ($all_users ?: 1) }}</span>
+                                <div class="d-flex-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
                                     <span>
-                                        {{ round(($all_active_users / ($all_users ?: 1)) * 100) }}%
+                                        <span class="me-1">
+                                            @if($users > 0)
+                                                {{ number_format($active_users) }} / {{ ($users ?: 1) }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
+                                        <span>{{ __('titles.active') }}</span>
                                     </span>
+
+                                    <span>{{ $users > 0 ? round(($active_users / ($users ?: 1)) * 100) : 0 }}%</span>
                                 </div>
 
                                 <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
                                     <div class="bg-white rounded h-8px" role="progressbar"
-                                         style="width: {{ round(($all_active_users / ($all_users ?: 1)) * 100) }}%;"
+                                         style="width: {{ $users > 0 ? round(($active_users / ($users ?: 1)) * 100) : 0 }}%;"
                                          aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -155,7 +161,7 @@
                                 </span>
 
                                 <span class="text-gray-400 pt-1 fw-semibold fs-6">
-                                    {{ __('titles.User') }}
+                                    {{ __('titles.Users') }}
                                 </span>
                             </div>
                         </div>
