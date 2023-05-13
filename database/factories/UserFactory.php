@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Http\Enums\ActiveStatus;
 use App\Http\Enums\UserRole;
 use App\Models\Branch;
+use App\Models\ChatMessage;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

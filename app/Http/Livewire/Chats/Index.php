@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\Chats;
 
 use App\Business\Livewire\Tables;
-use App\Business\Models\Chats;
-use App\Models\Chat;
+use App\Business\Models\Users;
+use App\Models\ChatMessage;
+use App\Models\User;
 
 class Index extends Tables
 {
@@ -13,13 +14,22 @@ class Index extends Tables
 
     // Variables
     public $receiver_id;
-    protected $queryString = ['search'];
-    protected $listeners = ['echo:test,TestEvent' => 'test'];
+    public $selected;
+    public $content;
+    public ?User $selected_user = null;
+    protected $queryString = ['search', 'selected'];
+    protected $listeners = ['echo:test,TestEvent' => 'test', 'selectUser'];
+
+    public function mount()
+    {
+        $this->selected_user = $this->selected ? User::find($this->selected) : null;
+    }
 
     public function render()
     {
         return view('livewire.chats.index', [
-            'list' => $this->pagination(true)
+            'list' => $this->pagination(true),
+            'messages' => $this->messages()
         ]);
     }
 
@@ -30,24 +40,66 @@ class Index extends Tables
 
     public function query()
     {
-        $query = Chat::with('receiver')->withCount(['chat_messages' => fn($q) => $q->where('chat_messages.seen', false)]);
-        return Chats::filter($query, [
-            'user_id' => auth()->id(),
-            'search' => $this->search,
-        ]);
+        $query = User::withCount(['sender_messages' => function ($query) {
+            $query->where(ChatMessage::SENDER_ID, $this->selected);
+            $query->where(ChatMessage::RECEIVER_ID, auth()->id());
+            $query->scopes('unseen');
+        }]);
+
+        if (auth()->user()->isAdmin()) {
+            $query->scopes('notAdmin');
+        } elseif (auth()->user()->isConsultant()) {
+            $query->scopes('notConsultant');
+        } elseif (auth()->user()->isWorker()) {
+            $query->scopes('notWorker');
+        }
+
+        return Users::filter($query, ['search' => $this->search, 'exclude' => auth()->id()]);
     }
 
-    public function start()
+    protected function paginationFactors(): array
     {
-        $this->validate(['receiver_id' => 'required']);
+        return ['search'];
+    }
 
-        Chat::firstOrCreate([
-            Chat::SENDER_ID => auth()->id(),
-            Chat::RECEIVER_ID => $this->receiver_id,
+    public function selectUser($user_id)
+    {
+        $this->selected = $user_id;
+        $this->selected_user = User::find($this->selected);
+        ChatMessage::where(ChatMessage::SENDER_ID, $this->selected)
+            ->where(ChatMessage::RECEIVER_ID, auth()->id())
+            ->update(['seen' => true]);
+    }
+
+    protected function messages()
+    {
+        if (!$this->selected) {
+            return [];
+        }
+
+        return ChatMessage::with('sender')
+            ->where(function ($query) {
+                $query->where(function ($query) {
+                    $query->where(ChatMessage::SENDER_ID, auth()->id());
+                    $query->where(ChatMessage::RECEIVER_ID, $this->selected);
+                });
+                $query->orWhere(function ($query) {
+                    $query->where(ChatMessage::RECEIVER_ID, auth()->id());
+                    $query->where(ChatMessage::SENDER_ID, $this->selected);
+                });
+            })
+            ->get();
+    }
+
+    public function send()
+    {
+        ChatMessage::create([
+            ChatMessage::SENDER_ID => auth()->id(),
+            ChatMessage::RECEIVER_ID => $this->selected,
+            ChatMessage::CONTENT => $this->content,
         ]);
 
-        $this->saved();
-        $this->reset('receiver_id');
-        $this->dispatchBrowserEvent('select2_clear');
+        $this->reset('content');
+        $this->dispatchBrowserEvent('new_message');
     }
 }

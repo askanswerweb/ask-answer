@@ -93,4 +93,8 @@ return [
     "NoUsers"               => "There are no users!",
     "StartChat"             => "Start Chat",
     "ChatReceiver"          => "Chat Receiver",
+    "FirstPage"             => "First Page",
+    "You"                   => "You",
+    "NoMessages"            => "No Messages Yet!",
+    "TypeMessage"           => "Type a message",
 ];

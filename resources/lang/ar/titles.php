@@ -93,4 +93,8 @@ return [
     "NoUsers"               => "لا يوجد مستخدمين",
     "StartChat"             => "ابدأ المحادثة",
     "ChatReceiver"          => "مستلم المحادثة",
+    "FirstPage"             => "الصفحة الأولى",
+    "You"                   => "أنت",
+    "NoMessages"            => "لا يوجد رسائل الى الآن!",
+    "TypeMessage"           => "أكتب رسالة",
 ];
