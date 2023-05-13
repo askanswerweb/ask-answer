@@ -93,5 +93,5 @@ Route::group(Localizations::routeGroup(), function () {
 //        Route::get('branches', [BranchController::class, 'select2'])->name('branches');
 //    });
 
-    Route::get('test', fn() => event(new TestEvent));
+    Route::get('test', fn() => event(new \App\Events\ChatEvent(1, 10)));
 });

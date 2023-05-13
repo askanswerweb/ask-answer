@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <x-breadcrumb.container :header="__('titles.Messages')">
-        <x-breadcrumb.link :href="auth()->user()->isAdmin() ? route('home') : route('questions.feeds')">
+        <x-breadcrumb.link :href="auth()->user()->isAdmin() ? route('home') : route('question.feeds')">
             {{ __('titles.Dashboard') }}
         </x-breadcrumb.link>
 
@@ -97,9 +97,15 @@
                         <div class="card-header" id="kt_chat_messenger_header">
                             <div class="card-title">
                                 <div class="d-flex justify-content-center flex-column me-3">
-                                    <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">
+                                    <a href="javascript:void(0);" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">
                                         {{ $selected_user?->name }}
                                     </a>
+
+                                    <div class="mb-0 lh-1">
+                                        <span class="fs-7 fw-semibold text-muted">
+                                            {{ $selected_user?->username }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,10 +223,6 @@
 
     @push('scripts')
         <script type="module">
-            Echo.channel('test').listen("TestEvent", (e) => {
-                console.log(e)
-            });
-
             document.addEventListener('new_message', () => {
                 const objDiv = document.getElementById("kt_chat_messenger_body");
                 objDiv.scrollTop = objDiv.scrollHeight;

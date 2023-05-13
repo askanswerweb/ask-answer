@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Chats;
 
 use App\Business\Livewire\Tables;
 use App\Business\Models\Users;
+use App\Events\ChatEvent;
 use App\Models\ChatMessage;
 use App\Models\User;
 
@@ -13,12 +14,12 @@ class Index extends Tables
     public $search;
 
     // Variables
-    public $receiver_id;
     public $selected;
     public $content;
     public ?User $selected_user = null;
     protected $queryString = ['search', 'selected'];
-    protected $listeners = ['echo:test,TestEvent' => 'test', 'selectUser'];
+
+//    protected $listeners = ['echo:test,TestEvent' => 'test', 'selectUser'];
 
     public function mount()
     {
@@ -100,6 +101,25 @@ class Index extends Tables
         ]);
 
         $this->reset('content');
+        $this->dispatchBrowserEvent('new_message');
+        event(new ChatEvent($this->selected, auth()->id()));
+    }
+
+    public function getListeners()
+    {
+        if (!$this->selected) {
+            return ['selectUser'];
+        }
+
+        $auth = auth()->id();
+        return [
+            "echo-private:chat.$auth.$this->selected,ChatEvent" => 'newMessage',
+            'selectUser'
+        ];
+    }
+
+    public function newMessage()
+    {
         $this->dispatchBrowserEvent('new_message');
     }
 }
