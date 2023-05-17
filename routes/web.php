@@ -89,9 +89,7 @@ Route::group(Localizations::routeGroup(), function () {
         });
     });
 
-//    Route::prefix('select2')->name('select2.')->group(function () {
-//        Route::get('branches', [BranchController::class, 'select2'])->name('branches');
-//    });
+    Route::get('select2/guest/branches', [BranchController::class, 'select2'])->name('select2.guest.branches');
 
     Route::get('test', fn() => event(new \App\Events\ChatEvent(1, 10)));
 });

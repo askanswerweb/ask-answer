@@ -60,7 +60,7 @@
                             <x-filters.select2
                                 id="branch_id"
                                 model="branch_id"
-                                url="branches"
+                                url="guest/branches"
                                 :title="__('titles.Branch')"
                                 :clear="false"
                             />
