@@ -92,6 +92,10 @@ class Index extends Tables
 
     public function send()
     {
+        if (empty($this->content)) {
+            return;
+        }
+
         ChatMessage::create([
             ChatMessage::SENDER_ID => auth()->id(),
             ChatMessage::RECEIVER_ID => $this->selected,
