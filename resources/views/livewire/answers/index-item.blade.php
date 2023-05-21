@@ -27,16 +27,9 @@
                                     <label class="fw-semibold text-gray-400 d-block fs-8">
                                         {{ __('titles.User') }}
                                     </label>
-                                    @if(auth()->user()->isAdmin())
-                                        <a href="{{ route('users.edit', ['user' => $answer->user->id]) }}"
-                                           target="_blank" class="fw-bold text-gray-800 text-hover-primary fs-7">
-                                            {{ $answer->user->firstName() }}
-                                        </a>
-                                    @else
-                                        <label class="fw-bold text-gray-800 text-hover-primary fs-7">
-                                            {{ $answer->user->firstName() }}
-                                        </label>
-                                    @endif
+                                    <label class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                        {{ $answer->user->firstName() }}
+                                    </label>
                                 </div>
                             @endif
                         </div>
