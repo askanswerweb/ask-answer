@@ -22,11 +22,6 @@
                                         <x-svg icon="home" />
                                     </x-livewire.action>
                                 </x-tooltip>
-
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#start_chat">
-                                    {{ __('titles.StartChat') }}
-                                </button>
                             </div>
                             <form class="w-100 position-relative" autocomplete="off">
                                 <input type="text" class="form-control form-control-solid"
@@ -59,30 +54,6 @@
                                         @livewire('chats.index-item', ['user' => $user, 'selected' => $selected], key(microtime()))
                                     @endforeach
                                 @endif
-
-                                <x-widgets.modal id="start_chat" :title="__('titles.StartChat')">
-                                    <div class="w-100 text-center">
-                                        <div class="row mb-5 mb-xl-10 text-start fw-semibold">
-                                            <label>{{ __('titles.ChatReceiver') }}</label>
-                                            <x-filters.select2
-                                                id="receiver_id"
-                                                model="receiver_id"
-                                                url="chat-receiver"
-                                                :title="__('titles.ChatReceiver')"
-                                                :clear="false"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <x-slot name="footer">
-                                        <button class="btn btn-light" data-bs-dismiss="modal">
-                                            {{ __('actions.Cancel') }}
-                                        </button>
-                                        <button class="btn btn-primary" wire:click="start" data-bs-dismiss="modal">
-                                            {{ __('actions.Start') }}
-                                        </button>
-                                    </x-slot>
-                                </x-widgets.modal>
                             </div>
 
                             @if($list->isNotEmpty())
