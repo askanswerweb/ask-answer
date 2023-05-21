@@ -174,7 +174,7 @@
                                                         <div class="ms-3">
                                                             <a href="#"
                                                                class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">
-                                                                {{ $message->sender?->name }}
+                                                                {{ $message->sender?->firstName() }}
                                                             </a>
                                                             <span class="text-muted fs-7 mb-1">
                                                                 {{ $message->getCreatedAtForHumans() }}
