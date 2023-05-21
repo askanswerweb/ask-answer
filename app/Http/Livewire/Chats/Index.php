@@ -100,7 +100,7 @@ class Index extends Tables
 
         $this->reset('content');
         $this->dispatchBrowserEvent('new_message');
-        event(new ChatEvent($this->selected, auth()->id()));
+        broadcast(new ChatEvent($this->selected, auth()->id()))->toOthers();
     }
 
     public function getListeners()
@@ -111,7 +111,7 @@ class Index extends Tables
 
         $auth = auth()->id();
         return [
-            "echo-private:chat.$auth.$this->selected,ChatEvent" => 'newMessage',
+            "echo-private:chat.$auth.$this->selected,ChatEvent" => 'newMessage',    // Listen
             'selectUser'
         ];
     }
