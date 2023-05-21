@@ -236,7 +236,6 @@
             document.addEventListener('new_message', () => {
                 const objDiv = document.getElementById("kt_chat_messenger_body");
                 objDiv.scrollTop = 0;
-                console.log('test')
             })
 
             document.addEventListener('DOMContentLoaded', () => {
