@@ -1,7 +1,6 @@
 <?php
 
 use App\Business\Localizations;
-use App\Events\TestEvent;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ChatController;
@@ -10,7 +9,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Auth\ChangePassword;
 use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Messages\Index as IndexMessage;
+use App\Http\Livewire\Chats\Index as IndexChat;
 use App\Http\Livewire\Answers\{Create as CreateAnswer, Edit as EditAnswer, Index as IndexAnswer};
 use App\Http\Livewire\Branches\{Create as CreateBranch, Edit as EditBranch, Index as IndexBranch};
 use App\Http\Livewire\Feeds\Index as IndexFeed;
@@ -72,8 +71,7 @@ Route::group(Localizations::routeGroup(), function () {
             Route::get('/{branch}/edit', EditBranch::class)->name('edit');
         });
 
-        Route::get('messages', \App\Http\Livewire\Messages\Index::class)->name('messages');
-        Route::get('chats', \App\Http\Livewire\Chats\Index::class)->name('chats.index');
+        Route::get('chats', IndexChat::class)->name('chats.index');
 
         Route::prefix('dropzone')->group(function () {
             Route::prefix('questions')->name('questions')->group(function () {
@@ -90,6 +88,4 @@ Route::group(Localizations::routeGroup(), function () {
     });
 
     Route::get('select2/guest/branches', [BranchController::class, 'select2'])->name('select2.guest.branches');
-
-    Route::get('test', fn() => event(new \App\Events\ChatEvent(1, 10)));
 });
